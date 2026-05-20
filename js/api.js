@@ -108,7 +108,7 @@ function renderSinhVien(sinhVien) {
   );
 }
 
-const API_BASE_URL = "https://69f9a78bc509a40d3aa2f22e.mockapi.io/api/v1";
+const API_BASE_URL = "https://69f9a69cc509a40d3aa2ee09.mockapi.io/api/v1/products";
 
 const sinhVienAPI = new APIResource(API_BASE_URL, "students");
 

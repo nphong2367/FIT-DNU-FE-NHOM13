@@ -1,0 +1,5836 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>FashionHub | Thời Trang Cao Cấp</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+    />
+    <style>
+      :root {
+        --cream: #faf7f2;
+        --white: #fff;
+        --charcoal: #1a1a1a;
+        --taupe: #8b7355;
+        --gold: #c9a84c;
+        --blush: #f0e4d4;
+        --light-gray: #f5f0eb;
+        --border: #e8ddd0;
+        --muted: #9a8a78;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Times New Roman", Times, Georgia, serif;
+        background: var(--cream);
+        color: var(--charcoal);
+      }
+
+      /* ── ANNOUNCE ── */
+      .announce-bar {
+        background: var(--charcoal);
+        color: white;
+        text-align: center;
+        padding: 0.55rem;
+        font-size: 0.78rem;
+        letter-spacing: 0.8px;
+      }
+      .announce-bar b {
+        color: var(--gold);
+      }
+
+      /* ── NAVBAR ── */
+      .navbar {
+        background: rgba(250, 247, 242, 0.97);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--border);
+        padding: 0.7rem 0;
+        position: sticky;
+        top: 0;
+        z-index: 200;
+      }
+      .navbar-brand {
+        font-family: "Playfair Display", serif;
+        font-size: 1.75rem;
+        color: var(--charcoal) !important;
+        letter-spacing: 3px;
+        text-decoration: none;
+      }
+      .navbar-brand .accent {
+        color: var(--gold);
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 0.1rem;
+      }
+      .nav-links > a,
+      .nav-drop > a {
+        color: var(--charcoal) !important;
+        font-size: 0.83rem;
+        font-weight: 500;
+        padding: 0.4rem 0.85rem;
+        border-radius: 4px;
+        text-decoration: none;
+        transition: 0.2s;
+        white-space: nowrap;
+      }
+      .nav-links > a:hover {
+        background: var(--blush);
+        color: var(--taupe) !important;
+      }
+
+      /* Mega drop-down for Áo */
+      .nav-drop {
+        position: relative;
+      }
+      .nav-drop > a::after {
+        content: " ▾";
+        font-size: 0.6rem;
+      }
+      .nav-drop:hover > a {
+        background: var(--blush);
+        color: var(--taupe) !important;
+      }
+      .mega-menu {
+        display: none;
+        position: absolute;
+        top: calc(100%+8px);
+        left: 50%;
+        transform: translateX(-50%);
+        background: white;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+        padding: 1.25rem 1.5rem;
+        min-width: 420px;
+        z-index: 300;
+      }
+      .nav-drop:hover .mega-menu {
+        display: flex;
+        gap: 2rem;
+        animation: fadeDown 0.2s ease;
+      }
+      @keyframes fadeDown {
+        from {
+          opacity: 0;
+          transform: translateX(-50%) translateY(-8px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(-50%) translateY(0);
+        }
+      }
+      .mega-col h6 {
+        font-size: 0.7rem;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--muted);
+        font-weight: 600;
+        margin-bottom: 0.6rem;
+        padding-bottom: 0.4rem;
+        border-bottom: 1px solid var(--border);
+      }
+      .mega-col a {
+        display: block;
+        font-size: 0.83rem;
+        color: var(--charcoal);
+        text-decoration: none;
+        padding: 0.3rem 0;
+        transition: color 0.15s;
+      }
+      .mega-col a:hover {
+        color: var(--gold);
+      }
+
+      .nav-actions {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .nav-icon-btn {
+        background: none;
+        border: none;
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--charcoal);
+        cursor: pointer;
+        font-size: 1.1rem;
+        transition: 0.2s;
+        position: relative;
+      }
+      .nav-icon-btn:hover {
+        background: var(--blush);
+      }
+      .nbadge {
+        position: absolute;
+        top: 2px;
+        right: 2px;
+        width: 16px;
+        height: 16px;
+        background: var(--gold);
+        color: white;
+        border-radius: 50%;
+        font-size: 0.58rem;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .btn-user {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 0.4rem 1rem;
+        background: var(--charcoal);
+        color: white !important;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 500;
+        text-decoration: none;
+        transition: 0.25s;
+        border: none;
+        cursor: pointer;
+        white-space: nowrap;
+      }
+      .btn-user:hover {
+        background: var(--taupe);
+      }
+
+      /* ── HERO ── */
+      .hero {
+        background: linear-gradient(
+          135deg,
+          #1a1a1a 0%,
+          #2d2418 55%,
+          #3d2e1a 100%
+        );
+        padding: 5rem 0;
+        position: relative;
+        overflow: hidden;
+      }
+      .hero::before {
+        content: "";
+        position: absolute;
+        right: -80px;
+        top: -80px;
+        width: 480px;
+        height: 480px;
+        border-radius: 50%;
+        border: 1px solid rgba(201, 168, 76, 0.12);
+      }
+      .hero::after {
+        content: "";
+        position: absolute;
+        right: 60px;
+        top: 60px;
+        width: 280px;
+        height: 280px;
+        border-radius: 50%;
+        border: 1px solid rgba(201, 168, 76, 0.08);
+      }
+      .hero-content {
+        position: relative;
+        z-index: 1;
+      }
+      .hero-tag {
+        display: inline-block;
+        background: rgba(201, 168, 76, 0.2);
+        color: var(--gold);
+        border: 1px solid rgba(201, 168, 76, 0.4);
+        padding: 0.3rem 1rem;
+        border-radius: 20px;
+        font-size: 0.75rem;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: 1.25rem;
+      }
+      .hero h1 {
+        font-family: "Playfair Display", serif;
+        font-size: 3.5rem;
+        color: white;
+        line-height: 1.15;
+        margin-bottom: 1rem;
+      }
+      .hero h1 em {
+        color: var(--gold);
+        font-style: italic;
+      }
+      .hero p {
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 0.95rem;
+        max-width: 420px;
+        line-height: 1.75;
+        margin-bottom: 2rem;
+      }
+      .hero-btns {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+      .btn-gold {
+        background: linear-gradient(135deg, var(--gold), #e0b856);
+        color: var(--charcoal);
+        border: none;
+        padding: 0.85rem 2rem;
+        border-radius: 4px;
+        font-weight: 700;
+        font-size: 0.88rem;
+        letter-spacing: 0.5px;
+        text-decoration: none;
+        transition: 0.3s;
+        display: inline-block;
+        cursor: pointer;
+      }
+      .btn-gold:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(201, 168, 76, 0.4);
+        color: var(--charcoal);
+      }
+      .btn-outline-w {
+        background: transparent;
+        color: white;
+        border: 1.5px solid rgba(255, 255, 255, 0.4);
+        padding: 0.85rem 2rem;
+        border-radius: 4px;
+        font-size: 0.88rem;
+        text-decoration: none;
+        transition: 0.3s;
+        display: inline-block;
+      }
+      .btn-outline-w:hover {
+        border-color: white;
+        background: rgba(255, 255, 255, 0.08);
+        color: white;
+      }
+      .hero-stats {
+        display: flex;
+        gap: 2.5rem;
+        margin-top: 3rem;
+        padding-top: 2rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .stat-item {
+        text-align: center;
+      }
+      .stat-num {
+        font-family: "Playfair Display", serif;
+        font-size: 1.8rem;
+        color: white;
+        font-weight: 700;
+      }
+      .stat-lbl {
+        font-size: 0.72rem;
+        color: rgba(255, 255, 255, 0.45);
+        letter-spacing: 1px;
+        margin-top: 0.15rem;
+      }
+
+      /* ── FEATURE STRIP ── */
+      .feature-strip {
+        background: white;
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+        padding: 1.5rem 0;
+      }
+      .feature-item {
+        display: flex;
+        align-items: center;
+        gap: 0.85rem;
+        padding: 0.4rem;
+      }
+      .fi-icon {
+        font-size: 1.6rem;
+        flex-shrink: 0;
+      }
+      .fi-title {
+        font-weight: 600;
+        font-size: 0.88rem;
+        color: var(--charcoal);
+      }
+      .fi-desc {
+        font-size: 0.76rem;
+        color: var(--muted);
+      }
+
+      /* ── CATEGORIES ── */
+      .categories {
+        background: white;
+        border-bottom: 1px solid var(--border);
+        padding: 1.5rem 0;
+      }
+      .cat-scroll {
+        display: flex;
+        gap: 1.25rem;
+        overflow-x: auto;
+        padding-bottom: 0.25rem;
+        scrollbar-width: none;
+      }
+      .cat-scroll::-webkit-scrollbar {
+        display: none;
+      }
+      .cat-item {
+        flex-shrink: 0;
+        text-align: center;
+        cursor: pointer;
+        user-select: none;
+      }
+      .cat-icon-wrap {
+        width: 68px;
+        height: 68px;
+        border-radius: 50%;
+        background: var(--blush);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.7rem;
+        margin: 0 auto 0.5rem;
+        transition: 0.25s;
+        border: 2.5px solid transparent;
+      }
+      .cat-item:hover .cat-icon-wrap,
+      .cat-item.active .cat-icon-wrap {
+        background: var(--charcoal);
+        border-color: var(--gold);
+      }
+      .cat-lbl {
+        font-size: 0.76rem;
+        font-weight: 500;
+        color: var(--muted);
+        white-space: nowrap;
+      }
+
+      /* ── AO SECTION ── */
+      .ao-section {
+        background: white;
+        padding: 3rem 0;
+        border-top: 3px solid var(--blush);
+      }
+      .section-tag {
+        display: inline-block;
+        background: var(--blush);
+        color: var(--taupe);
+        font-size: 0.72rem;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        padding: 0.25rem 1rem;
+        border-radius: 20px;
+        margin-bottom: 0.75rem;
+      }
+      .section-title {
+        font-family: "Playfair Display", serif;
+        font-size: 2rem;
+        color: var(--charcoal);
+        margin-bottom: 0.4rem;
+      }
+      .section-desc {
+        color: var(--muted);
+        font-size: 0.9rem;
+        margin-bottom: 1.75rem;
+      }
+      .ao-tabs {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+        margin-bottom: 1.75rem;
+      }
+      .ao-tab {
+        padding: 0.4rem 1rem;
+        border-radius: 20px;
+        border: 1.5px solid var(--border);
+        background: white;
+        font-size: 0.8rem;
+        cursor: pointer;
+        transition: 0.2s;
+        color: var(--charcoal);
+        font-family: "Times New Roman", Times, Georgia, serif;
+        white-space: nowrap;
+      }
+      .ao-tab:hover,
+      .ao-tab.active {
+        background: var(--charcoal);
+        border-color: var(--charcoal);
+        color: white;
+      }
+
+      /* ── FILTER BAR ── */
+      .filter-bar {
+        background: white;
+        border-bottom: 1px solid var(--border);
+        padding: 0.9rem 0;
+      }
+      .search-wrap {
+        position: relative;
+        flex: 1;
+        max-width: 360px;
+      }
+      .search-wrap i {
+        position: absolute;
+        left: 13px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+      .search-input {
+        width: 100%;
+        padding: 0.6rem 1rem 0.6rem 2.4rem;
+        border: 1.5px solid var(--border);
+        border-radius: 25px;
+        font-family: "Times New Roman", Times, Georgia, serif;
+        font-size: 0.88rem;
+        background: var(--cream);
+        outline: none;
+        transition: 0.25s;
+      }
+      .search-input:focus {
+        border-color: var(--gold);
+        background: white;
+        box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.1);
+      }
+      .filter-chips {
+        display: flex;
+        gap: 0.4rem;
+        flex-wrap: wrap;
+      }
+      .chip {
+        padding: 0.35rem 0.9rem;
+        border-radius: 20px;
+        border: 1.5px solid var(--border);
+        background: white;
+        font-size: 0.8rem;
+        cursor: pointer;
+        transition: 0.2s;
+        color: var(--charcoal);
+      }
+      .chip:hover,
+      .chip.active {
+        background: var(--charcoal);
+        border-color: var(--charcoal);
+        color: white;
+      }
+      .sort-select {
+        padding: 0.38rem 0.75rem;
+        border: 1.5px solid var(--border);
+        border-radius: 20px;
+        font-family: "Times New Roman", Times, Georgia, serif;
+        font-size: 0.8rem;
+        background: white;
+        color: var(--charcoal);
+        outline: none;
+        cursor: pointer;
+      }
+
+      /* ── PRODUCT CARD ── */
+      .product-card {
+        background: white;
+        border-radius: 14px;
+        overflow: hidden;
+        border: 1px solid var(--border);
+        transition: all 0.3s;
+        height: 100%;
+        cursor: pointer;
+      }
+      .product-card:hover {
+        transform: translateY(-7px);
+        box-shadow: 0 18px 45px rgba(0, 0, 0, 0.1);
+        border-color: var(--gold);
+      }
+      .product-img-wrap {
+        position: relative;
+        overflow: hidden;
+        height: 265px;
+        background: var(--light-gray);
+      }
+      .product-img-wrap img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+      .product-card:hover .product-img-wrap img {
+        transform: scale(1.07);
+      }
+      .product-badge {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        padding: 0.2rem 0.6rem;
+        border-radius: 4px;
+        font-size: 0.68rem;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+      }
+      .badge-new {
+        background: var(--charcoal);
+        color: white;
+      }
+      .badge-sale {
+        background: #e74c3c;
+        color: white;
+      }
+      .badge-hot {
+        background: var(--gold);
+        color: var(--charcoal);
+      }
+      .product-actions {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+        opacity: 0;
+        transform: translateX(10px);
+        transition: all 0.3s;
+      }
+      .product-card:hover .product-actions {
+        opacity: 1;
+        transform: translateX(0);
+      }
+      .action-btn {
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        background: white;
+        border: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.88rem;
+        cursor: pointer;
+        transition: 0.2s;
+        color: var(--charcoal);
+      }
+      .action-btn:hover {
+        background: var(--charcoal);
+        color: white;
+      }
+      .action-btn.wished {
+        background: #fee2e2;
+        border-color: #fecaca;
+        color: #e74c3c;
+      }
+      .action-btn.wished:hover {
+        background: #e74c3c;
+        color: white;
+      }
+      .product-body {
+        padding: 1rem 1rem 0.8rem;
+      }
+      .product-cat {
+        font-size: 0.68rem;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: var(--taupe);
+        margin-bottom: 0.2rem;
+      }
+      .product-name {
+        font-weight: 600;
+        font-size: 0.93rem;
+        color: var(--charcoal);
+        margin-bottom: 0.35rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .stars {
+        color: var(--gold);
+        font-size: 0.72rem;
+        letter-spacing: 1px;
+      }
+      .rating-count {
+        color: var(--muted);
+        font-size: 0.72rem;
+      }
+      .size-row {
+        display: flex;
+        gap: 0.28rem;
+        margin: 0.45rem 0;
+      }
+      .size-tag {
+        padding: 0.12rem 0.45rem;
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        font-size: 0.67rem;
+        color: var(--muted);
+        cursor: pointer;
+        transition: 0.15s;
+      }
+      .size-tag:hover {
+        border-color: var(--charcoal);
+        color: var(--charcoal);
+      }
+      .size-tag.selected {
+        background: var(--charcoal);
+        color: white;
+        border-color: var(--charcoal);
+      }
+      .price-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.4rem;
+      }
+      .price-main {
+        font-weight: 700;
+        font-size: 0.98rem;
+        color: var(--charcoal);
+      }
+      .price-old {
+        font-size: 0.76rem;
+        color: var(--muted);
+        text-decoration: line-through;
+      }
+      .btn-add-cart {
+        padding: 0.38rem 0.8rem;
+        background: var(--charcoal);
+        color: white;
+        border: none;
+        border-radius: 20px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.2s;
+        white-space: nowrap;
+      }
+      .btn-add-cart:hover {
+        background: var(--taupe);
+      }
+
+      /* ── SECTION HEADER ── */
+      .sec-header {
+        text-align: center;
+        margin: 3.5rem 0 2rem;
+      }
+      .sec-header h2 {
+        font-family: "Playfair Display", serif;
+        font-size: 2.2rem;
+        color: var(--charcoal);
+      }
+      .sec-header p {
+        color: var(--muted);
+        font-size: 0.92rem;
+        max-width: 480px;
+        margin: 0.45rem auto 0;
+      }
+
+      /* ── PROMO GRID ── */
+      .promo-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 1.25rem;
+        margin: 3rem 0;
+      }
+      .promo-card {
+        border-radius: 14px;
+        padding: 2.5rem;
+        position: relative;
+        overflow: hidden;
+      }
+      .promo-card.main {
+        background: linear-gradient(135deg, #1a1a1a, #3d2e1a);
+        color: white;
+      }
+      .promo-card.secondary {
+        background: var(--blush);
+      }
+      .promo-tag {
+        font-size: 0.72rem;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        opacity: 0.65;
+        margin-bottom: 0.5rem;
+      }
+      .promo-card h3 {
+        font-family: "Playfair Display", serif;
+        font-size: 1.75rem;
+        margin-bottom: 0.5rem;
+      }
+      .promo-card.secondary h3 {
+        color: var(--charcoal);
+      }
+      .promo-discount {
+        font-family: "Playfair Display", serif;
+        font-size: 3rem;
+        font-weight: 700;
+        color: var(--gold);
+        line-height: 1;
+        margin-bottom: 0.5rem;
+      }
+      .promo-card.secondary .promo-discount {
+        color: var(--taupe);
+      }
+      .promo-sub {
+        font-size: 0.83rem;
+        opacity: 0.65;
+        margin-bottom: 1.5rem;
+      }
+
+      /* ── TESTIMONIALS ── */
+      .testimonial-section {
+        background: white;
+        padding: 3rem 0;
+        border-top: 1px solid var(--border);
+      }
+      .testimonial-card {
+        background: var(--cream);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 1.5rem;
+        height: 100%;
+      }
+      .testimonial-stars {
+        color: var(--gold);
+        font-size: 0.85rem;
+        margin-bottom: 0.65rem;
+      }
+      .testimonial-text {
+        font-size: 0.88rem;
+        color: var(--charcoal);
+        line-height: 1.7;
+        font-style: italic;
+        margin-bottom: 1rem;
+      }
+      .testimonial-author {
+        display: flex;
+        align-items: center;
+        gap: 0.65rem;
+      }
+      .t-avatar {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: var(--gold);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--charcoal);
+        font-weight: 700;
+        font-size: 0.85rem;
+        flex-shrink: 0;
+      }
+      .t-name {
+        font-weight: 600;
+        font-size: 0.83rem;
+      }
+      .t-loc {
+        font-size: 0.75rem;
+        color: var(--muted);
+      }
+
+      /* ── WISHLIST PANEL ── */
+      .wishlist-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.45);
+        z-index: 1050;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s;
+      }
+      .wishlist-overlay.open {
+        opacity: 1;
+        pointer-events: all;
+      }
+      .wishlist-drawer {
+        position: fixed;
+        top: 0;
+        right: -420px;
+        width: 400px;
+        height: 100vh;
+        background: white;
+        z-index: 1051;
+        transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        display: flex;
+        flex-direction: column;
+        box-shadow: -8px 0 40px rgba(0, 0, 0, 0.15);
+      }
+      .wishlist-drawer.open {
+        right: 0;
+      }
+      .wd-header {
+        padding: 1.25rem 1.5rem;
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .wd-title {
+        font-family: "Playfair Display", serif;
+        font-size: 1.15rem;
+        color: var(--charcoal);
+      }
+      .wd-close {
+        background: none;
+        border: none;
+        font-size: 1.2rem;
+        cursor: pointer;
+        color: var(--muted);
+        padding: 0;
+      }
+      .wd-body {
+        flex: 1;
+        overflow-y: auto;
+        padding: 1rem 1.5rem;
+      }
+      .wishlist-item {
+        display: flex;
+        gap: 0.85rem;
+        padding: 0.9rem 0;
+        border-bottom: 1px solid var(--border);
+        align-items: center;
+      }
+      .wishlist-item img {
+        width: 60px;
+        height: 60px;
+        object-fit: cover;
+        border-radius: 8px;
+        border: 1px solid var(--border);
+        flex-shrink: 0;
+      }
+      .wi-info {
+        flex: 1;
+        min-width: 0;
+      }
+      .wi-name {
+        font-weight: 600;
+        font-size: 0.88rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .wi-price {
+        font-size: 0.83rem;
+        color: var(--taupe);
+        margin-top: 0.15rem;
+      }
+      .wi-actions {
+        display: flex;
+        gap: 0.4rem;
+        margin-top: 0.4rem;
+      }
+      .wi-btn {
+        padding: 0.25rem 0.65rem;
+        border-radius: 14px;
+        font-size: 0.72rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.2s;
+        border: none;
+      }
+      .wi-btn-cart {
+        background: var(--charcoal);
+        color: white;
+      }
+      .wi-btn-cart:hover {
+        background: var(--taupe);
+      }
+      .wi-btn-rm {
+        background: #fee2e2;
+        color: #e74c3c;
+      }
+      .wi-btn-rm:hover {
+        background: #e74c3c;
+        color: white;
+      }
+      .wd-empty {
+        text-align: center;
+        padding: 3rem;
+        color: var(--muted);
+      }
+      .wd-empty .wd-ei {
+        font-size: 3rem;
+        margin-bottom: 0.75rem;
+      }
+
+      /* ── FOOTER ── */
+      footer {
+        background: var(--charcoal);
+        color: rgba(255, 255, 255, 0.7);
+        padding: 3.5rem 0 1.5rem;
+      }
+      .footer-brand {
+        font-family: "Playfair Display", serif;
+        font-size: 2rem;
+        color: white;
+        letter-spacing: 3px;
+        margin-bottom: 0.75rem;
+      }
+      .footer-brand span {
+        color: var(--gold);
+      }
+      .footer-desc {
+        font-size: 0.83rem;
+        line-height: 1.8;
+        max-width: 270px;
+      }
+      .footer-heading {
+        font-weight: 600;
+        color: white;
+        font-size: 0.8rem;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        margin-bottom: 1rem;
+      }
+      .footer-links {
+        list-style: none;
+      }
+      .footer-links li {
+        margin-bottom: 0.45rem;
+      }
+      .footer-links a {
+        color: rgba(255, 255, 255, 0.55);
+        text-decoration: none;
+        font-size: 0.83rem;
+        transition: color 0.2s;
+      }
+      .footer-links a:hover {
+        color: var(--gold);
+      }
+      .nl-row {
+        display: flex;
+        gap: 0.5rem;
+        margin-top: 0.75rem;
+      }
+      .nl-input {
+        flex: 1;
+        padding: 0.58rem 1rem;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 4px;
+        background: rgba(255, 255, 255, 0.07);
+        color: white;
+        font-size: 0.83rem;
+        outline: none;
+      }
+      .nl-input:focus {
+        border-color: var(--gold);
+      }
+      .nl-btn {
+        padding: 0.58rem 1.2rem;
+        background: var(--gold);
+        color: var(--charcoal);
+        border: none;
+        border-radius: 4px;
+        font-weight: 700;
+        font-size: 0.8rem;
+        cursor: pointer;
+      }
+      .footer-bottom {
+        margin-top: 2.5rem;
+        padding-top: 1.25rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+      }
+      .footer-bottom p {
+        font-size: 0.78rem;
+      }
+      .payment-icons {
+        display: flex;
+        gap: 0.4rem;
+      }
+      .payment-icon {
+        padding: 0.2rem 0.6rem;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 4px;
+        font-size: 0.68rem;
+        color: rgba(255, 255, 255, 0.7);
+      }
+
+      /* ── CART MODAL ── */
+      .modal-content {
+        border-radius: 14px;
+        border: 1px solid var(--border);
+      }
+      .modal-header {
+        background: var(--cream);
+        border-bottom: 1px solid var(--border);
+      }
+      .modal-title {
+        font-family: "Playfair Display", serif;
+        color: var(--charcoal);
+      }
+      .cart-item {
+        display: flex;
+        gap: 0.75rem;
+        padding: 0.75rem 0;
+        border-bottom: 1px solid var(--border);
+      }
+      .cart-item img {
+        width: 54px;
+        height: 54px;
+        object-fit: cover;
+        border-radius: 8px;
+      }
+      .cart-item-info {
+        flex: 1;
+        min-width: 0;
+      }
+      .cart-item-name {
+        font-size: 0.86rem;
+        font-weight: 600;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .cart-item-price {
+        font-size: 0.82rem;
+        color: var(--taupe);
+      }
+      .qty-ctrl {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        margin-top: 0.35rem;
+      }
+      .qty-btn {
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        border: 1px solid var(--border);
+        background: white;
+        cursor: pointer;
+        font-size: 0.8rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: 0.15s;
+      }
+      .qty-btn:hover {
+        background: var(--charcoal);
+        color: white;
+        border-color: var(--charcoal);
+      }
+      .qty-num {
+        font-size: 0.83rem;
+        font-weight: 600;
+        min-width: 20px;
+        text-align: center;
+      }
+      .remove-btn {
+        background: none;
+        border: none;
+        color: #bbb;
+        cursor: pointer;
+        font-size: 1rem;
+        padding: 0;
+        align-self: flex-start;
+        transition: 0.15s;
+      }
+      .remove-btn:hover {
+        color: #e74c3c;
+      }
+
+      /* ── LOADING ── */
+      .loading-spinner {
+        width: 40px;
+        height: 40px;
+        border: 3px solid var(--blush);
+        border-top-color: var(--gold);
+        border-radius: 50%;
+        animation: spin 0.8s linear infinite;
+        margin: 2rem auto;
+      }
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* ── TOAST ── */
+      .toast-container {
+        position: fixed;
+        bottom: 5.5rem;
+        right: 1.5rem;
+        z-index: 9000;
+      }
+      .toast-msg {
+        background: var(--charcoal);
+        color: white;
+        padding: 0.85rem 1.5rem;
+        border-radius: 10px;
+        font-size: 0.86rem;
+        margin-top: 0.5rem;
+        animation: slideUp 0.3s ease;
+        border-left: 3px solid var(--gold);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        min-width: 220px;
+      }
+      @keyframes slideUp {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* ── SUPPORT WIDGET ── */
+      .support-fab {
+        position: fixed;
+        bottom: 1.5rem;
+        right: 1.5rem;
+        z-index: 9100;
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--charcoal), #2d2418);
+        color: white;
+        border: none;
+        cursor: pointer;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.4rem;
+        transition: 0.3s;
+      }
+      .support-fab:hover {
+        transform: scale(1.1);
+        box-shadow: 0 6px 28px rgba(0, 0, 0, 0.35);
+      }
+      .fab-notif {
+        position: absolute;
+        top: -4px;
+        right: -4px;
+        width: 18px;
+        height: 18px;
+        background: #e74c3c;
+        color: white;
+        border-radius: 50%;
+        font-size: 0.58rem;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 2px solid white;
+      }
+
+      .support-panel {
+        position: fixed;
+        bottom: 5rem;
+        right: 1.5rem;
+        z-index: 9100;
+        width: 360px;
+        background: white;
+        border-radius: 18px;
+        box-shadow: 0 12px 50px rgba(0, 0, 0, 0.18);
+        border: 1px solid var(--border);
+        overflow: hidden;
+        display: none;
+        flex-direction: column;
+      }
+      .support-panel.open {
+        display: flex;
+        animation: panelIn 0.25s ease;
+      }
+      @keyframes panelIn {
+        from {
+          opacity: 0;
+          transform: translateY(16px) scale(0.97);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+
+      .sp-header {
+        background: linear-gradient(135deg, var(--charcoal), #2d2418);
+        padding: 1.1rem 1.25rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+      .sp-hicon {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        background: rgba(201, 168, 76, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        flex-shrink: 0;
+      }
+      .sp-htxt h4 {
+        color: white;
+        font-size: 0.92rem;
+        font-weight: 600;
+        margin: 0;
+      }
+      .sp-online {
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+        margin-top: 0.15rem;
+      }
+      .sp-dot {
+        width: 7px;
+        height: 7px;
+        background: #2ecc71;
+        border-radius: 50%;
+        animation: blink 1.5s infinite;
+      }
+      @keyframes blink {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.3;
+        }
+      }
+      .sp-close {
+        margin-left: auto;
+        background: none;
+        border: none;
+        color: rgba(255, 255, 255, 0.55);
+        font-size: 1.1rem;
+        cursor: pointer;
+        padding: 0;
+        transition: 0.15s;
+      }
+      .sp-close:hover {
+        color: white;
+      }
+
+      .sp-tabs {
+        display: flex;
+        border-bottom: 1px solid var(--border);
+      }
+      .sp-tab {
+        flex: 1;
+        padding: 0.6rem;
+        font-size: 0.78rem;
+        font-weight: 500;
+        border: none;
+        background: white;
+        cursor: pointer;
+        color: var(--muted);
+        border-bottom: 2px solid transparent;
+        transition: 0.2s;
+        font-family: "Times New Roman", Times, Georgia, serif;
+      }
+      .sp-tab.active {
+        color: var(--charcoal);
+        border-bottom-color: var(--gold);
+      }
+
+      .sp-body {
+        display: flex;
+        flex-direction: column;
+      }
+      .sp-pane {
+        display: none;
+        flex-direction: column;
+      }
+      .sp-pane.active {
+        display: flex;
+      }
+
+      /* chat */
+      .chat-msgs {
+        height: 240px;
+        overflow-y: auto;
+        padding: 0.85rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.65rem;
+      }
+      .chat-msgs::-webkit-scrollbar {
+        width: 4px;
+      }
+      .chat-msgs::-webkit-scrollbar-thumb {
+        background: var(--border);
+        border-radius: 2px;
+      }
+      .msg-wrap {
+        display: flex;
+        flex-direction: column;
+      }
+      .msg-wrap.user {
+        align-items: flex-end;
+      }
+      .msg-wrap.bot {
+        align-items: flex-start;
+      }
+      .msg-bubble {
+        padding: 0.55rem 0.9rem;
+        border-radius: 12px;
+        font-size: 0.84rem;
+        line-height: 1.5;
+        max-width: 82%;
+      }
+      .msg-wrap.bot .msg-bubble {
+        background: var(--cream);
+        color: var(--charcoal);
+        border-radius: 4px 12px 12px 12px;
+      }
+      .msg-wrap.user .msg-bubble {
+        background: var(--charcoal);
+        color: white;
+        border-radius: 12px 12px 4px 12px;
+      }
+      .msg-time {
+        font-size: 0.67rem;
+        color: var(--muted);
+        margin-top: 0.2rem;
+      }
+      .typing-indicator {
+        display: flex;
+        gap: 4px;
+        align-items: center;
+        padding: 0.55rem 0.9rem;
+        background: var(--cream);
+        border-radius: 4px 12px 12px 12px;
+        width: fit-content;
+      }
+      .typing-indicator span {
+        width: 6px;
+        height: 6px;
+        background: var(--muted);
+        border-radius: 50%;
+        animation: typeDot 1.2s infinite;
+      }
+      .typing-indicator span:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+      .typing-indicator span:nth-child(3) {
+        animation-delay: 0.4s;
+      }
+      @keyframes typeDot {
+        0%,
+        60%,
+        100% {
+          transform: translateY(0);
+        }
+        30% {
+          transform: translateY(-5px);
+        }
+      }
+
+      .quick-replies {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.35rem;
+        padding: 0.6rem 0.85rem 0;
+      }
+      .qr-btn {
+        padding: 0.28rem 0.7rem;
+        background: var(--cream);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        font-size: 0.73rem;
+        cursor: pointer;
+        transition: 0.15s;
+        color: var(--charcoal);
+        font-family: "Times New Roman", Times, Georgia, serif;
+      }
+      .qr-btn:hover {
+        background: var(--blush);
+        border-color: var(--taupe);
+      }
+      .chat-input-row {
+        display: flex;
+        gap: 0.5rem;
+        padding: 0.7rem 0.85rem;
+        border-top: 1px solid var(--border);
+      }
+      .chat-inp {
+        flex: 1;
+        padding: 0.5rem 0.85rem;
+        border: 1.5px solid var(--border);
+        border-radius: 20px;
+        font-size: 0.83rem;
+        outline: none;
+        font-family: "Times New Roman", Times, Georgia, serif;
+      }
+      .chat-inp:focus {
+        border-color: var(--gold);
+      }
+      .chat-send-btn {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: var(--charcoal);
+        color: white;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.9rem;
+        flex-shrink: 0;
+        transition: 0.2s;
+      }
+      .chat-send-btn:hover {
+        background: var(--taupe);
+      }
+
+      /* faq */
+      .faq-scroll {
+        height: 260px;
+        overflow-y: auto;
+        padding: 0.75rem 1rem;
+      }
+      .faq-item {
+        border-bottom: 1px solid var(--border);
+      }
+      .faq-q {
+        padding: 0.65rem 0;
+        font-size: 0.84rem;
+        font-weight: 500;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .faq-q span {
+        flex: 1;
+      }
+      .faq-q .arrow {
+        color: var(--muted);
+        font-size: 0.72rem;
+        transition: 0.2s;
+        flex-shrink: 0;
+      }
+      .faq-q.open .arrow {
+        transform: rotate(180deg);
+      }
+      .faq-a {
+        font-size: 0.8rem;
+        color: var(--muted);
+        line-height: 1.65;
+        padding-bottom: 0.7rem;
+        display: none;
+      }
+      .faq-a.show {
+        display: block;
+      }
+
+      /* contact */
+      .contact-scroll {
+        height: 280px;
+        overflow-y: auto;
+        padding: 0.75rem 1rem;
+      }
+      .contact-item {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        padding: 0.8rem;
+        border-radius: 10px;
+        border: 1px solid var(--border);
+        margin-bottom: 0.55rem;
+        cursor: pointer;
+        transition: 0.2s;
+        text-decoration: none;
+      }
+      .contact-item:hover {
+        background: var(--cream);
+        border-color: var(--gold);
+      }
+      .ci-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.05rem;
+        flex-shrink: 0;
+      }
+      .ci-title {
+        font-size: 0.84rem;
+        font-weight: 600;
+        color: var(--charcoal);
+      }
+      .ci-sub {
+        font-size: 0.76rem;
+        color: var(--muted);
+      }
+
+      .liked {
+        color: #e74c3c !important;
+      }
+
+      /* ── SIZE & COLOR PICKER MODAL ── */
+      #pickerModal .modal-content {
+        border-radius: 18px;
+        border: 1px solid var(--border);
+      }
+      #pickerModal .modal-header {
+        background: var(--cream);
+        border-bottom: 1px solid var(--border);
+        border-radius: 18px 18px 0 0;
+      }
+      .picker-product-info {
+        display: flex;
+        gap: 0.85rem;
+        align-items: center;
+        margin-bottom: 1.25rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid var(--border);
+      }
+      .picker-product-info img {
+        width: 64px;
+        height: 64px;
+        object-fit: cover;
+        border-radius: 10px;
+        border: 1px solid var(--border);
+        flex-shrink: 0;
+      }
+      .picker-product-name {
+        font-weight: 600;
+        font-size: 0.9rem;
+        color: var(--charcoal);
+      }
+      .picker-product-price {
+        color: var(--gold);
+        font-weight: 700;
+        font-size: 0.95rem;
+        margin-top: 0.2rem;
+      }
+      .picker-label {
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 0.6rem;
+      }
+      .picker-label span {
+        color: var(--charcoal);
+        font-size: 0.85rem;
+        text-transform: none;
+        letter-spacing: 0;
+        font-weight: 600;
+        margin-left: 0.4rem;
+      }
+      .size-options {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+        margin-bottom: 1.25rem;
+      }
+      .size-opt {
+        width: 44px;
+        height: 44px;
+        border-radius: 8px;
+        border: 2px solid var(--border);
+        background: white;
+        font-weight: 600;
+        font-size: 0.82rem;
+        cursor: pointer;
+        transition: 0.2s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--charcoal);
+      }
+      .size-opt:hover {
+        border-color: var(--taupe);
+      }
+      .size-opt.selected {
+        border-color: var(--charcoal);
+        background: var(--charcoal);
+        color: white;
+      }
+      .color-options {
+        display: flex;
+        gap: 0.6rem;
+        flex-wrap: wrap;
+        margin-bottom: 1.5rem;
+      }
+      .color-opt {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        border: 2.5px solid transparent;
+        cursor: pointer;
+        transition: 0.2s;
+        position: relative;
+        outline: 3px solid transparent;
+        outline-offset: 2px;
+      }
+      .color-opt:hover {
+        outline-color: var(--border);
+      }
+      .color-opt.selected {
+        outline-color: var(--charcoal);
+      }
+      .color-opt.selected::after {
+        content: "✓";
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.7rem;
+        font-weight: 700;
+        color: white;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+      }
+      .btn-confirm-add {
+        width: 100%;
+        padding: 0.85rem;
+        background: var(--charcoal);
+        color: white;
+        border: none;
+        border-radius: 10px;
+        font-weight: 700;
+        font-size: 0.92rem;
+        cursor: pointer;
+        transition: 0.25s;
+      }
+      .btn-confirm-add:hover {
+        background: var(--taupe);
+      }
+      .btn-confirm-add:disabled {
+        background: #ccc;
+        cursor: not-allowed;
+      }
+
+      /* ── CHECKOUT FORM MODAL ── */
+      #checkoutModal .modal-content {
+        border-radius: 18px;
+      }
+      #checkoutModal .modal-header {
+        background: linear-gradient(135deg, var(--charcoal), #2d2418);
+        color: white;
+        border-radius: 18px 18px 0 0;
+        border: none;
+      }
+      #checkoutModal .modal-title {
+        color: white;
+      }
+      #checkoutModal .btn-close {
+        filter: invert(1);
+      }
+      .checkout-section-title {
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 0.85rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid var(--border);
+      }
+      .form-group-custom {
+        margin-bottom: 1rem;
+      }
+      .form-group-custom label {
+        font-size: 0.82rem;
+        font-weight: 600;
+        color: var(--charcoal);
+        margin-bottom: 0.35rem;
+        display: block;
+      }
+      .form-group-custom label .required {
+        color: #e74c3c;
+        margin-left: 2px;
+      }
+      .form-control-custom {
+        width: 100%;
+        padding: 0.65rem 1rem;
+        border: 1.5px solid var(--border);
+        border-radius: 8px;
+        font-family: "Times New Roman", Times, Georgia, serif;
+        font-size: 0.88rem;
+        background: white;
+        color: var(--charcoal);
+        outline: none;
+        transition: 0.25s;
+      }
+      .form-control-custom:focus {
+        border-color: var(--gold);
+        box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.12);
+      }
+      .form-control-custom.error {
+        border-color: #e74c3c;
+      }
+      .field-error {
+        font-size: 0.75rem;
+        color: #e74c3c;
+        margin-top: 0.25rem;
+        display: none;
+      }
+      .order-summary-box {
+        background: var(--cream);
+        border-radius: 10px;
+        padding: 1rem;
+        margin-bottom: 1.25rem;
+        border: 1px solid var(--border);
+      }
+      .order-summary-row {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.83rem;
+        margin-bottom: 0.4rem;
+        color: var(--muted);
+      }
+      .order-summary-row.total {
+        color: var(--charcoal);
+        font-weight: 700;
+        font-size: 0.95rem;
+        padding-top: 0.5rem;
+        border-top: 1px solid var(--border);
+        margin-top: 0.5rem;
+        margin-bottom: 0;
+      }
+      .order-summary-row.total span:last-child {
+        color: var(--gold);
+      }
+      .payment-methods {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        margin-bottom: 1.25rem;
+      }
+      .payment-method-opt {
+        display: flex;
+        align-items: center;
+        gap: 0.65rem;
+        padding: 0.65rem 1rem;
+        border: 1.5px solid var(--border);
+        border-radius: 8px;
+        cursor: pointer;
+        transition: 0.2s;
+        font-size: 0.84rem;
+        color: var(--charcoal);
+      }
+      .payment-method-opt:hover {
+        border-color: var(--gold);
+        background: #fffdf6;
+      }
+      .payment-method-opt.selected {
+        border-color: var(--charcoal);
+        background: var(--cream);
+      }
+      .payment-method-opt input[type="radio"] {
+        accent-color: var(--charcoal);
+      }
+      .btn-place-order {
+        width: 100%;
+        padding: 0.9rem;
+        background: linear-gradient(135deg, var(--charcoal), #2d2418);
+        color: white;
+        border: none;
+        border-radius: 10px;
+        font-weight: 700;
+        font-size: 0.95rem;
+        cursor: pointer;
+        transition: 0.25s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+      }
+      .btn-place-order:hover {
+        background: var(--taupe);
+      }
+      .success-overlay {
+        text-align: center;
+        padding: 2rem 1rem;
+        display: none;
+      }
+      .success-icon {
+        font-size: 4rem;
+        margin-bottom: 0.75rem;
+      }
+      .success-title {
+        font-family: "Playfair Display", serif;
+        font-size: 1.5rem;
+        color: var(--charcoal);
+        margin-bottom: 0.5rem;
+      }
+      .success-sub {
+        color: var(--muted);
+        font-size: 0.88rem;
+        line-height: 1.7;
+      }
+
+      /* ── SIZE GUIDE SECTION ── */
+      .size-guide-section {
+        background: white;
+        padding: 4rem 0;
+        border-top: 3px solid var(--blush);
+      }
+      .sg-tabs {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+        margin-bottom: 2rem;
+      }
+      .sg-tab {
+        padding: 0.45rem 1.1rem;
+        border-radius: 20px;
+        border: 1.5px solid var(--border);
+        background: white;
+        font-size: 0.82rem;
+        cursor: pointer;
+        transition: 0.2s;
+        color: var(--charcoal);
+        font-family: "Times New Roman", Times, Georgia, serif;
+        font-weight: 500;
+      }
+      .sg-tab:hover,
+      .sg-tab.active {
+        background: var(--charcoal);
+        border-color: var(--charcoal);
+        color: white;
+      }
+      .sg-pane {
+        display: none;
+      }
+      .sg-pane.active {
+        display: block;
+      }
+      .size-table-wrap {
+        overflow-x: auto;
+        border-radius: 12px;
+        border: 1px solid var(--border);
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+      }
+      .size-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.88rem;
+        min-width: 520px;
+      }
+      .size-table thead tr {
+        background: var(--charcoal);
+        color: white;
+      }
+      .size-table thead th {
+        padding: 0.9rem 1.1rem;
+        font-weight: 600;
+        font-size: 0.8rem;
+        letter-spacing: 0.5px;
+        text-align: center;
+      }
+      .size-table thead th:first-child {
+        text-align: left;
+        border-radius: 12px 0 0 0;
+      }
+      .size-table thead th:last-child {
+        border-radius: 0 12px 0 0;
+      }
+      .size-table tbody tr {
+        border-bottom: 1px solid var(--border);
+        transition: background 0.15s;
+      }
+      .size-table tbody tr:last-child {
+        border-bottom: none;
+      }
+      .size-table tbody tr:hover {
+        background: var(--cream);
+      }
+      .size-table tbody td {
+        padding: 0.8rem 1.1rem;
+        text-align: center;
+        color: var(--charcoal);
+      }
+      .size-table tbody td:first-child {
+        text-align: left;
+        font-weight: 700;
+        color: var(--charcoal);
+      }
+      .size-badge {
+        display: inline-block;
+        background: var(--charcoal);
+        color: white;
+        border-radius: 6px;
+        padding: 0.18rem 0.65rem;
+        font-size: 0.78rem;
+        font-weight: 700;
+        min-width: 36px;
+        text-align: center;
+      }
+      .sg-tip-box {
+        background: linear-gradient(135deg, var(--blush), #fdf6ee);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 1.25rem 1.5rem;
+        margin-top: 1.5rem;
+      }
+      .sg-tip-title {
+        font-weight: 700;
+        font-size: 0.88rem;
+        color: var(--charcoal);
+        margin-bottom: 0.65rem;
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+      }
+      .sg-tip-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 0.4rem 1rem;
+      }
+      .sg-tip-list li {
+        font-size: 0.82rem;
+        color: var(--taupe);
+        display: flex;
+        align-items: flex-start;
+        gap: 0.4rem;
+        line-height: 1.5;
+      }
+      .sg-tip-list li::before {
+        content: "•";
+        color: var(--gold);
+        font-weight: 700;
+        flex-shrink: 0;
+      }
+      .sg-measure-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+        margin-top: 1.5rem;
+      }
+      .sg-measure-card {
+        background: var(--cream);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 1.1rem;
+        text-align: center;
+      }
+      .sg-measure-icon {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+      }
+      .sg-measure-title {
+        font-weight: 700;
+        font-size: 0.85rem;
+        color: var(--charcoal);
+        margin-bottom: 0.35rem;
+      }
+      .sg-measure-desc {
+        font-size: 0.78rem;
+        color: var(--muted);
+        line-height: 1.55;
+      }
+
+      /* ── RETURN POLICY SECTION ── */
+      .return-policy-section {
+        background: var(--cream);
+        padding: 4rem 0;
+        border-top: 3px solid var(--blush);
+      }
+      .rp-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 1.25rem;
+        margin-bottom: 2.5rem;
+      }
+      .rp-card {
+        background: white;
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 1.5rem;
+        transition: 0.25s;
+        position: relative;
+        overflow: hidden;
+      }
+      .rp-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, var(--gold), var(--taupe));
+      }
+      .rp-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+      }
+      .rp-icon {
+        font-size: 2rem;
+        margin-bottom: 0.75rem;
+      }
+      .rp-card-title {
+        font-weight: 700;
+        font-size: 0.95rem;
+        color: var(--charcoal);
+        margin-bottom: 0.5rem;
+      }
+      .rp-card-body {
+        font-size: 0.82rem;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+      .rp-timeline {
+        position: relative;
+        padding-left: 2rem;
+        margin-bottom: 2rem;
+      }
+      .rp-timeline::before {
+        content: "";
+        position: absolute;
+        left: 10px;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: linear-gradient(to bottom, var(--gold), var(--border));
+      }
+      .rp-step {
+        position: relative;
+        margin-bottom: 1.5rem;
+      }
+      .rp-step:last-child {
+        margin-bottom: 0;
+      }
+      .rp-step-dot {
+        position: absolute;
+        left: -1.65rem;
+        top: 0.25rem;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: var(--gold);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.65rem;
+        font-weight: 700;
+        color: white;
+        flex-shrink: 0;
+      }
+      .rp-step-title {
+        font-weight: 700;
+        font-size: 0.9rem;
+        color: var(--charcoal);
+        margin-bottom: 0.25rem;
+      }
+      .rp-step-body {
+        font-size: 0.82rem;
+        color: var(--muted);
+        line-height: 1.65;
+      }
+      .rp-condition-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+        margin-bottom: 2rem;
+      }
+      .rp-condition-box {
+        border-radius: 12px;
+        padding: 1.25rem;
+        border: 1px solid;
+      }
+      .rp-condition-box.yes {
+        background: #f0fdf4;
+        border-color: #86efac;
+      }
+      .rp-condition-box.no {
+        background: #fff5f5;
+        border-color: #fca5a5;
+      }
+      .rp-condition-title {
+        font-weight: 700;
+        font-size: 0.85rem;
+        margin-bottom: 0.65rem;
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+      }
+      .rp-condition-box.yes .rp-condition-title {
+        color: #166534;
+      }
+      .rp-condition-box.no .rp-condition-title {
+        color: #991b1b;
+      }
+      .rp-condition-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        font-size: 0.8rem;
+        line-height: 1.7;
+      }
+      .rp-condition-box.yes .rp-condition-list {
+        color: #15803d;
+      }
+      .rp-condition-box.no .rp-condition-list {
+        color: #b91c1c;
+      }
+      .rp-condition-list li::before {
+        content: "→ ";
+        opacity: 0.6;
+      }
+      .rp-hotline-banner {
+        background: linear-gradient(135deg, var(--charcoal), #2d2418);
+        border-radius: 14px;
+        padding: 1.75rem 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+      .rp-hotline-text h4 {
+        font-family: "Playfair Display", serif;
+        color: white;
+        font-size: 1.2rem;
+        margin-bottom: 0.3rem;
+      }
+      .rp-hotline-text p {
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 0.83rem;
+      }
+      .rp-hotline-btns {
+        display: flex;
+        gap: 0.65rem;
+        flex-wrap: wrap;
+      }
+      .rp-hotline-btn {
+        padding: 0.6rem 1.3rem;
+        border-radius: 8px;
+        font-size: 0.84rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.2s;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+      }
+      .rp-hotline-btn.primary {
+        background: var(--gold);
+        color: var(--charcoal);
+        border: none;
+      }
+      .rp-hotline-btn.primary:hover {
+        background: #e0b856;
+      }
+      .rp-hotline-btn.outline {
+        background: transparent;
+        color: white;
+        border: 1.5px solid rgba(255, 255, 255, 0.35);
+      }
+      .rp-hotline-btn.outline:hover {
+        border-color: white;
+        background: rgba(255, 255, 255, 0.08);
+      }
+
+      @media (max-width: 576px) {
+        .rp-condition-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 576px) {
+        .hero h1 {
+          font-size: 2.2rem;
+        }
+        .promo-grid {
+          grid-template-columns: 1fr;
+        }
+        .hero-stats {
+          gap: 1.5rem;
+        }
+        .stat-num {
+          font-size: 1.4rem;
+        }
+        .support-panel {
+          width: calc(100vw - 2rem);
+          right: 1rem;
+        }
+        .wishlist-drawer {
+          width: 100%;
+        }
+      }
+
+      /* ── SIZE CHART POPUP (Shopee-style) ── */
+      .size-popup-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 10000;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.25s;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+      }
+      .size-popup-overlay.open {
+        opacity: 1;
+        pointer-events: all;
+      }
+      .size-popup-sheet {
+        background: white;
+        width: 100%;
+        max-width: 600px;
+        border-radius: 20px 20px 0 0;
+        padding: 0;
+        max-height: 88vh;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        transform: translateY(100%);
+        transition: transform 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 -8px 40px rgba(0, 0, 0, 0.18);
+      }
+      .size-popup-overlay.open .size-popup-sheet {
+        transform: translateY(0);
+      }
+      .sps-handle {
+        width: 40px;
+        height: 4px;
+        background: #e0d9d0;
+        border-radius: 2px;
+        margin: 14px auto 0;
+        flex-shrink: 0;
+      }
+      .sps-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1rem 1.25rem 0.75rem;
+        border-bottom: 1px solid var(--border);
+        flex-shrink: 0;
+      }
+      .sps-title {
+        font-family: "Playfair Display", serif;
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: var(--charcoal);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .sps-close {
+        background: none;
+        border: none;
+        font-size: 1.3rem;
+        cursor: pointer;
+        color: var(--muted);
+        padding: 0;
+        line-height: 1;
+        transition: color 0.15s;
+      }
+      .sps-close:hover {
+        color: var(--charcoal);
+      }
+      .sps-cat-tabs {
+        display: flex;
+        gap: 0;
+        border-bottom: 1px solid var(--border);
+        overflow-x: auto;
+        flex-shrink: 0;
+        scrollbar-width: none;
+      }
+      .sps-cat-tabs::-webkit-scrollbar {
+        display: none;
+      }
+      .sps-cat-tab {
+        padding: 0.7rem 1.1rem;
+        font-size: 0.83rem;
+        font-weight: 600;
+        border: none;
+        background: none;
+        cursor: pointer;
+        color: var(--muted);
+        border-bottom: 2.5px solid transparent;
+        white-space: nowrap;
+        transition: 0.2s;
+        font-family: "Times New Roman", Times, Georgia, serif;
+      }
+      .sps-cat-tab.active {
+        color: var(--charcoal);
+        border-bottom-color: var(--gold);
+      }
+      .sps-body {
+        overflow-y: auto;
+        padding: 1.1rem 1.25rem;
+        flex: 1;
+      }
+      .sps-body::-webkit-scrollbar {
+        width: 4px;
+      }
+      .sps-body::-webkit-scrollbar-thumb {
+        background: var(--border);
+        border-radius: 2px;
+      }
+      .sps-pane {
+        display: none;
+      }
+      .sps-pane.active {
+        display: block;
+      }
+      .sps-selected-highlight {
+        background: linear-gradient(135deg, #fdf6ee, var(--blush));
+        border: 1.5px solid var(--gold);
+        border-radius: 10px;
+        padding: 0.65rem 1rem;
+        margin-bottom: 1rem;
+        font-size: 0.85rem;
+        color: var(--taupe);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .sps-selected-highlight strong {
+        color: var(--charcoal);
+      }
+      .sps-table-wrap {
+        overflow-x: auto;
+        border-radius: 10px;
+        border: 1px solid var(--border);
+        margin-bottom: 1rem;
+      }
+      .sps-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.83rem;
+        min-width: 380px;
+      }
+      .sps-table thead tr {
+        background: var(--charcoal);
+        color: white;
+      }
+      .sps-table thead th {
+        padding: 0.75rem 0.9rem;
+        font-weight: 600;
+        font-size: 0.76rem;
+        text-align: center;
+        letter-spacing: 0.3px;
+      }
+      .sps-table thead th:first-child {
+        text-align: left;
+      }
+      .sps-table tbody tr {
+        border-bottom: 1px solid var(--border);
+        transition: background 0.15s;
+      }
+      .sps-table tbody tr:last-child {
+        border-bottom: none;
+      }
+      .sps-table tbody tr:hover {
+        background: var(--cream);
+      }
+      .sps-table tbody tr.sps-row-highlight {
+        background: #fdf6ee !important;
+      }
+      .sps-table tbody td {
+        padding: 0.65rem 0.9rem;
+        text-align: center;
+        color: var(--charcoal);
+      }
+      .sps-table tbody td:first-child {
+        text-align: left;
+      }
+      .sps-size-badge {
+        display: inline-block;
+        background: var(--charcoal);
+        color: white;
+        border-radius: 5px;
+        padding: 0.15rem 0.55rem;
+        font-size: 0.75rem;
+        font-weight: 700;
+        min-width: 32px;
+        text-align: center;
+      }
+      .sps-size-badge.highlighted {
+        background: var(--gold);
+        color: var(--charcoal);
+      }
+      .sps-tip {
+        background: var(--cream);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 0.9rem 1rem;
+        font-size: 0.8rem;
+        color: var(--taupe);
+        line-height: 1.6;
+      }
+      .sps-tip-title {
+        font-weight: 700;
+        color: var(--charcoal);
+        margin-bottom: 0.4rem;
+        font-size: 0.84rem;
+      }
+      /* Make size-tag in product card show a "?" hint */
+      .size-tag {
+        position: relative;
+      }
+      .size-tag-chart-hint {
+        font-size: 0.6rem;
+        color: var(--gold);
+        margin-left: 1px;
+        vertical-align: super;
+        font-weight: 700;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ANNOUNCE -->
+    <div class="announce-bar">
+      🎁 MIỄN PHÍ VẬN CHUYỂN đơn từ 499K &nbsp;✦&nbsp; Mã <b>FASHION20</b> giảm
+      20% &nbsp;✦&nbsp; Flash Sale mỗi thứ 6 🔥
+    </div>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+      <div
+        class="container d-flex align-items-center justify-content-between gap-3"
+      >
+        <a class="navbar-brand" href="index.html"
+          >FASHION<span class="accent">HUB</span></a
+        >
+
+        <div class="nav-links d-none d-lg-flex">
+          <a href="#">Trang Chủ</a>
+          <!-- Áo mega dropdown -->
+          <div class="nav-drop">
+            <a href="#ao-section">Áo</a>
+            <div class="mega-menu">
+              <div class="mega-col">
+                <h6>Áo thường ngày</h6>
+                <a href="#" onclick="goAoTab('ao-thun')">👕 Áo thun</a>
+                <a href="#" onclick="goAoTab('ao-polo')">🎽 Áo Polo</a>
+                <a href="#" onclick="goAoTab('ao-so-mi')">👔 Áo sơ mi</a>
+              </div>
+              <div class="mega-col">
+                <h6>Áo theo mùa</h6>
+                <a href="#" onclick="goAoTab('ao-khoac')">🧥 Áo khoác</a>
+                <a href="#" onclick="goAoTab('ao-len')">🧶 Áo len / Hoodie</a>
+              </div>
+              <div class="mega-col">
+                <h6>Đặc biệt</h6>
+                <a href="#" onclick="goAoTab('ao-dai')">👗 Áo dài</a>
+                <a href="#" onclick="goAoTab('tat-ca')">🛍️ Tất cả áo</a>
+              </div>
+            </div>
+          </div>
+          <a href="#">Quần</a>
+          <a href="#">Váy & Đầm</a>
+          <a href="#">Phụ Kiện</a>
+          <a href="#" style="color: #e74c3c !important; font-weight: 700"
+            >🔥 Sale</a
+          >
+        </div>
+
+        <div class="nav-actions">
+          <button
+            class="nav-icon-btn"
+            onclick="document.getElementById('txtSearch').focus()"
+            title="Tìm kiếm"
+          >
+            <i class="bi bi-search"></i>
+          </button>
+          <button
+            class="nav-icon-btn"
+            onclick="toggleWishlistDrawer()"
+            title="Yêu thích"
+            id="wishlistNavBtn"
+          >
+            <i class="bi bi-heart"></i>
+            <span class="nbadge" id="wishlistCount" style="display: none"
+              >0</span
+            >
+          </button>
+          <button
+            class="nav-icon-btn"
+            data-bs-toggle="modal"
+            data-bs-target="#cartModal"
+            title="Giỏ hàng"
+          >
+            <i class="bi bi-bag"></i>
+            <span class="nbadge" id="cartCount">0</span>
+          </button>
+          <div id="userArea"></div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-7 hero-content">
+            <div class="hero-tag">Bộ sưu tập Hè 2025</div>
+            <h1>Định Hình<br /><em>Phong Cách</em><br />Của Bạn</h1>
+            <p>
+              Khám phá những thiết kế độc quyền mang hơi thở thời trang quốc tế,
+              chắt lọc dành riêng cho phong cách sống hiện đại.
+            </p>
+            <div class="hero-btns">
+              <a href="#products" class="btn-gold">Khám Phá Ngay</a>
+              <a href="#ao-section" class="btn-outline-w">Xem Áo Mới</a>
+            </div>
+            <div class="hero-stats">
+              <div class="stat-item">
+                <div class="stat-num">500+</div>
+                <div class="stat-lbl">Sản phẩm</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-num">10K+</div>
+                <div class="stat-lbl">Khách hàng</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-num">4.9★</div>
+                <div class="stat-lbl">Đánh giá</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURE STRIP -->
+    <div class="feature-strip">
+      <div class="container">
+        <div class="row g-2">
+          <div class="col-6 col-md-3">
+            <div class="feature-item">
+              <div class="fi-icon">🚚</div>
+              <div>
+                <div class="fi-title">Miễn phí vận chuyển</div>
+                <div class="fi-desc">Đơn từ 499K</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="feature-item">
+              <div class="fi-icon">🔄</div>
+              <div>
+                <div class="fi-title">Đổi trả 30 ngày</div>
+                <div class="fi-desc">Không cần lý do</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="feature-item">
+              <div class="fi-icon">✨</div>
+              <div>
+                <div class="fi-title">Hàng chính hãng</div>
+                <div class="fi-desc">Cam kết 100%</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="feature-item">
+              <div class="fi-icon">💬</div>
+              <div>
+                <div class="fi-title">Hỗ trợ 24/7</div>
+                <div class="fi-desc">Chat ngay bên dưới</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ PHÂN LOẠI ÁO ══ -->
+    <div class="ao-section" id="ao-section">
+      <div class="container">
+        <div class="section-tag">Danh mục áo</div>
+        <h2 class="section-title">Bộ Sưu Tập Áo</h2>
+        <p class="section-desc">
+          Phân loại theo từng phong cách — từ năng động đến thanh lịch
+        </p>
+
+        <div class="ao-tabs" id="aoTabs">
+          <button
+            class="ao-tab active"
+            data-cat="tat-ca"
+            onclick="filterAoTab('tat-ca', this)"
+          >
+            🛍️ Tất cả áo
+          </button>
+          <button
+            class="ao-tab"
+            data-cat="ao-thun"
+            onclick="filterAoTab('ao-thun', this)"
+          >
+            👕 Áo thun
+          </button>
+          <button
+            class="ao-tab"
+            data-cat="ao-so-mi"
+            onclick="filterAoTab('ao-so-mi', this)"
+          >
+            👔 Áo sơ mi
+          </button>
+          <button
+            class="ao-tab"
+            data-cat="ao-khoac"
+            onclick="filterAoTab('ao-khoac', this)"
+          >
+            🧥 Áo khoác
+          </button>
+          <button
+            class="ao-tab"
+            data-cat="ao-len"
+            onclick="filterAoTab('ao-len', this)"
+          >
+            🧶 Áo len / Hoodie
+          </button>
+          <button
+            class="ao-tab"
+            data-cat="ao-dai"
+            onclick="filterAoTab('ao-dai', this)"
+          >
+            👗 Áo dài
+          </button>
+          <button
+            class="ao-tab"
+            data-cat="ao-polo"
+            onclick="filterAoTab('ao-polo', this)"
+          >
+            🎽 Áo Polo
+          </button>
+        </div>
+
+        <div id="aoLoading" class="loading-spinner" style="display: none"></div>
+        <div
+          id="aoEmpty"
+          style="
+            display: none;
+            text-align: center;
+            padding: 2.5rem;
+            color: var(--muted);
+          "
+        >
+          <div style="font-size: 2.5rem; margin-bottom: 0.75rem">👕</div>
+          <p>
+            Chưa có sản phẩm trong danh mục này. API chưa có dữ liệu áo — hiển
+            thị tất cả sản phẩm.
+          </p>
+        </div>
+        <div class="row g-4" id="aoGrid"></div>
+      </div>
+    </div>
+
+    <!-- CATEGORIES -->
+    <div class="categories">
+      <div class="container">
+        <div class="cat-scroll">
+          <div class="cat-item active" onclick="filterCat(this, '')">
+            <div class="cat-icon-wrap">🛍️</div>
+            <div class="cat-lbl">Tất cả</div>
+          </div>
+          <div class="cat-item" onclick="filterCat(this, 'ao')">
+            <div class="cat-icon-wrap">👕</div>
+            <div class="cat-lbl">Áo</div>
+          </div>
+          <div class="cat-item" onclick="filterCat(this, 'quan')">
+            <div class="cat-icon-wrap">👖</div>
+            <div class="cat-lbl">Quần</div>
+          </div>
+          <div class="cat-item" onclick="filterCat(this, 'vay')">
+            <div class="cat-icon-wrap">👗</div>
+            <div class="cat-lbl">Váy/Đầm</div>
+          </div>
+          <div class="cat-item" onclick="filterCat(this, 'giay')">
+            <div class="cat-icon-wrap">👠</div>
+            <div class="cat-lbl">Giày dép</div>
+          </div>
+          <div class="cat-item" onclick="filterCat(this, 'tui')">
+            <div class="cat-icon-wrap">👜</div>
+            <div class="cat-lbl">Túi xách</div>
+          </div>
+          <div class="cat-item" onclick="filterCat(this, 'phuKien')">
+            <div class="cat-icon-wrap">💍</div>
+            <div class="cat-lbl">Phụ kiện</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FILTER BAR -->
+    <div class="filter-bar" id="products">
+      <div class="container d-flex align-items-center flex-wrap gap-3">
+        <div class="search-wrap">
+          <i class="bi bi-search"></i>
+          <input
+            type="text"
+            id="txtSearch"
+            class="search-input"
+            placeholder="Tìm kiếm sản phẩm..."
+          />
+        </div>
+        <div class="filter-chips">
+          <span class="chip active" onclick="setChip(this, '')">Tất cả</span>
+          <span class="chip" onclick="setChip(this, 'new')">Mới Nhất</span>
+          <span class="chip" onclick="setChip(this, 'sale')">Sale</span>
+          <span class="chip" onclick="setChip(this, 'hot')">Hot</span>
+        </div>
+        <select
+          class="sort-select ms-auto"
+          id="sortSelect"
+          onchange="renderUI(currentProducts)"
+        >
+          <option value="">Sắp xếp</option>
+          <option value="asc">Giá tăng dần</option>
+          <option value="desc">Giá giảm dần</option>
+          <option value="name">Tên A-Z</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- ALL PRODUCTS -->
+    <div class="container">
+      <div class="sec-header">
+        <div class="section-tag">Bộ sưu tập</div>
+        <h2>Tất Cả Sản Phẩm</h2>
+        <p>Cập nhật liên tục theo xu hướng mới nhất từ API</p>
+      </div>
+      <div id="loading" class="loading-spinner" style="display: none"></div>
+      <div class="row g-4" id="productGrid"></div>
+      <div
+        id="emptyState"
+        style="
+          display: none;
+          text-align: center;
+          padding: 3rem 0;
+          color: var(--muted);
+        "
+      >
+        <div style="font-size: 3rem; margin-bottom: 1rem">🔍</div>
+        <p>Không tìm thấy sản phẩm phù hợp</p>
+      </div>
+
+      <!-- PROMO -->
+      <div class="promo-grid">
+        <div class="promo-card main">
+          <div class="promo-tag">Ưu đãi đặc biệt</div>
+          <h3>Bộ sưu tập<br />Thu Đông 2025</h3>
+          <div class="promo-discount">-30%</div>
+          <p class="promo-sub">Áp dụng cho áo khoác và áo len</p>
+          <a
+            href="#"
+            class="btn-gold"
+            style="font-size: 0.83rem; padding: 0.65rem 1.5rem"
+            >Mua ngay</a
+          >
+        </div>
+        <div class="promo-card secondary">
+          <div class="promo-tag" style="color: var(--taupe)">
+            Thành viên mới
+          </div>
+          <h3>Đăng ký<br />nhận ngay</h3>
+          <div class="promo-discount">50K</div>
+          <p class="promo-sub" style="color: var(--taupe)">
+            Voucher đơn hàng đầu tiên
+          </p>
+          <a
+            href="login.html"
+            class="btn-gold"
+            style="font-size: 0.83rem; padding: 0.65rem 1.5rem"
+            >Đăng ký</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- TESTIMONIALS -->
+    <div class="testimonial-section">
+      <div class="container">
+        <div class="sec-header">
+          <div class="section-tag">Khách hàng nói gì</div>
+          <h2>Đánh Giá Từ Khách Hàng</h2>
+        </div>
+        <div class="row g-4">
+          <div class="col-md-4">
+            <div class="testimonial-card">
+              <div class="testimonial-stars">★★★★★</div>
+              <p class="testimonial-text">
+                "Chất lượng vải rất tốt, đúng như mô tả. Giao hàng nhanh trong 1
+                ngày. Sẽ mua lại!"
+              </p>
+              <div class="testimonial-author">
+                <div class="t-avatar">A</div>
+                <div>
+                  <div class="t-name">Nguyễn Thị Anh</div>
+                  <div class="t-loc">Hà Nội · Mua Áo thun</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="testimonial-card">
+              <div class="testimonial-stars">★★★★★</div>
+              <p class="testimonial-text">
+                "Shop tư vấn size rất nhiệt tình, áo sơ mi đẹp hơn ảnh, mặc vào
+                cảm giác sang lắm!"
+              </p>
+              <div class="testimonial-author">
+                <div class="t-avatar">B</div>
+                <div>
+                  <div class="t-name">Trần Văn Bình</div>
+                  <div class="t-loc">Đà Nẵng · Mua Áo sơ mi</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="testimonial-card">
+              <div class="testimonial-stars">★★★★☆</div>
+              <p class="testimonial-text">
+                "Đổi size rất dễ, nhân viên hỗ trợ nhanh. Váy đẹp, hàng chất.
+                Yêu shop này!"
+              </p>
+              <div class="testimonial-author">
+                <div class="t-avatar">C</div>
+                <div>
+                  <div class="t-name">Lê Thị Châu</div>
+                  <div class="t-loc">TP.HCM · Mua Váy đầm</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════ -->
+    <!--  BẢNG SIZE                        -->
+    <!-- ══════════════════════════════════ -->
+    <div class="size-guide-section" id="bang-size">
+      <div class="container">
+        <div class="sec-header">
+          <div class="section-tag">Hướng dẫn chọn size</div>
+          <h2 class="section-title">Bảng Size Quần Áo</h2>
+          <p class="section-desc">Đo đúng — mặc vừa — tự tin mỗi ngày</p>
+        </div>
+
+        <!-- Category tabs -->
+        <div class="sg-tabs">
+          <button class="sg-tab active" onclick="switchSgTab('ao', this)">
+            👕 Áo (Nam &amp; Nữ)
+          </button>
+          <button class="sg-tab" onclick="switchSgTab('quan', this)">
+            👖 Quần
+          </button>
+          <button class="sg-tab" onclick="switchSgTab('vay', this)">
+            👗 Váy &amp; Đầm
+          </button>
+          <button class="sg-tab" onclick="switchSgTab('giay', this)">
+            👟 Giày dép
+          </button>
+        </div>
+
+        <!-- ÁO -->
+        <div class="sg-pane active" id="sg-ao">
+          <div class="size-table-wrap">
+            <table class="size-table">
+              <thead>
+                <tr>
+                  <th>Size</th>
+                  <th>Chiều cao (cm)</th>
+                  <th>Cân nặng (kg)</th>
+                  <th>Vòng ngực (cm)</th>
+                  <th>Vòng eo (cm)</th>
+                  <th>Vòng mông (cm)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span class="size-badge">XS</span></td>
+                  <td>150 – 155</td>
+                  <td>40 – 48</td>
+                  <td>76 – 80</td>
+                  <td>58 – 62</td>
+                  <td>80 – 84</td>
+                </tr>
+                <tr>
+                  <td><span class="size-badge">S</span></td>
+                  <td>155 – 160</td>
+                  <td>48 – 54</td>
+                  <td>80 – 84</td>
+                  <td>62 – 66</td>
+                  <td>84 – 88</td>
+                </tr>
+                <tr>
+                  <td><span class="size-badge">M</span></td>
+                  <td>160 – 165</td>
+                  <td>54 – 60</td>
+                  <td>84 – 88</td>
+                  <td>66 – 70</td>
+                  <td>88 – 92</td>
+                </tr>
+                <tr>
+                  <td><span class="size-badge">L</span></td>
+                  <td>165 – 170</td>
+                  <td>60 – 67</td>
+                  <td>88 – 92</td>
+                  <td>70 – 74</td>
+                  <td>92 – 96</td>
+                </tr>
+                <tr>
+                  <td><span class="size-badge">XL</span></td>
+                  <td>170 – 175</td>
+                  <td>67 – 75</td>
+                  <td>92 – 96</td>
+                  <td>74 – 78</td>
+                  <td>96 – 100</td>
+                </tr>
+                <tr>
+                  <td><span class="size-badge">XXL</span></td>
+                  <td>175 – 182</td>
+                  <td>75 – 85</td>
+                  <td>96 – 102</td>
+                  <td>78 – 84</td>
+                  <td>100 – 106</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- QUẦN -->
+        <div class="sg-pane" id="sg-quan">
+          <div class="size-table-wrap">
+            <table class="size-table">
+              <thead>
+                <tr>
+                  <th>Size</th>
+                  <th>Số quần (EU)</th>
+                  <th>Vòng eo (cm)</th>
+                  <th>Vòng mông (cm)</th>
+                  <th>Dài quần (cm)</th>
+                  <th>Thích hợp cân nặng</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span class="size-badge">XS</span></td>
+                  <td>28 / EU 34</td>
+                  <td>60 – 64</td>
+                  <td>82 – 86</td>
+                  <td>95 – 98</td>
+                  <td>40 – 48 kg</td>
+                </tr>
+                <tr>
+                  <td><span class="size-badge">S</span></td>
+                  <td>29 / EU 36</td>
+                  <td>64 – 68</td>
+                  <td>86 – 90</td>
+                  <td>98 – 100</td>
+                  <td>48 – 54 kg</td>
+                </tr>
+                <tr>
+                  <td><span class="size-badge">M</span></td>
+                  <td>30 / EU 38</td>
+                  <td>68 – 72</td>
+                  <td>90 – 94</td>
+                  <td>100 – 102</td>
+                  <td>54 – 62 kg</td>
+                </tr>
+                <tr>
+                  <td><span class="size-badge">L</span></td>
+                  <td>31 / EU 40</td>
+                  <td>72 – 76</td>
+                  <td>94 – 98</td>
+                  <td>102 – 104</td>
+                  <td>62 – 70 kg</td>
+                </tr>
+                <tr>
+                  <td><span class="size-badge">XL</span></td>
+                  <td>32 / EU 42</td>
+                  <td>76 – 82</td>
+                  <td>98 – 104</td>
+                  <td>104 – 106</td>
+                  <td>70 – 78 kg</td>
+                </tr>
+                <tr>
+                  <td><span class="size-badge">XXL</span></td>
+                  <td>34 / EU 44</td>
+                  <td>82 – 90</td>
+                  <td>104 – 112</td>
+                  <td>106 – 108</td>
+                  <td>78 – 90 kg</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- VÁY ĐẦM -->
+        <div class="sg-pane" id="sg-vay">
+          <div class="size-table-wrap">
+            <table class="size-table">
+              <thead>
+                <tr>
+                  <th>Size</th>
+                  <th>Chiều cao (cm)</th>
+                  <th>Vòng ngực (cm)</th>
+                  <th>Vòng eo (cm)</th>
+                  <th>Vòng mông (cm)</th>
+                  <th>Cân nặng (kg)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span class="size-badge">XS</span></td>
+                  <td>150 – 155</td>
+                  <td>76 – 80</td>
+                  <td>58 – 62</td>
+                  <td>82 – 86</td>
+                  <td>40 – 47</td>
+                </tr>
+                <tr>
+                  <td><span class="size-badge">S</span></td>
+                  <td>155 – 160</td>
+                  <td>80 – 84</td>
+                  <td>62 – 66</td>
+                  <td>86 – 90</td>
+                  <td>47 – 53</td>
+                </tr>
+                <tr>
+                  <td><span class="size-badge">M</span></td>
+                  <td>158 – 163</td>
+                  <td>84 – 88</td>
+                  <td>66 – 70</td>
+                  <td>90 – 94</td>
+                  <td>53 – 60</td>
+                </tr>
+                <tr>
+                  <td><span class="size-badge">L</span></td>
+                  <td>162 – 167</td>
+                  <td>88 – 92</td>
+                  <td>70 – 75</td>
+                  <td>94 – 98</td>
+                  <td>60 – 68</td>
+                </tr>
+                <tr>
+                  <td><span class="size-badge">XL</span></td>
+                  <td>165 – 170</td>
+                  <td>92 – 96</td>
+                  <td>75 – 80</td>
+                  <td>98 – 103</td>
+                  <td>68 – 76</td>
+                </tr>
+                <tr>
+                  <td><span class="size-badge">XXL</span></td>
+                  <td>168 – 175</td>
+                  <td>96 – 102</td>
+                  <td>80 – 86</td>
+                  <td>103 – 109</td>
+                  <td>76 – 88</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- GIÀY DÉP -->
+        <div class="sg-pane" id="sg-giay">
+          <div class="size-table-wrap">
+            <table class="size-table">
+              <thead>
+                <tr>
+                  <th>Size VN</th>
+                  <th>EU</th>
+                  <th>UK</th>
+                  <th>US (Nam)</th>
+                  <th>US (Nữ)</th>
+                  <th>Chiều dài bàn chân (cm)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span class="size-badge">35</span></td>
+                  <td>35</td>
+                  <td>2.5</td>
+                  <td>4</td>
+                  <td>5</td>
+                  <td>22.0 – 22.5</td>
+                </tr>
+                <tr>
+                  <td><span class="size-badge">36</span></td>
+                  <td>36</td>
+                  <td>3.5</td>
+                  <td>4.5</td>
+                  <td>6</td>
+                  <td>22.5 – 23.0</td>
+                </tr>
+                <tr>
+                  <td><span class="size-badge">37</span></td>
+                  <td>37</td>
+                  <td>4</td>
+                  <td>5</td>
+                  <td>6.5</td>
+                  <td>23.0 – 23.5</td>
+                </tr>
+                <tr>
+                  <td><span class="size-badge">38</span></td>
+                  <td>38</td>
+                  <td>5</td>
+                  <td>6</td>
+                  <td>7.5</td>
+                  <td>23.5 – 24.0</td>
+                </tr>
+                <tr>
+                  <td><span class="size-badge">39</span></td>
+                  <td>39</td>
+                  <td>6</td>
+                  <td>7</td>
+                  <td>8</td>
+                  <td>24.5 – 25.0</td>
+                </tr>
+                <tr>
+                  <td><span class="size-badge">40</span></td>
+                  <td>40</td>
+                  <td>6.5</td>
+                  <td>7.5</td>
+                  <td>8.5</td>
+                  <td>25.0 – 25.5</td>
+                </tr>
+                <tr>
+                  <td><span class="size-badge">41</span></td>
+                  <td>41</td>
+                  <td>7</td>
+                  <td>8</td>
+                  <td>9.5</td>
+                  <td>25.5 – 26.0</td>
+                </tr>
+                <tr>
+                  <td><span class="size-badge">42</span></td>
+                  <td>42</td>
+                  <td>8</td>
+                  <td>9</td>
+                  <td>10</td>
+                  <td>26.5 – 27.0</td>
+                </tr>
+                <tr>
+                  <td><span class="size-badge">43</span></td>
+                  <td>43</td>
+                  <td>9</td>
+                  <td>10</td>
+                  <td>11</td>
+                  <td>27.0 – 27.5</td>
+                </tr>
+                <tr>
+                  <td><span class="size-badge">44</span></td>
+                  <td>44</td>
+                  <td>10</td>
+                  <td>11</td>
+                  <td>–</td>
+                  <td>28.0 – 28.5</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Hướng dẫn đo -->
+        <div class="sg-tip-box">
+          <div class="sg-tip-title">📐 Cách đo kích thước chuẩn</div>
+          <ul class="sg-tip-list">
+            <li>Đo khi mặc quần áo mỏng hoặc không mặc, dùng thước dây mềm</li>
+            <li>
+              <strong>Vòng ngực:</strong> đo qua điểm đầy nhất của ngực, giữ
+              thước nằm ngang
+            </li>
+            <li>
+              <strong>Vòng eo:</strong> đo chỗ nhỏ nhất của eo, thường cách rốn
+              2–3 cm
+            </li>
+            <li><strong>Vòng mông:</strong> đo qua điểm đầy nhất của mông</li>
+            <li>
+              <strong>Chiều dài quần:</strong> đo từ mép cạp xuống đến mắt cá
+              chân
+            </li>
+            <li>
+              Nếu số đo nằm giữa 2 size, hãy chọn <strong>size lớn hơn</strong>
+            </li>
+            <li>Với áo form rộng (oversized), có thể chọn nhỏ hơn 1 size</li>
+            <li>
+              Tham khảo ảnh mô tả sản phẩm để biết kiểu dáng (slim / regular /
+              oversize)
+            </li>
+          </ul>
+        </div>
+
+        <!-- Cards cách đo -->
+        <div class="sg-measure-cards">
+          <div class="sg-measure-card">
+            <div class="sg-measure-icon">📏</div>
+            <div class="sg-measure-title">Vòng ngực</div>
+            <div class="sg-measure-desc">
+              Đo ngang qua điểm đầy nhất, thước song song với mặt đất, không kéo
+              căng.
+            </div>
+          </div>
+          <div class="sg-measure-card">
+            <div class="sg-measure-icon">⭕</div>
+            <div class="sg-measure-title">Vòng eo</div>
+            <div class="sg-measure-desc">
+              Đặt thước ở vị trí nhỏ nhất của eo, thở bình thường rồi đo (không
+              hút bụng).
+            </div>
+          </div>
+          <div class="sg-measure-card">
+            <div class="sg-measure-icon">🔵</div>
+            <div class="sg-measure-title">Vòng mông</div>
+            <div class="sg-measure-desc">
+              Đứng thẳng, đo qua phần đầy nhất của mông, thước song song mặt
+              đất.
+            </div>
+          </div>
+          <div class="sg-measure-card">
+            <div class="sg-measure-icon">📐</div>
+            <div class="sg-measure-title">Dài quần</div>
+            <div class="sg-measure-desc">
+              Đo từ mép cạp lưng thẳng xuống đến mắt cá chân theo chiều dài
+              chân.
+            </div>
+          </div>
+          <div class="sg-measure-card">
+            <div class="sg-measure-icon">👟</div>
+            <div class="sg-measure-title">Kích thước giày</div>
+            <div class="sg-measure-desc">
+              Đặt chân lên giấy, vẽ viền, đo từ gót đến ngón dài nhất. Cộng thêm
+              0.5–1 cm.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════ -->
+    <!--  CHÍNH SÁCH ĐỔI TRẢ              -->
+    <!-- ══════════════════════════════════ -->
+    <div class="return-policy-section" id="chinh-sach-doi-tra">
+      <div class="container">
+        <div class="sec-header">
+          <div class="section-tag">Cam kết của FashionHub</div>
+          <h2 class="section-title">Chính Sách Đổi Trả Hàng</h2>
+          <p class="section-desc">
+            Mua sắm an tâm — đổi trả dễ dàng trong 30 ngày
+          </p>
+        </div>
+
+        <!-- 4 highlight cards -->
+        <div class="rp-grid">
+          <div class="rp-card">
+            <div class="rp-icon">📅</div>
+            <div class="rp-card-title">Thời hạn 30 ngày</div>
+            <div class="rp-card-body">
+              Đổi trả miễn phí trong vòng 30 ngày kể từ ngày nhận hàng. Sau 30
+              ngày sẽ không được hỗ trợ đổi/trả trừ lỗi nhà sản xuất.
+            </div>
+          </div>
+          <div class="rp-card">
+            <div class="rp-icon">🆓</div>
+            <div class="rp-card-title">Miễn phí hoàn toàn</div>
+            <div class="rp-card-body">
+              FashionHub chịu toàn bộ phí vận chuyển đổi/trả nếu lỗi thuộc về
+              shop (sai hàng, lỗi sản xuất). Khách hàng chịu ship nếu đổi size
+              hoặc màu theo ý muốn.
+            </div>
+          </div>
+          <div class="rp-card">
+            <div class="rp-icon">🔄</div>
+            <div class="rp-card-title">Đổi size / màu linh hoạt</div>
+            <div class="rp-card-body">
+              Đổi sang size hoặc màu khác nếu hàng còn tồn kho. Trường hợp hết
+              hàng, hoàn tiền 100% hoặc đổi sang sản phẩm tương đương.
+            </div>
+          </div>
+          <div class="rp-card">
+            <div class="rp-icon">💰</div>
+            <div class="rp-card-title">Hoàn tiền nhanh</div>
+            <div class="rp-card-body">
+              Xử lý hoàn tiền trong 3–5 ngày làm việc sau khi nhận hàng trả về.
+              Hoàn qua phương thức thanh toán ban đầu hoặc chuyển khoản.
+            </div>
+          </div>
+        </div>
+
+        <div class="row g-5">
+          <div class="col-lg-6">
+            <!-- Điều kiện -->
+            <h4
+              style="
+                font-family: &quot;Playfair Display&quot;, serif;
+                font-size: 1.2rem;
+                margin-bottom: 1.25rem;
+                color: var(--charcoal);
+              "
+            >
+              ✅ Điều kiện áp dụng
+            </h4>
+            <div class="rp-condition-grid">
+              <div class="rp-condition-box yes">
+                <div class="rp-condition-title">👍 Được đổi / trả</div>
+                <ul class="rp-condition-list">
+                  <li>Còn nguyên tem, nhãn mác</li>
+                  <li>Chưa qua giặt, sử dụng</li>
+                  <li>Hàng bị lỗi sản xuất</li>
+                  <li>Sai sản phẩm / màu / size so với đơn</li>
+                  <li>Hàng bị rách, hỏng khi giao</li>
+                  <li>Trong vòng 30 ngày từ ngày nhận</li>
+                </ul>
+              </div>
+              <div class="rp-condition-box no">
+                <div class="rp-condition-title">👎 Không được đổi / trả</div>
+                <ul class="rp-condition-list">
+                  <li>Đã cắt tem / tháo nhãn</li>
+                  <li>Đã giặt hoặc qua sử dụng</li>
+                  <li>Hàng sale / flash sale</li>
+                  <li>Hàng đặt may riêng theo yêu cầu</li>
+                  <li>Hàng có dấu hiệu sửa chữa</li>
+                  <li>Quá 30 ngày kể từ khi nhận</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <!-- Quy trình -->
+            <h4
+              style="
+                font-family: &quot;Playfair Display&quot;, serif;
+                font-size: 1.2rem;
+                margin-bottom: 1.25rem;
+                color: var(--charcoal);
+              "
+            >
+              📋 Quy trình đổi / trả
+            </h4>
+            <div class="rp-timeline">
+              <div class="rp-step">
+                <div class="rp-step-dot">1</div>
+                <div class="rp-step-title">Liên hệ FashionHub</div>
+                <div class="rp-step-body">
+                  Gọi hotline <strong>1800 123 456</strong> hoặc nhắn Zalo
+                  <strong>@FashionHub</strong> trong giờ 8:00 – 22:00. Cung cấp
+                  mã đơn hàng và lý do đổi/trả.
+                </div>
+              </div>
+              <div class="rp-step">
+                <div class="rp-step-dot">2</div>
+                <div class="rp-step-title">Nhận xác nhận từ shop</div>
+                <div class="rp-step-body">
+                  Nhân viên xác nhận trong vòng <strong>2 giờ</strong> trong giờ
+                  làm việc. Bạn sẽ nhận được hướng dẫn đóng gói và địa chỉ gửi
+                  hàng.
+                </div>
+              </div>
+              <div class="rp-step">
+                <div class="rp-step-dot">3</div>
+                <div class="rp-step-title">Đóng gói &amp; gửi hàng</div>
+                <div class="rp-step-body">
+                  Đóng gói kỹ, dán nhãn ghi rõ mã đơn hàng. Gửi qua bưu điện
+                  hoặc đơn vị vận chuyển bất kỳ. Giữ lại mã vận đơn để theo dõi.
+                </div>
+              </div>
+              <div class="rp-step">
+                <div class="rp-step-dot">4</div>
+                <div class="rp-step-title">Kiểm tra hàng nhận lại</div>
+                <div class="rp-step-body">
+                  Shop kiểm tra hàng trong vòng <strong>1–2 ngày</strong> sau
+                  khi nhận. Thông báo kết quả và xử lý đổi hàng hoặc hoàn tiền.
+                </div>
+              </div>
+              <div class="rp-step">
+                <div class="rp-step-dot">5</div>
+                <div class="rp-step-title">Hoàn tiền / Gửi hàng mới</div>
+                <div class="rp-step-body">
+                  Hoàn tiền trong <strong>3–5 ngày làm việc</strong> hoặc gửi
+                  hàng đổi ngay sau khi kiểm tra xong. Bạn sẽ nhận được thông
+                  báo qua SMS/email.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hotline banner -->
+        <div class="rp-hotline-banner mt-2">
+          <div class="rp-hotline-text">
+            <h4>Cần hỗ trợ đổi / trả hàng?</h4>
+            <p>
+              Đội ngũ FashionHub phục vụ 8:00 – 22:00 mỗi ngày, kể cả cuối tuần
+              và lễ Tết.
+            </p>
+          </div>
+          <div class="rp-hotline-btns">
+            <a href="tel:1800123456" class="rp-hotline-btn primary"
+              >📞 1800 123 456</a
+            >
+            <a
+              href="#"
+              class="rp-hotline-btn outline"
+              onclick="
+                openSupport('chat');
+                return false;
+              "
+              >💬 Chat ngay</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="container">
+        <div class="row g-4">
+          <div class="col-lg-4">
+            <div class="footer-brand">FASHION<span>HUB</span></div>
+            <p class="footer-desc">
+              Thời trang cao cấp, giá hợp lý. Phong cách sống hiện đại cho người
+              Việt.
+            </p>
+            <div class="d-flex gap-2 mt-3">
+              <a
+                href="https://www.facebook.com/ngo.phong.807744"
+                target="_blank"
+                title="Facebook"
+                style="
+                  width: 38px;
+                  height: 38px;
+                  border-radius: 50%;
+                  background: #1877f2;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  color: white;
+                  text-decoration: none;
+                  font-size: 1.1rem;
+                  transition:
+                    transform 0.2s,
+                    opacity 0.2s;
+                  opacity: 0.9;
+                "
+                onmouseover="
+                  this.style.transform = 'translateY(-3px)';
+                  this.style.opacity = '1';
+                "
+                onmouseout="
+                  this.style.transform = 'translateY(0)';
+                  this.style.opacity = '0.9';
+                "
+                ><i class="bi bi-facebook"></i
+              ></a>
+              <a
+                href="https://www.instagram.com/ngophog?igsh=NDZuMXNmOHVjMHh1&utm_source=qr"
+                target="_blank"
+                title="Instagram"
+                style="
+                  width: 38px;
+                  height: 38px;
+                  border-radius: 50%;
+                  background: radial-gradient(
+                    circle at 30% 107%,
+                    #fdf497 0%,
+                    #fdf497 5%,
+                    #fd5949 45%,
+                    #d6249f 60%,
+                    #285aeb 90%
+                  );
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  color: white;
+                  text-decoration: none;
+                  font-size: 1.1rem;
+                  transition:
+                    transform 0.2s,
+                    opacity 0.2s;
+                  opacity: 0.9;
+                "
+                onmouseover="
+                  this.style.transform = 'translateY(-3px)';
+                  this.style.opacity = '1';
+                "
+                onmouseout="
+                  this.style.transform = 'translateY(0)';
+                  this.style.opacity = '0.9';
+                "
+                ><i class="bi bi-instagram"></i
+              ></a>
+              <a
+                href="mailto:ngophong2367@gmail.com"
+                title="Email: ngophong2367@gmail.com"
+                style="
+                  width: 38px;
+                  height: 38px;
+                  border-radius: 50%;
+                  background: rgba(201, 168, 76, 0.25);
+                  border: 1px solid rgba(201, 168, 76, 0.4);
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  color: #c9a84c;
+                  text-decoration: none;
+                  font-size: 1.1rem;
+                  transition:
+                    transform 0.2s,
+                    opacity 0.2s;
+                  opacity: 0.9;
+                "
+                onmouseover="
+                  this.style.transform = 'translateY(-3px)';
+                  this.style.opacity = '1';
+                "
+                onmouseout="
+                  this.style.transform = 'translateY(0)';
+                  this.style.opacity = '0.9';
+                "
+                ><i class="bi bi-envelope-fill"></i
+              ></a>
+            </div>
+          </div>
+          <div class="col-6 col-lg-2">
+            <div class="footer-heading">Danh Mục Áo</div>
+            <ul class="footer-links">
+              <li><a href="#" onclick="goAoTab('ao-thun')">Áo thun</a></li>
+              <li><a href="#" onclick="goAoTab('ao-so-mi')">Áo sơ mi</a></li>
+              <li><a href="#" onclick="goAoTab('ao-khoac')">Áo khoác</a></li>
+              <li><a href="#" onclick="goAoTab('ao-len')">Áo len/Hoodie</a></li>
+              <li><a href="#" onclick="goAoTab('ao-dai')">Áo dài</a></li>
+            </ul>
+          </div>
+          <div class="col-6 col-lg-2">
+            <div class="footer-heading">Hỗ Trợ</div>
+            <ul class="footer-links">
+              <li>
+                <a
+                  href="#"
+                  onclick="
+                    openSupport('chat');
+                    return false;
+                  "
+                  >Chat trực tuyến</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  onclick="
+                    openSupport('faq');
+                    return false;
+                  "
+                  >Câu hỏi thường gặp</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  onclick="
+                    openSupport('contact');
+                    return false;
+                  "
+                  >Liên hệ</a
+                >
+              </li>
+              <li><a href="#chinh-sach-doi-tra">Chính sách đổi trả</a></li>
+              <li><a href="#bang-size">Bảng size</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-4">
+            <div class="footer-heading">Nhận Ưu Đãi</div>
+            <p style="font-size: 0.82rem; margin-bottom: 0.7rem">
+              Đăng ký nhận bộ sưu tập mới và voucher độc quyền.
+            </p>
+            <div class="nl-row">
+              <input
+                type="email"
+                class="nl-input"
+                placeholder="Email của bạn..."
+              />
+              <button
+                class="nl-btn"
+                onclick="showToast('📧 Đăng ký thành công!')"
+              >
+                Đăng ký
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>
+            © 2025 FashionHub · Tất cả quyền được bảo lưu · FIT-DNU-FE-NHOM13
+          </p>
+          <div class="payment-icons">
+            <span class="payment-icon">VISA</span
+            ><span class="payment-icon">MC</span>
+            <span class="payment-icon">MOMO</span
+            ><span class="payment-icon">VNPAY</span>
+            <span class="payment-icon">COD</span>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- SIZE & COLOR PICKER MODAL -->
+    <div class="modal fade" id="pickerModal" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">
+              <i class="bi bi-rulers me-2"></i>Chọn size & màu sắc
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+          <div class="modal-body p-4">
+            <div class="picker-product-info">
+              <img
+                id="pickerImg"
+                src=""
+                onerror="
+                  this.src = 'https://placehold.co/80x80/f5f0eb/8b7355?text=F'
+                "
+              />
+              <div>
+                <div class="picker-product-name" id="pickerName"></div>
+                <div class="picker-product-price" id="pickerPrice"></div>
+              </div>
+            </div>
+
+            <!-- SIZE -->
+            <div class="picker-label">
+              Kích thước <span id="selectedSizeLabel">— Chưa chọn</span>
+            </div>
+            <div class="size-options" id="sizeOptions">
+              <button class="size-opt" onclick="selectSize(this, 'XS')">
+                XS
+              </button>
+              <button class="size-opt" onclick="selectSize(this, 'S')">
+                S
+              </button>
+              <button class="size-opt" onclick="selectSize(this, 'M')">
+                M
+              </button>
+              <button class="size-opt" onclick="selectSize(this, 'L')">
+                L
+              </button>
+              <button class="size-opt" onclick="selectSize(this, 'XL')">
+                XL
+              </button>
+              <button class="size-opt" onclick="selectSize(this, 'XXL')">
+                XXL
+              </button>
+            </div>
+
+            <!-- COLOR -->
+            <div class="picker-label">
+              Màu sắc <span id="selectedColorLabel">— Chưa chọn</span>
+            </div>
+            <div class="color-options" id="colorOptions">
+              <div
+                class="color-opt"
+                style="background: #1a1a1a"
+                title="Đen"
+                onclick="selectColor(this, 'Đen')"
+              ></div>
+              <div
+                class="color-opt"
+                style="background: #ffffff; border: 1.5px solid #ddd"
+                title="Trắng"
+                onclick="selectColor(this, 'Trắng')"
+              ></div>
+              <div
+                class="color-opt"
+                style="background: #c0392b"
+                title="Đỏ"
+                onclick="selectColor(this, 'Đỏ')"
+              ></div>
+              <div
+                class="color-opt"
+                style="background: #2471a3"
+                title="Xanh dương"
+                onclick="selectColor(this, 'Xanh dương')"
+              ></div>
+              <div
+                class="color-opt"
+                style="background: #1e8449"
+                title="Xanh lá"
+                onclick="selectColor(this, 'Xanh lá')"
+              ></div>
+              <div
+                class="color-opt"
+                style="background: #f39c12"
+                title="Vàng"
+                onclick="selectColor(this, 'Vàng')"
+              ></div>
+              <div
+                class="color-opt"
+                style="background: #8e44ad"
+                title="Tím"
+                onclick="selectColor(this, 'Tím')"
+              ></div>
+              <div
+                class="color-opt"
+                style="background: #e8b4b8"
+                title="Hồng"
+                onclick="selectColor(this, 'Hồng')"
+              ></div>
+              <div
+                class="color-opt"
+                style="background: #808080"
+                title="Xám"
+                onclick="selectColor(this, 'Xám')"
+              ></div>
+              <div
+                class="color-opt"
+                style="background: #6b4226"
+                title="Nâu"
+                onclick="selectColor(this, 'Nâu')"
+              ></div>
+            </div>
+
+            <p
+              id="pickerError"
+              style="
+                font-size: 0.8rem;
+                color: #e74c3c;
+                display: none;
+                margin-bottom: 0.75rem;
+              "
+            >
+              ⚠️ Vui lòng chọn đủ size và màu sắc!
+            </p>
+            <button class="btn-confirm-add" onclick="confirmAddToCart()">
+              <i class="bi bi-bag-plus me-2"></i>Thêm vào giỏ hàng
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CHECKOUT FORM MODAL -->
+    <div class="modal fade" id="checkoutModal" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">
+              <i class="bi bi-credit-card me-2"></i>Thông tin đặt hàng
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+          <div class="modal-body p-4" id="checkoutFormBody">
+            <!-- Order Summary -->
+            <div class="checkout-section-title">📦 Tóm tắt đơn hàng</div>
+            <div class="order-summary-box">
+              <div class="order-summary-row">
+                <span>Tạm tính:</span><span id="coSubtotal"></span>
+              </div>
+              <div class="order-summary-row">
+                <span>Phí vận chuyển:</span
+                ><span
+                  id="coShipping"
+                  style="color: #27ae60; font-weight: 600"
+                ></span>
+              </div>
+              <div class="order-summary-row total">
+                <span>Tổng cộng:</span><span id="coTotal"></span>
+              </div>
+            </div>
+
+            <!-- Delivery Info -->
+            <div class="checkout-section-title">📍 Thông tin giao hàng</div>
+
+            <div class="form-group-custom">
+              <label>Họ và tên <span class="required">*</span></label>
+              <input
+                type="text"
+                class="form-control-custom"
+                id="coName"
+                placeholder="Nguyễn Văn A"
+              />
+              <div class="field-error" id="coNameErr">Vui lòng nhập họ tên</div>
+            </div>
+
+            <div class="form-group-custom">
+              <label>Số điện thoại <span class="required">*</span></label>
+              <input
+                type="tel"
+                class="form-control-custom"
+                id="coPhone"
+                placeholder="0912 345 678"
+                maxlength="11"
+              />
+              <div class="field-error" id="coPhoneErr">
+                Vui lòng nhập số điện thoại hợp lệ (10–11 số)
+              </div>
+            </div>
+
+            <div class="form-group-custom">
+              <label>Địa chỉ giao hàng <span class="required">*</span></label>
+              <input
+                type="text"
+                class="form-control-custom"
+                id="coAddr"
+                placeholder="Số nhà, tên đường, phường/xã"
+              />
+              <div class="field-error" id="coAddrErr">
+                Vui lòng nhập địa chỉ
+              </div>
+            </div>
+
+            <div class="row g-2 mb-3">
+              <div class="col-6">
+                <div class="form-group-custom" style="margin-bottom: 0">
+                  <label>Quận / Huyện <span class="required">*</span></label>
+                  <input
+                    type="text"
+                    class="form-control-custom"
+                    id="coDistrict"
+                    placeholder="Quận Hải Châu"
+                  />
+                  <div class="field-error" id="coDistrictErr">
+                    Vui lòng nhập quận/huyện
+                  </div>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="form-group-custom" style="margin-bottom: 0">
+                  <label
+                    >Tỉnh / Thành phố <span class="required">*</span></label
+                  >
+                  <input
+                    type="text"
+                    class="form-control-custom"
+                    id="coCity"
+                    placeholder="Đà Nẵng"
+                  />
+                  <div class="field-error" id="coCityErr">
+                    Vui lòng nhập tỉnh/thành
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group-custom">
+              <label>Ghi chú (tuỳ chọn)</label>
+              <input
+                type="text"
+                class="form-control-custom"
+                id="coNote"
+                placeholder="Giao giờ hành chính, gọi trước khi giao..."
+              />
+            </div>
+
+            <!-- Payment -->
+            <div class="checkout-section-title">💳 Phương thức thanh toán</div>
+            <div class="payment-methods">
+              <label class="payment-method-opt selected" id="pmCOD">
+                <input
+                  type="radio"
+                  name="payMethod"
+                  value="cod"
+                  checked
+                  onchange="selectPayment('pmCOD')"
+                />
+                💵 Tiền mặt khi nhận hàng (COD)
+              </label>
+              <label class="payment-method-opt" id="pmMoMo">
+                <input
+                  type="radio"
+                  name="payMethod"
+                  value="momo"
+                  onchange="selectPayment('pmMoMo')"
+                />
+                🟣 Ví MoMo
+              </label>
+              <label class="payment-method-opt" id="pmVNPay">
+                <input
+                  type="radio"
+                  name="payMethod"
+                  value="vnpay"
+                  onchange="selectPayment('pmVNPay')"
+                />
+                🔵 VNPay
+              </label>
+              <label class="payment-method-opt" id="pmCard">
+                <input
+                  type="radio"
+                  name="payMethod"
+                  value="card"
+                  onchange="selectPayment('pmCard')"
+                />
+                💳 Thẻ VISA / MasterCard
+              </label>
+            </div>
+
+            <button class="btn-place-order" onclick="placeOrder()">
+              <i class="bi bi-check-circle"></i> Xác nhận đặt hàng
+            </button>
+          </div>
+
+          <!-- Success screen -->
+          <div class="success-overlay" id="checkoutSuccess">
+            <div class="success-icon">🎉</div>
+            <div class="success-title">Đặt hàng thành công!</div>
+            <p class="success-sub">
+              Cảm ơn bạn đã mua hàng tại FashionHub.<br />
+              Chúng tôi sẽ liên hệ xác nhận đơn trong vòng
+              <strong>15 phút</strong>.<br />
+              <span
+                id="successInfo"
+                style="color: var(--taupe); font-size: 0.83rem"
+              ></span>
+            </p>
+            <button
+              class="btn-gold mt-4"
+              style="font-size: 0.88rem; padding: 0.7rem 2rem"
+              onclick="
+                bootstrap.Modal.getInstance(
+                  document.getElementById('checkoutModal'),
+                )?.hide()
+              "
+            >
+              Tiếp tục mua sắm
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CART MODAL -->
+    <div class="modal fade" id="cartModal" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">
+              <i class="bi bi-bag me-2"></i>Giỏ hàng (<span id="cartCount2"
+                >0</span
+              >)
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+          <div
+            class="modal-body"
+            id="cartList"
+            style="max-height: 360px; overflow-y: auto"
+          ></div>
+          <div class="modal-footer flex-column border-top">
+            <div class="w-100 d-flex justify-content-between mb-2">
+              <span style="color: var(--muted)">Tạm tính:</span
+              ><span id="cartSubtotal" class="fw-bold"></span>
+            </div>
+            <div class="w-100 d-flex justify-content-between mb-3">
+              <span style="color: var(--muted)">Phí vận chuyển:</span
+              ><span
+                id="cartShipping"
+                style="color: #27ae60; font-weight: 600"
+              ></span>
+            </div>
+            <div
+              class="w-100 d-flex justify-content-between"
+              style="border-top: 1px solid var(--border); padding-top: 0.75rem"
+            >
+              <span class="fw-bold">Tổng cộng:</span
+              ><span
+                id="cartTotal"
+                class="fw-bold"
+                style="color: var(--gold); font-size: 1.1rem"
+              ></span>
+            </div>
+            <button
+              class="btn w-100 mt-3"
+              style="
+                background: var(--charcoal);
+                color: white;
+                border-radius: 8px;
+                padding: 0.8rem;
+                font-weight: 700;
+              "
+              onclick="checkout()"
+            >
+              Thanh Toán Ngay →
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WISHLIST DRAWER -->
+    <div
+      class="wishlist-overlay"
+      id="wishlistOverlay"
+      onclick="toggleWishlistDrawer()"
+    ></div>
+    <div class="wishlist-drawer" id="wishlistDrawer">
+      <div class="wd-header">
+        <div class="wd-title">
+          <i class="bi bi-heart-fill me-2" style="color: var(--gold)"></i>Yêu
+          thích (<span id="wdCount">0</span>)
+        </div>
+        <button class="wd-close" onclick="toggleWishlistDrawer()">
+          <i class="bi bi-x-lg"></i>
+        </button>
+      </div>
+      <div class="wd-body" id="wishlistBody">
+        <div class="wd-empty">
+          <div class="wd-ei">💔</div>
+          <p>Chưa có sản phẩm yêu thích</p>
+          <p style="font-size: 0.8rem; color: var(--muted); margin-top: 0.4rem">
+            Nhấn ❤️ trên sản phẩm để thêm
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- TOAST -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- SIZE CHART POPUP (Shopee-style bottom sheet) -->
+    <div
+      class="size-popup-overlay"
+      id="sizePopupOverlay"
+      onclick="closeSizePopup(event)"
+    >
+      <div class="size-popup-sheet" onclick="event.stopPropagation()">
+        <div class="sps-handle"></div>
+        <div class="sps-header">
+          <div class="sps-title">📏 Bảng Size Quần Áo</div>
+          <button class="sps-close" onclick="closeSizePopup()">
+            <i class="bi bi-x-lg"></i>
+          </button>
+        </div>
+        <div class="sps-cat-tabs">
+          <button class="sps-cat-tab active" onclick="switchSpsTab('ao', this)">
+            👕 Áo
+          </button>
+          <button class="sps-cat-tab" onclick="switchSpsTab('quan', this)">
+            👖 Quần
+          </button>
+          <button class="sps-cat-tab" onclick="switchSpsTab('vay', this)">
+            👗 Váy &amp; Đầm
+          </button>
+          <button class="sps-cat-tab" onclick="switchSpsTab('giay', this)">
+            👟 Giày dép
+          </button>
+        </div>
+        <div class="sps-body">
+          <!-- Áo -->
+          <div class="sps-pane active" id="sps-ao">
+            <div
+              class="sps-selected-highlight"
+              id="spsHighlightAo"
+              style="display: none"
+            >
+              📌 Size bạn chọn: <strong id="spsSelectedAo">—</strong>
+            </div>
+            <div class="sps-table-wrap">
+              <table class="sps-table">
+                <thead>
+                  <tr>
+                    <th>Size</th>
+                    <th>Cao (cm)</th>
+                    <th>Nặng (kg)</th>
+                    <th>Ngực (cm)</th>
+                    <th>Eo (cm)</th>
+                    <th>Mông (cm)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr data-size="XS">
+                    <td><span class="sps-size-badge">XS</span></td>
+                    <td>150–155</td>
+                    <td>40–48</td>
+                    <td>76–80</td>
+                    <td>58–62</td>
+                    <td>80–84</td>
+                  </tr>
+                  <tr data-size="S">
+                    <td><span class="sps-size-badge">S</span></td>
+                    <td>155–160</td>
+                    <td>48–54</td>
+                    <td>80–84</td>
+                    <td>62–66</td>
+                    <td>84–88</td>
+                  </tr>
+                  <tr data-size="M">
+                    <td><span class="sps-size-badge">M</span></td>
+                    <td>160–165</td>
+                    <td>54–60</td>
+                    <td>84–88</td>
+                    <td>66–70</td>
+                    <td>88–92</td>
+                  </tr>
+                  <tr data-size="L">
+                    <td><span class="sps-size-badge">L</span></td>
+                    <td>165–170</td>
+                    <td>60–67</td>
+                    <td>88–92</td>
+                    <td>70–74</td>
+                    <td>92–96</td>
+                  </tr>
+                  <tr data-size="XL">
+                    <td><span class="sps-size-badge">XL</span></td>
+                    <td>170–175</td>
+                    <td>67–75</td>
+                    <td>92–96</td>
+                    <td>74–78</td>
+                    <td>96–100</td>
+                  </tr>
+                  <tr data-size="XXL">
+                    <td><span class="sps-size-badge">XXL</span></td>
+                    <td>175–182</td>
+                    <td>75–85</td>
+                    <td>96–102</td>
+                    <td>78–84</td>
+                    <td>100–106</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="sps-tip">
+              <div class="sps-tip-title">💡 Mẹo chọn size</div>
+              Nếu số đo của bạn nằm giữa 2 size, hãy chọn
+              <strong>size lớn hơn</strong>. Với áo form rộng (oversized), có
+              thể chọn nhỏ hơn 1 size.
+            </div>
+          </div>
+          <!-- Quần -->
+          <div class="sps-pane" id="sps-quan">
+            <div
+              class="sps-selected-highlight"
+              id="spsHighlightQuan"
+              style="display: none"
+            >
+              📌 Size bạn chọn: <strong id="spsSelectedQuan">—</strong>
+            </div>
+            <div class="sps-table-wrap">
+              <table class="sps-table">
+                <thead>
+                  <tr>
+                    <th>Size</th>
+                    <th>EU</th>
+                    <th>Eo (cm)</th>
+                    <th>Mông (cm)</th>
+                    <th>Dài (cm)</th>
+                    <th>Cân nặng</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr data-size="XS">
+                    <td><span class="sps-size-badge">XS</span></td>
+                    <td>28/EU 34</td>
+                    <td>60–64</td>
+                    <td>82–86</td>
+                    <td>95–98</td>
+                    <td>40–48 kg</td>
+                  </tr>
+                  <tr data-size="S">
+                    <td><span class="sps-size-badge">S</span></td>
+                    <td>29/EU 36</td>
+                    <td>64–68</td>
+                    <td>86–90</td>
+                    <td>98–100</td>
+                    <td>48–54 kg</td>
+                  </tr>
+                  <tr data-size="M">
+                    <td><span class="sps-size-badge">M</span></td>
+                    <td>30/EU 38</td>
+                    <td>68–72</td>
+                    <td>90–94</td>
+                    <td>100–102</td>
+                    <td>54–62 kg</td>
+                  </tr>
+                  <tr data-size="L">
+                    <td><span class="sps-size-badge">L</span></td>
+                    <td>31/EU 40</td>
+                    <td>72–76</td>
+                    <td>94–98</td>
+                    <td>102–104</td>
+                    <td>62–70 kg</td>
+                  </tr>
+                  <tr data-size="XL">
+                    <td><span class="sps-size-badge">XL</span></td>
+                    <td>32/EU 42</td>
+                    <td>76–82</td>
+                    <td>98–104</td>
+                    <td>104–106</td>
+                    <td>70–78 kg</td>
+                  </tr>
+                  <tr data-size="XXL">
+                    <td><span class="sps-size-badge">XXL</span></td>
+                    <td>34/EU 44</td>
+                    <td>82–90</td>
+                    <td>104–112</td>
+                    <td>106–108</td>
+                    <td>78–90 kg</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="sps-tip">
+              <div class="sps-tip-title">💡 Mẹo chọn size</div>
+              Đo vòng eo và vòng mông ở vị trí đầy nhất, giữ thước dây song song
+              với mặt đất.
+            </div>
+          </div>
+          <!-- Váy Đầm -->
+          <div class="sps-pane" id="sps-vay">
+            <div class="sps-table-wrap">
+              <table class="sps-table">
+                <thead>
+                  <tr>
+                    <th>Size</th>
+                    <th>Cao (cm)</th>
+                    <th>Ngực (cm)</th>
+                    <th>Eo (cm)</th>
+                    <th>Mông (cm)</th>
+                    <th>Nặng (kg)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr data-size="XS">
+                    <td><span class="sps-size-badge">XS</span></td>
+                    <td>150–155</td>
+                    <td>76–80</td>
+                    <td>58–62</td>
+                    <td>82–86</td>
+                    <td>40–47</td>
+                  </tr>
+                  <tr data-size="S">
+                    <td><span class="sps-size-badge">S</span></td>
+                    <td>155–160</td>
+                    <td>80–84</td>
+                    <td>62–66</td>
+                    <td>86–90</td>
+                    <td>47–53</td>
+                  </tr>
+                  <tr data-size="M">
+                    <td><span class="sps-size-badge">M</span></td>
+                    <td>158–163</td>
+                    <td>84–88</td>
+                    <td>66–70</td>
+                    <td>90–94</td>
+                    <td>53–60</td>
+                  </tr>
+                  <tr data-size="L">
+                    <td><span class="sps-size-badge">L</span></td>
+                    <td>162–167</td>
+                    <td>88–92</td>
+                    <td>70–75</td>
+                    <td>94–98</td>
+                    <td>60–68</td>
+                  </tr>
+                  <tr data-size="XL">
+                    <td><span class="sps-size-badge">XL</span></td>
+                    <td>165–170</td>
+                    <td>92–96</td>
+                    <td>75–80</td>
+                    <td>98–103</td>
+                    <td>68–76</td>
+                  </tr>
+                  <tr data-size="XXL">
+                    <td><span class="sps-size-badge">XXL</span></td>
+                    <td>168–175</td>
+                    <td>96–102</td>
+                    <td>80–86</td>
+                    <td>103–109</td>
+                    <td>76–88</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="sps-tip">
+              <div class="sps-tip-title">💡 Mẹo chọn size</div>
+              Váy và đầm thường ôm sát hơn áo, nếu số đo ở giữa 2 size hãy chọn
+              size lớn hơn.
+            </div>
+          </div>
+          <!-- Giày -->
+          <div class="sps-pane" id="sps-giay">
+            <div class="sps-table-wrap">
+              <table class="sps-table">
+                <thead>
+                  <tr>
+                    <th>VN</th>
+                    <th>EU</th>
+                    <th>UK</th>
+                    <th>US (Nam)</th>
+                    <th>US (Nữ)</th>
+                    <th>Dài bàn chân</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="sps-size-badge">35</span></td>
+                    <td>35</td>
+                    <td>2.5</td>
+                    <td>4</td>
+                    <td>5</td>
+                    <td>22.0–22.5cm</td>
+                  </tr>
+                  <tr>
+                    <td><span class="sps-size-badge">36</span></td>
+                    <td>36</td>
+                    <td>3.5</td>
+                    <td>4.5</td>
+                    <td>6</td>
+                    <td>22.5–23.0cm</td>
+                  </tr>
+                  <tr>
+                    <td><span class="sps-size-badge">37</span></td>
+                    <td>37</td>
+                    <td>4</td>
+                    <td>5</td>
+                    <td>6.5</td>
+                    <td>23.0–23.5cm</td>
+                  </tr>
+                  <tr>
+                    <td><span class="sps-size-badge">38</span></td>
+                    <td>38</td>
+                    <td>5</td>
+                    <td>6</td>
+                    <td>7.5</td>
+                    <td>23.5–24.0cm</td>
+                  </tr>
+                  <tr>
+                    <td><span class="sps-size-badge">39</span></td>
+                    <td>39</td>
+                    <td>6</td>
+                    <td>7</td>
+                    <td>8</td>
+                    <td>24.5–25.0cm</td>
+                  </tr>
+                  <tr>
+                    <td><span class="sps-size-badge">40</span></td>
+                    <td>40</td>
+                    <td>6.5</td>
+                    <td>7.5</td>
+                    <td>8.5</td>
+                    <td>25.0–25.5cm</td>
+                  </tr>
+                  <tr>
+                    <td><span class="sps-size-badge">41</span></td>
+                    <td>41</td>
+                    <td>7</td>
+                    <td>8</td>
+                    <td>9.5</td>
+                    <td>25.5–26.0cm</td>
+                  </tr>
+                  <tr>
+                    <td><span class="sps-size-badge">42</span></td>
+                    <td>42</td>
+                    <td>8</td>
+                    <td>9</td>
+                    <td>10</td>
+                    <td>26.5–27.0cm</td>
+                  </tr>
+                  <tr>
+                    <td><span class="sps-size-badge">43</span></td>
+                    <td>43</td>
+                    <td>9</td>
+                    <td>10</td>
+                    <td>11</td>
+                    <td>27.0–27.5cm</td>
+                  </tr>
+                  <tr>
+                    <td><span class="sps-size-badge">44</span></td>
+                    <td>44</td>
+                    <td>10</td>
+                    <td>11</td>
+                    <td>–</td>
+                    <td>28.0–28.5cm</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="sps-tip">
+              <div class="sps-tip-title">💡 Mẹo chọn size</div>
+              Đặt chân lên tờ giấy trắng, vẽ viền xung quanh và đo từ gót đến
+              đầu ngón dài nhất. Cộng thêm 0.5–1 cm để thoải mái.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SUPPORT FAB -->
+    <button class="support-fab" id="supportFab" onclick="toggleSupport()">
+      <i class="bi bi-headset" id="fabIcon"></i>
+      <span class="fab-notif">1</span>
+    </button>
+
+    <!-- SUPPORT PANEL -->
+    <div class="support-panel" id="supportPanel">
+      <div class="sp-header">
+        <div class="sp-hicon">🎧</div>
+        <div class="sp-htxt">
+          <h4>FashionHub Hỗ Trợ</h4>
+          <div class="sp-online">
+            <span class="sp-dot"></span
+            ><span style="color: rgba(255, 255, 255, 0.6); font-size: 0.7rem"
+              >Nhân viên đang trực tuyến</span
+            >
+          </div>
+        </div>
+        <button class="sp-close" onclick="toggleSupport()">
+          <i class="bi bi-x-lg"></i>
+        </button>
+      </div>
+      <div class="sp-tabs">
+        <button class="sp-tab active" onclick="switchSpTab('chat')">
+          <i class="bi bi-chat-dots me-1"></i>Chat
+        </button>
+        <button class="sp-tab" onclick="switchSpTab('faq')">
+          <i class="bi bi-question-circle me-1"></i>FAQ
+        </button>
+        <button class="sp-tab" onclick="switchSpTab('contact')">
+          <i class="bi bi-telephone me-1"></i>Liên hệ
+        </button>
+      </div>
+      <div class="sp-body">
+        <!-- CHAT -->
+        <div class="sp-pane active" id="sp-chat">
+          <div class="quick-replies">
+            <button class="qr-btn" onclick="sendQuick('Theo dõi đơn hàng')">
+              📦 Theo dõi đơn
+            </button>
+            <button class="qr-btn" onclick="sendQuick('Chính sách đổi trả')">
+              🔄 Đổi trả
+            </button>
+            <button class="qr-btn" onclick="sendQuick('Bảng size quần áo')">
+              📏 Bảng size
+            </button>
+            <button class="qr-btn" onclick="sendQuick('Khuyến mãi hiện có')">
+              🏷️ Khuyến mãi
+            </button>
+            <button class="qr-btn" onclick="sendQuick('Phí vận chuyển')">
+              🚚 Phí ship
+            </button>
+            <button class="qr-btn" onclick="sendQuick('Tư vấn phong cách')">
+              ✨ Tư vấn style
+            </button>
+          </div>
+          <div class="chat-msgs" id="chatMsgs">
+            <div class="msg-wrap bot">
+              <div class="msg-bubble">
+                Xin chào! 👋 Tôi là trợ lý FashionHub. Tôi có thể giúp bạn về:
+                đơn hàng, size quần áo, khuyến mãi, hay phong cách thời trang.
+                Bạn cần hỗ trợ gì?
+              </div>
+              <div class="msg-time">Vừa xong</div>
+            </div>
+          </div>
+          <div class="chat-input-row">
+            <input
+              type="text"
+              class="chat-inp"
+              id="chatInput"
+              placeholder="Nhập tin nhắn..."
+              onkeydown="if (event.key === 'Enter') sendMsg();"
+            />
+            <button class="chat-send-btn" onclick="sendMsg()">
+              <i class="bi bi-send-fill"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- FAQ -->
+        <div class="sp-pane" id="sp-faq">
+          <div class="faq-scroll">
+            <div class="faq-item">
+              <div class="faq-q" onclick="toggleFaq(this)">
+                <span>Làm sao đổi/trả hàng?</span><span class="arrow">▾</span>
+              </div>
+              <div class="faq-a">
+                Đổi/trả trong 30 ngày kể từ ngày nhận, còn nguyên tag, chưa qua
+                sử dụng. Liên hệ hotline 1800 123 456.
+              </div>
+            </div>
+            <div class="faq-item">
+              <div class="faq-q" onclick="toggleFaq(this)">
+                <span>Phí vận chuyển bao nhiêu?</span
+                ><span class="arrow">▾</span>
+              </div>
+              <div class="faq-a">
+                Miễn phí cho đơn từ 499.000đ. Dưới mức này phí ship 30.000đ toàn
+                quốc. Giao 1–3 ngày làm việc.
+              </div>
+            </div>
+            <div class="faq-item">
+              <div class="faq-q" onclick="toggleFaq(this)">
+                <span>Chọn size như thế nào?</span><span class="arrow">▾</span>
+              </div>
+              <div class="faq-a">
+                Xem bảng size trong footer. Nếu ở giữa 2 size, chọn size lớn
+                hơn. Chat để tư vấn trực tiếp.
+              </div>
+            </div>
+            <div class="faq-item">
+              <div class="faq-q" onclick="toggleFaq(this)">
+                <span>Thanh toán được những hình thức nào?</span
+                ><span class="arrow">▾</span>
+              </div>
+              <div class="faq-a">
+                COD (tiền mặt), Thẻ VISA/MasterCard, MoMo, VNPay và chuyển khoản
+                ngân hàng.
+              </div>
+            </div>
+            <div class="faq-item">
+              <div class="faq-q" onclick="toggleFaq(this)">
+                <span>Giao hàng bao lâu?</span><span class="arrow">▾</span>
+              </div>
+              <div class="faq-a">
+                Nội thành HN/HCM: 1–2 ngày. Tỉnh khác: 2–4 ngày làm việc. Giao
+                nhanh trong ngày tại một số khu vực.
+              </div>
+            </div>
+            <div class="faq-item">
+              <div class="faq-q" onclick="toggleFaq(this)">
+                <span>Theo dõi đơn hàng ở đâu?</span
+                ><span class="arrow">▾</span>
+              </div>
+              <div class="faq-a">
+                Sau khi đặt hàng nhận SMS/email kèm mã vận đơn. Theo dõi trên
+                website hoặc app đơn vị vận chuyển.
+              </div>
+            </div>
+            <div class="faq-item">
+              <div class="faq-q" onclick="toggleFaq(this)">
+                <span>Có chương trình tích điểm không?</span
+                ><span class="arrow">▾</span>
+              </div>
+              <div class="faq-a">
+                Có! Mỗi 10.000đ mua hàng tích 1 điểm. 100 điểm = 10.000đ. Đăng
+                ký thành viên để bắt đầu tích điểm.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CONTACT -->
+        <div class="sp-pane" id="sp-contact">
+          <div class="contact-scroll">
+            <a href="tel:1800123456" class="contact-item">
+              <div class="ci-icon" style="background: #e8f5e9">📞</div>
+              <div>
+                <div class="ci-title">Hotline miễn phí</div>
+                <div class="ci-sub">1800 123 456 · 8:00–22:00 mỗi ngày</div>
+              </div>
+            </a>
+            <a
+              href="#"
+              class="contact-item"
+              onclick="
+                showToast('📱 Mở Zalo tìm FashionHub Official');
+                return false;
+              "
+            >
+              <div class="ci-icon" style="background: #e3f2fd">💬</div>
+              <div>
+                <div class="ci-title">Zalo Official</div>
+                <div class="ci-sub">@FashionHub · Phản hồi trong 5 phút</div>
+              </div>
+            </a>
+            <a
+              href="#"
+              class="contact-item"
+              onclick="
+                showToast('📘 Chuyển đến Messenger...');
+                return false;
+              "
+            >
+              <div class="ci-icon" style="background: #ede7f6">📘</div>
+              <div>
+                <div class="ci-title">Facebook Messenger</div>
+                <div class="ci-sub">m.me/FashionHubVN</div>
+              </div>
+            </a>
+            <a href="mailto:support@fashionhub.vn" class="contact-item">
+              <div class="ci-icon" style="background: #fff3e0">✉️</div>
+              <div>
+                <div class="ci-title">Email hỗ trợ</div>
+                <div class="ci-sub">support@fashionhub.vn</div>
+              </div>
+            </a>
+            <div
+              style="
+                background: var(--cream);
+                border-radius: 8px;
+                padding: 0.85rem;
+                font-size: 0.78rem;
+                color: var(--muted);
+                line-height: 1.65;
+                margin-top: 0.25rem;
+              "
+            >
+              🏪 <strong style="color: var(--charcoal)">Cửa hàng:</strong><br />
+              23 Lê Duẩn, Hải Châu, Đà Nẵng<br />
+              Mở cửa: 8:00 – 22:00 hàng ngày
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      const API_URL =
+        "https://69f9a69cc509a40d3aa2ee09.mockapi.io/api/v1/products";
+      let allProducts = [],
+        currentProducts = [],
+        cart = [],
+        wishlist = [];
+      const SIZES = ["XS", "S", "M", "L", "XL"];
+      const BADGES = ["", "new", "sale", "hot", "", "new", "sale", ""];
+      const CATEGORY_KW = {
+        ao: [
+          "áo",
+          "ao",
+          "shirt",
+          "jacket",
+          "coat",
+          "blazer",
+          "hoodie",
+          "sweater",
+          "sweatshirt",
+          "vest",
+          "cardigan",
+          "len",
+          "hood",
+          "pullover",
+        ],
+        quan: [
+          "quần",
+          "quan",
+          "jean",
+          "pants",
+          "trousers",
+          "short",
+          "shorts",
+          "jogger",
+          "kaki",
+          "khaki",
+        ],
+        vay: ["váy", "vay", "đầm", "dam", "dress", "skirt", "maxi"],
+        giay: [
+          "giày",
+          "giay",
+          "sneaker",
+          "boot",
+          "sandals",
+          "sandal",
+          "dep",
+          "dép",
+          "loafer",
+          "heel",
+        ],
+        tui: ["túi", "tui", "bag", "backpack", "clutch", "purse", "wallet"],
+        phuKien: [
+          "phụ kiện",
+          "phu kien",
+          "kính",
+          "kinh",
+          "nón",
+          "mu",
+          "mũ",
+          "hat",
+          "belt",
+          "thắt lưng",
+          "scarf",
+          "khăn",
+          "ring",
+          "necklace",
+          "watch",
+          "đồng hồ",
+        ],
+      };
+
+      const CATEGORY_LABELS = {
+        ao: "Áo",
+        quan: "Quần",
+        vay: "Váy/Đầm",
+        giay: "Giày dép",
+        tui: "Túi xách",
+        phuKien: "Phụ kiện",
+      };
+
+      function normalizeText(text) {
+        return text
+          .toLowerCase()
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+          .replace(/[^0-9a-zđ\s]/g, " ")
+          .replace(/\s+/g, " ")
+          .trim();
+      }
+
+      function detectProdCat(name) {
+        const normalized = name
+          .toLowerCase()
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "");
+        for (const [cat, keys] of Object.entries(CATEGORY_KW)) {
+          if (
+            keys.some((k) =>
+              normalized.includes(
+                k
+                  .toLowerCase()
+                  .normalize("NFD")
+                  .replace(/[\u0300-\u036f]/g, ""),
+              ),
+            )
+          )
+            return cat;
+        }
+        return "ao";
+      }
+
+      // ── AO CATEGORIZATION ──
+      const AO_KW = {
+        "ao-thun": [
+          "thun",
+          "t-shirt",
+          "tshirt",
+          "tee",
+          "phông",
+          "crop",
+          "basic",
+          "tank",
+        ],
+        "ao-so-mi": [
+          "sơ mi",
+          "so mi",
+          "shirt",
+          "oxford",
+          "flannel",
+          "chambray",
+          "linen",
+        ],
+        "ao-khoac": [
+          "khoác",
+          "khoac",
+          "jacket",
+          "coat",
+          "blazer",
+          "bomber",
+          "vest",
+          "gile",
+          "windbreaker",
+        ],
+        "ao-len": [
+          "len",
+          "hoodie",
+          "sweater",
+          "sweatshirt",
+          "cardigan",
+          "knit",
+          "nỉ",
+          "pullover",
+        ],
+        "ao-dai": ["dài", "dai", "áo dài", "ao dai", "truyền thống"],
+        "ao-polo": ["polo", "pique", "golf shirt", "lacoste"],
+      };
+
+      function detectAoCat(name) {
+        const n = name
+          .toLowerCase()
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "");
+        for (const [cat, keys] of Object.entries(AO_KW)) {
+          if (
+            keys.some((k) =>
+              n.includes(k.normalize("NFD").replace(/[\u0300-\u036f]/g, "")),
+            )
+          )
+            return cat;
+        }
+        return "ao-thun";
+      }
+
+      function isAoProduct(name) {
+        const n = name.toLowerCase();
+        return (
+          n.includes("áo") ||
+          n.includes("ao") ||
+          n.includes("shirt") ||
+          n.includes("jacket") ||
+          n.includes("hoodie") ||
+          n.includes("sweater") ||
+          n.includes("khoác") ||
+          n.includes("polo") ||
+          n.includes("vest") ||
+          n.includes("len ")
+        );
+      }
+
+      function normalizeText(text) {
+        return text
+          .toLowerCase()
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+          .replace(/[^0-9a-zđ\s]/g, " ")
+          .replace(/\s+/g, " ")
+          .trim();
+      }
+
+      function matchesKeyword(text, keyword) {
+        const normalizedText = normalizeText(text);
+        const normalizedKey = normalizeText(keyword);
+        if (!normalizedKey) return false;
+        if (normalizedKey.includes(" "))
+          return normalizedText.includes(normalizedKey);
+        const escapedKey = normalizedKey.replace(
+          /[-/\\^$*+?.()|[\]{}]/g,
+          "\\$&",
+        );
+        return new RegExp(`\\b${escapedKey}\\b`).test(normalizedText);
+      }
+
+      const CATEGORY_PRIORITY = ["quan", "vay", "giay", "tui", "phuKien", "ao"];
+
+      function detectProdCat(name) {
+        const matches = Object.entries(CATEGORY_KW)
+          .map(([cat, keys]) => ({
+            cat,
+            score: keys.reduce(
+              (count, key) => count + (matchesKeyword(name, key) ? 1 : 0),
+              0,
+            ),
+          }))
+          .filter((entry) => entry.score > 0);
+
+        if (!matches.length) return null;
+
+        matches.sort((a, b) => {
+          if (b.score !== a.score) return b.score - a.score;
+          return (
+            CATEGORY_PRIORITY.indexOf(a.cat) - CATEGORY_PRIORITY.indexOf(b.cat)
+          );
+        });
+
+        return matches[0].cat;
+      }
+
+      function detectAoCat(name) {
+        for (const [cat, keys] of Object.entries(AO_KW)) {
+          if (keys.some((key) => matchesKeyword(name, key))) return cat;
+        }
+        return "ao-thun";
+      }
+
+      function isAoProduct(name) {
+        return [
+          "áo",
+          "shirt",
+          "jacket",
+          "hoodie",
+          "sweater",
+          "khoác",
+          "polo",
+          "vest",
+          "len",
+          "hood",
+        ].some((key) => matchesKeyword(name, key));
+      }
+
+      const CAT_LABELS = {
+        "ao-thun": "Áo thun",
+        "ao-so-mi": "Áo sơ mi",
+        "ao-khoac": "Áo khoác",
+        "ao-len": "Áo len/Hoodie",
+        "ao-dai": "Áo dài",
+        "ao-polo": "Áo Polo",
+      };
+
+      // ── LOAD API ──
+      function loadProducts() {
+        $("#loading").show();
+        $("#aoLoading").show();
+        $.get(API_URL, (res) => {
+          allProducts = res;
+          currentProducts = res;
+          renderUI(res);
+          renderAoSection();
+          $("#loading").hide();
+          $("#aoLoading").hide();
+        }).fail(() => {
+          $("#loading").hide();
+          $("#aoLoading").hide();
+          showToast("⚠️ Không thể tải sản phẩm!");
+        });
+      }
+
+      // ── AO SECTION ──
+      let currentAoTab = "tat-ca";
+      function filterAoTab(tab, btn) {
+        currentAoTab = tab;
+        document
+          .querySelectorAll(".ao-tab")
+          .forEach((b) => b.classList.remove("active"));
+        if (btn) btn.classList.add("active");
+        renderAoSection();
+        document
+          .getElementById("ao-section")
+          .scrollIntoView({ behavior: "smooth" });
+      }
+      function goAoTab(tab) {
+        currentAoTab = tab;
+        document.querySelectorAll(".ao-tab").forEach((b) => {
+          b.classList.toggle("active", b.dataset.cat === tab);
+        });
+        renderAoSection();
+        document
+          .getElementById("ao-section")
+          .scrollIntoView({ behavior: "smooth" });
+      }
+
+      function renderAoSection() {
+        const aoProds = allProducts.filter((p) => isAoProduct(p.tenSanPham));
+        let display =
+          currentAoTab === "tat-ca"
+            ? aoProds.length
+              ? aoProds
+              : allProducts
+            : aoProds.filter((p) => detectAoCat(p.tenSanPham) === currentAoTab);
+        if (!display.length && currentAoTab !== "tat-ca") display = allProducts; // fallback
+
+        const grid = $("#aoGrid").empty();
+        document.getElementById("aoEmpty").style.display = !display.length
+          ? "block"
+          : "none";
+
+        display.slice(0, 8).forEach((item, i) => {
+          const catLabel = CAT_LABELS[detectAoCat(item.tenSanPham)] || "Áo";
+          const badge = BADGES[i % BADGES.length];
+          const badgeHTML = badge
+            ? `<span class="product-badge badge-${badge}">${badge === "new" ? "Mới" : badge === "sale" ? "Sale" : "Hot"}</span>`
+            : "";
+          const isW = wishlist.some((w) => w.id == item.id);
+          const oldPrice =
+            badge === "sale"
+              ? `<span class="price-old">${Number(Math.floor(item.gia * 1.25)).toLocaleString()}đ</span>`
+              : "";
+          const stars = "★★★★" + (Math.random() > 0.5 ? "★" : "☆");
+          const rev = Math.floor(Math.random() * 200 + 20);
+          const sizeHTML =
+            SIZES.map(
+              (s) =>
+                `<span class="size-tag" onclick="event.stopPropagation();openSizePopup('${s}')" title="Xem bảng size">${s}</span>`,
+            ).join("") +
+            `<span class="size-tag" onclick="event.stopPropagation();openSizePopup()" title="Xem bảng size" style="color:var(--gold);border-color:var(--gold);font-size:0.62rem">📏</span>`;
+          grid.append(`
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="product-card">
+            <div class="product-img-wrap">
+              ${badgeHTML}
+              <img src="${item.hinhAnh}" onerror="this.src='https://placehold.co/400x500/f5f0eb/8b7355?text=Ao'">
+              <div class="product-actions">
+                <button class="action-btn ${isW ? "wished" : ""}" onclick="toggleWish('${item.id}',this,'ao')" title="Yêu thích">
+                  <i class="bi bi-heart${isW ? "-fill" : ""}"></i>
+                </button>
+                <button class="action-btn" onclick="quickView('${item.id}')" title="Xem nhanh"><i class="bi bi-eye"></i></button>
+              </div>
+            </div>
+            <div class="product-body">
+              <div class="product-cat">${catLabel}</div>
+              <div class="product-name" title="${item.tenSanPham}">${item.tenSanPham}</div>
+              <div class="product-rating"><span class="stars">${stars}</span><span class="rating-count ms-1">(${rev})</span></div>
+              <div class="size-row">${sizeHTML}</div>
+              <div class="price-row">
+                <div><div class="price-main">${Number(item.gia).toLocaleString()}đ</div>${oldPrice}</div>
+                <button class="btn-add-cart" onclick="addToCart('${item.id}')">+ Giỏ</button>
+              </div>
+            </div>
+          </div>
+        </div>`);
+        });
+      }
+
+      // ── ALL PRODUCTS ──
+      function renderUI(items) {
+        const sort = document.getElementById("sortSelect").value;
+        let sorted = [...items];
+        if (sort === "asc") sorted.sort((a, b) => a.gia - b.gia);
+        else if (sort === "desc") sorted.sort((a, b) => b.gia - a.gia);
+        else if (sort === "name")
+          sorted.sort((a, b) => a.tenSanPham.localeCompare(b.tenSanPham));
+
+        const grid = $("#productGrid").empty();
+        $("#emptyState").hide();
+        if (!sorted.length) {
+          $("#emptyState").show();
+          return;
+        }
+
+        sorted.forEach((item, i) => {
+          const badge = BADGES[i % BADGES.length];
+          const badgeHTML = badge
+            ? `<span class="product-badge badge-${badge}">${badge === "new" ? "Mới" : badge === "sale" ? "Sale" : "Hot"}</span>`
+            : "";
+          const isW = wishlist.some((w) => w.id == item.id);
+          const sizeHTML =
+            SIZES.map(
+              (s) =>
+                `<span class="size-tag" onclick="event.stopPropagation();openSizePopup('${s}')" title="Xem bảng size">${s}</span>`,
+            ).join("") +
+            `<span class="size-tag" onclick="event.stopPropagation();openSizePopup()" title="Xem bảng size" style="color:var(--gold);border-color:var(--gold);font-size:0.62rem">📏</span>`;
+          const stars = "★★★★" + (Math.random() > 0.5 ? "★" : "☆");
+          const rev = Math.floor(Math.random() * 200 + 20);
+          const oldPrice =
+            badge === "sale"
+              ? `<span class="price-old">${Number(Math.floor(item.gia * 1.25)).toLocaleString()}đ</span>`
+              : "";
+          grid.append(`
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="product-card">
+            <div class="product-img-wrap">
+              ${badgeHTML}
+              <img src="${item.hinhAnh}" onerror="this.src='https://placehold.co/400x500/f5f0eb/8b7355?text=Fashion'">
+              <div class="product-actions">
+                <button class="action-btn ${isW ? "wished" : ""}" onclick="toggleWish('${item.id}',this,'all')" title="Yêu thích">
+                  <i class="bi bi-heart${isW ? "-fill" : ""}"></i>
+                </button>
+                <button class="action-btn" onclick="quickView('${item.id}')" title="Xem nhanh"><i class="bi bi-eye"></i></button>
+              </div>
+            </div>
+            <div class="product-body">
+              <div class="product-cat">${CATEGORY_LABELS[detectProdCat(item.tenSanPham)] || "Sản phẩm"}</div>
+              <div class="product-name" title="${item.tenSanPham}">${item.tenSanPham}</div>
+              <div class="product-rating"><span class="stars">${stars}</span><span class="rating-count ms-1">(${rev})</span></div>
+              <div class="size-row">${sizeHTML}</div>
+              <div class="price-row">
+                <div><div class="price-main">${Number(item.gia).toLocaleString()}đ</div>${oldPrice}</div>
+                <button class="btn-add-cart" onclick="addToCart('${item.id}')">+ Giỏ</button>
+              </div>
+            </div>
+          </div>
+        </div>`);
+        });
+      }
+
+      // ── WISHLIST ──
+      function toggleWish(id, btn, context) {
+        const item = allProducts.find((p) => p.id == id);
+        if (!item) return;
+        const idx = wishlist.findIndex((w) => w.id == id);
+        if (idx === -1) {
+          wishlist.push(item);
+          btn.classList.add("wished");
+          btn.innerHTML = '<i class="bi bi-heart-fill"></i>';
+          showToast('❤️ Đã thêm "' + item.tenSanPham + '" vào yêu thích');
+        } else {
+          wishlist.splice(idx, 1);
+          btn.classList.remove("wished");
+          btn.innerHTML = '<i class="bi bi-heart"></i>';
+          showToast("💔 Đã xóa khỏi yêu thích");
+        }
+        // sync all heart buttons for same product
+        document
+          .querySelectorAll("[onclick*=\"toggleWish(\'" + " + id + " + "\',\"]")
+          .forEach((b) => {
+            if (b !== btn) {
+              const inW = wishlist.some((w) => w.id == id);
+              b.className = "action-btn" + (inW ? " wished" : "");
+              b.innerHTML =
+                '<i class="bi bi-heart' + (inW ? "-fill" : "") + '"></i>';
+            }
+          });
+        updateWishlistUI();
+      }
+
+      function updateWishlistUI() {
+        const n = wishlist.length;
+        const wc = document.getElementById("wishlistCount");
+        wc.textContent = n;
+        wc.style.display = n ? "flex" : "none";
+        document.getElementById("wdCount").textContent = n;
+        const body = document.getElementById("wishlistBody");
+        if (!n) {
+          body.innerHTML =
+            '<div class="wd-empty"><div class="wd-ei">💔</div><p>Chưa có sản phẩm yêu thích</p><p style="font-size:.8rem;color:var(--muted);margin-top:.4rem">Nhấn ❤️ trên sản phẩm để thêm</p></div>';
+          return;
+        }
+        body.innerHTML = wishlist
+          .map(
+            (item) => `
+      <div class="wishlist-item">
+        <img src="${item.hinhAnh}" onerror="this.src='https://placehold.co/80x80/f5f0eb/8b7355?text=F'">
+        <div class="wi-info">
+          <div class="wi-name">${item.tenSanPham}</div>
+          <div class="wi-price">${Number(item.gia).toLocaleString()}đ</div>
+          <div class="wi-actions">
+            <button class="wi-btn wi-btn-cart" onclick="addToCart('${item.id}')">+ Giỏ hàng</button>
+            <button class="wi-btn wi-btn-rm" onclick="removeWishById('${item.id}')">Xóa</button>
+          </div>
+        </div>
+      </div>`,
+          )
+          .join("");
+      }
+
+      function removeWishById(id) {
+        const idx = wishlist.findIndex((w) => w.id == id);
+        if (idx !== -1) wishlist.splice(idx, 1);
+        // reset heart buttons
+        document
+          .querySelectorAll("[onclick*=\"toggleWish(\'" + " + id + " + "\',\"]")
+          .forEach((b) => {
+            b.className = "action-btn";
+            b.innerHTML = '<i class="bi bi-heart"></i>';
+          });
+        updateWishlistUI();
+        showToast("💔 Đã xóa khỏi yêu thích");
+      }
+
+      function toggleWishlistDrawer() {
+        const drawer = document.getElementById("wishlistDrawer");
+        const overlay = document.getElementById("wishlistOverlay");
+        const open = drawer.classList.toggle("open");
+        overlay.classList.toggle("open", open);
+        if (open) updateWishlistUI();
+      }
+
+      // ── FILTERS ──
+      function filterCat(el, cat) {
+        document
+          .querySelectorAll(".cat-item")
+          .forEach((c) => c.classList.remove("active"));
+        el.classList.add("active");
+        currentProducts = cat
+          ? allProducts.filter((item) => detectProdCat(item.tenSanPham) === cat)
+          : allProducts;
+        renderUI(currentProducts);
+        document
+          .getElementById("products")
+          .scrollIntoView({ behavior: "smooth" });
+      }
+
+      $("#txtSearch").on("input", applySearch);
+      function applySearch() {
+        const v = $("#txtSearch").val().toLowerCase();
+        currentProducts = allProducts.filter((p) =>
+          p.tenSanPham.toLowerCase().includes(v),
+        );
+        renderUI(currentProducts);
+      }
+
+      function setChip(el) {
+        document
+          .querySelectorAll(".chip")
+          .forEach((c) => c.classList.remove("active"));
+        el.classList.add("active");
+        applySearch();
+      }
+
+      // ── PICKER STATE ──
+      let pickerProductId = null;
+      let pickerSelectedSize = null;
+      let pickerSelectedColor = null;
+
+      // ── CART ──
+      function addToCart(id) {
+        const item = allProducts.find((p) => p.id == id);
+        if (!item) return;
+        // Open size & color picker modal
+        pickerProductId = id;
+        pickerSelectedSize = null;
+        pickerSelectedColor = null;
+        document.getElementById("pickerImg").src =
+          item.hinhAnh || "https://placehold.co/80x80/f5f0eb/8b7355?text=F";
+        document.getElementById("pickerName").textContent = item.tenSanPham;
+        document.getElementById("pickerPrice").textContent =
+          Number(item.gia).toLocaleString() + "đ";
+        document.getElementById("selectedSizeLabel").textContent =
+          "— Chưa chọn";
+        document.getElementById("selectedColorLabel").textContent =
+          "— Chưa chọn";
+        document.getElementById("pickerError").style.display = "none";
+        document
+          .querySelectorAll(".size-opt")
+          .forEach((b) => b.classList.remove("selected"));
+        document
+          .querySelectorAll(".color-opt")
+          .forEach((c) => c.classList.remove("selected"));
+        // Close cart modal if open, then open picker
+        const cartModal = bootstrap.Modal.getInstance(
+          document.getElementById("cartModal"),
+        );
+        if (cartModal) cartModal.hide();
+        setTimeout(
+          () => {
+            new bootstrap.Modal(document.getElementById("pickerModal")).show();
+          },
+          cartModal ? 300 : 0,
+        );
+      }
+
+      function selectSize(btn, size) {
+        document
+          .querySelectorAll(".size-opt")
+          .forEach((b) => b.classList.remove("selected"));
+        btn.classList.add("selected");
+        pickerSelectedSize = size;
+        document.getElementById("selectedSizeLabel").textContent = size;
+      }
+
+      function selectColor(el, color) {
+        document
+          .querySelectorAll(".color-opt")
+          .forEach((c) => c.classList.remove("selected"));
+        el.classList.add("selected");
+        pickerSelectedColor = color;
+        document.getElementById("selectedColorLabel").textContent = color;
+      }
+
+      function confirmAddToCart() {
+        if (!pickerSelectedSize || !pickerSelectedColor) {
+          document.getElementById("pickerError").style.display = "block";
+          return;
+        }
+        document.getElementById("pickerError").style.display = "none";
+        const item = allProducts.find((p) => p.id == pickerProductId);
+        if (!item) return;
+        // Use size+color as unique key
+        const cartKey =
+          item.id + "_" + pickerSelectedSize + "_" + pickerSelectedColor;
+        const ex = cart.find((c) => c._key === cartKey);
+        if (ex) {
+          ex.qty = (ex.qty || 1) + 1;
+        } else {
+          cart.push({
+            ...item,
+            qty: 1,
+            _key: cartKey,
+            size: pickerSelectedSize,
+            color: pickerSelectedColor,
+          });
+        }
+        updateCart();
+        showToast(
+          '🛍️ Đã thêm "' +
+            item.tenSanPham +
+            '" — ' +
+            pickerSelectedSize +
+            " / " +
+            pickerSelectedColor,
+        );
+        bootstrap.Modal.getInstance(
+          document.getElementById("pickerModal"),
+        )?.hide();
+      }
+
+      function removeFromCart(key) {
+        cart = cart.filter((c) => (c._key || c.id) != key);
+        updateCart();
+      }
+
+      function changeQty(key, delta) {
+        const item = cart.find((c) => (c._key || c.id) == key);
+        if (!item) return;
+        item.qty = (item.qty || 1) + delta;
+        if (item.qty <= 0) removeFromCart(key);
+        else updateCart();
+      }
+
+      function updateCart() {
+        const qty = cart.reduce((s, c) => s + (c.qty || 1), 0);
+        document.getElementById("cartCount").textContent = qty;
+        document.getElementById("cartCount2").textContent = qty;
+        const sub = cart.reduce((s, c) => s + Number(c.gia) * (c.qty || 1), 0);
+        const ship = sub >= 499000 ? 0 : 30000;
+        document.getElementById("cartSubtotal").textContent =
+          sub.toLocaleString() + "đ";
+        document.getElementById("cartShipping").textContent =
+          ship === 0 ? "Miễn phí" : ship.toLocaleString() + "đ";
+        document.getElementById("cartTotal").textContent =
+          (sub + ship).toLocaleString() + "đ";
+        const list = document.getElementById("cartList");
+        if (!cart.length) {
+          list.innerHTML =
+            '<div style="text-align:center;padding:2.5rem;color:var(--muted)">Giỏ hàng trống 🛒</div>';
+          return;
+        }
+        list.innerHTML = cart
+          .map((c) => {
+            const key = c._key || c.id;
+            const variant = (c.size || "") + (c.color ? " / " + c.color : "");
+            return `
+      <div class="cart-item">
+        <img src="${c.hinhAnh}" onerror="this.src='https://placehold.co/80x80/f5f0eb/8b7355?text=F'">
+        <div class="cart-item-info">
+          <div class="cart-item-name">${c.tenSanPham}</div>
+          ${variant ? `<div style="font-size:.75rem;color:var(--muted);margin-top:.1rem">${variant}</div>` : ""}
+          <div class="cart-item-price">${Number(c.gia).toLocaleString()}đ</div>
+          <div class="qty-ctrl">
+            <button class="qty-btn" onclick="changeQty('${key}',-1)">−</button>
+            <span class="qty-num">${c.qty || 1}</span>
+            <button class="qty-btn" onclick="changeQty('${key}',1)">+</button>
+          </div>
+        </div>
+        <button class="remove-btn" onclick="removeFromCart('${key}')"><i class="bi bi-x-lg"></i></button>
+      </div>`;
+          })
+          .join("");
+      }
+
+      function checkout() {
+        if (!cart.length) {
+          showToast("⚠️ Giỏ hàng đang trống!");
+          return;
+        }
+        const u = JSON.parse(localStorage.getItem("fh_user") || "null");
+        if (!u) {
+          showToast("🔐 Vui lòng đăng nhập để thanh toán!");
+          setTimeout(() => (window.location.href = "login.html"), 1500);
+          return;
+        }
+        // Pre-fill name from user account
+        const sub = cart.reduce((s, c) => s + Number(c.gia) * (c.qty || 1), 0);
+        const ship = sub >= 499000 ? 0 : 30000;
+        document.getElementById("coSubtotal").textContent =
+          sub.toLocaleString() + "đ";
+        document.getElementById("coShipping").textContent =
+          ship === 0 ? "Miễn phí" : ship.toLocaleString() + "đ";
+        document.getElementById("coTotal").textContent =
+          (sub + ship).toLocaleString() + "đ";
+        document.getElementById("coName").value = u.name || "";
+        // Reset form state
+        document.getElementById("checkoutFormBody").style.display = "block";
+        document.getElementById("checkoutSuccess").style.display = "none";
+        ["coName", "coPhone", "coAddr", "coDistrict", "coCity"].forEach(
+          (id) => {
+            document.getElementById(id).classList.remove("error");
+            const errId = id + "Err";
+            if (document.getElementById(errId))
+              document.getElementById(errId).style.display = "none";
+          },
+        );
+        // Close cart modal, open checkout modal
+        bootstrap.Modal.getInstance(
+          document.getElementById("cartModal"),
+        )?.hide();
+        setTimeout(() => {
+          new bootstrap.Modal(document.getElementById("checkoutModal")).show();
+        }, 350);
+      }
+
+      function selectPayment(selectedId) {
+        ["pmCOD", "pmMoMo", "pmVNPay", "pmCard"].forEach((id) => {
+          document
+            .getElementById(id)
+            .classList.toggle("selected", id === selectedId);
+        });
+      }
+
+      function placeOrder() {
+        let valid = true;
+        // Validate fields
+        const name = document.getElementById("coName").value.trim();
+        const phone = document.getElementById("coPhone").value.trim();
+        const addr = document.getElementById("coAddr").value.trim();
+        const district = document.getElementById("coDistrict").value.trim();
+        const city = document.getElementById("coCity").value.trim();
+
+        function setErr(fieldId, errId, show) {
+          document.getElementById(fieldId).classList.toggle("error", show);
+          document.getElementById(errId).style.display = show
+            ? "block"
+            : "none";
+        }
+        setErr("coName", "coNameErr", !name);
+        if (!name) valid = false;
+
+        const phoneOk = /^[0-9]{10,11}$/.test(phone.replace(/\s/g, ""));
+        setErr("coPhone", "coPhoneErr", !phoneOk);
+        if (!phoneOk) valid = false;
+
+        setErr("coAddr", "coAddrErr", !addr);
+        if (!addr) valid = false;
+
+        setErr("coDistrict", "coDistrictErr", !district);
+        if (!district) valid = false;
+
+        setErr("coCity", "coCityErr", !city);
+        if (!city) valid = false;
+
+        if (!valid) return;
+
+        // Success!
+        const payLabel =
+          document.querySelector('input[name="payMethod"]:checked')?.value ||
+          "cod";
+        const payNames = {
+          cod: "Tiền mặt (COD)",
+          momo: "Ví MoMo",
+          vnpay: "VNPay",
+          card: "Thẻ ngân hàng",
+        };
+        document.getElementById("successInfo").innerHTML =
+          `📞 ${phone} &nbsp;·&nbsp; 📍 ${addr}, ${district}, ${city}<br>Thanh toán: ${payNames[payLabel] || "COD"}`;
+        document.getElementById("checkoutFormBody").style.display = "none";
+        document.getElementById("checkoutSuccess").style.display = "block";
+        cart = [];
+        updateCart();
+      }
+
+      function quickView(id) {
+        const item = allProducts.find((p) => p.id == id);
+        if (!item) return;
+        showToast(
+          "👗 " +
+            item.tenSanPham +
+            " — " +
+            Number(item.gia).toLocaleString() +
+            "đ",
+        );
+      }
+
+      // ── USER ──
+      function checkUser() {
+        const u = JSON.parse(localStorage.getItem("fh_user") || "null");
+        const area = document.getElementById("userArea");
+        if (u) {
+          area.innerHTML = `<div class="d-flex align-items-center gap-2">
+        <span style="font-size:.8rem;color:var(--taupe)">Xin chào, ${u.name.split(" ").pop()}</span>
+        ${u.role === "admin" ? '<a href="admin.html" class="btn-user" style="font-size:.75rem;padding:.3rem .75rem"><i class="bi bi-gear me-1"></i>Admin</a>' : ""}
+        <button onclick="logout()" class="btn-user" style="background:var(--blush);color:var(--charcoal);font-size:.75rem;padding:.3rem .75rem">Đăng xuất</button>
+      </div>`;
+        } else {
+          area.innerHTML = `<a href="login.html" class="btn-user"><i class="bi bi-person me-1"></i>Đăng nhập</a>`;
+        }
+      }
+      function logout() {
+        localStorage.removeItem("fh_user");
+        checkUser();
+      }
+
+      // ── TOAST ──
+      function showToast(msg) {
+        const t = document.createElement("div");
+        t.className = "toast-msg";
+        t.textContent = msg;
+        document.getElementById("toastContainer").appendChild(t);
+        setTimeout(() => t.remove(), 3200);
+      }
+
+      // ════════════════════════════
+      //  SUPPORT CHATBOT (nâng cấp)
+      // ════════════════════════════
+      let supportOpen = false;
+
+      // Knowledge base chi tiết
+      const KB = [
+        {
+          keys: ["đơn hàng", "theo dõi", "tracking", "mã vận đơn"],
+          reply:
+            "Để theo dõi đơn hàng, bạn vào <b>Tài khoản → Đơn hàng của tôi</b> hoặc dùng mã vận đơn trong SMS/email. Cần mã đơn cụ thể, bạn cho tôi biết nhé! 📦",
+        },
+        {
+          keys: ["đổi trả", "hoàn tiền", "trả hàng", "đổi hàng"],
+          reply:
+            "FashionHub hỗ trợ <b>đổi/trả trong 30 ngày</b> kể từ ngày nhận. Điều kiện: còn nguyên tag, chưa qua sử dụng. Liên hệ hotline <b>1800 123 456</b> hoặc chat này để được hỗ trợ nhanh! 🔄",
+        },
+        {
+          keys: ["size", "kích thước", "bảng size", "số đo", "cm"],
+          reply:
+            "📏 <b>Bảng size FashionHub:</b><br/>• S: Ngực 80-84cm, Eo 62-66cm<br/>• M: Ngực 84-88cm, Eo 66-70cm<br/>• L: Ngực 88-92cm, Eo 70-74cm<br/>• XL: Ngực 92-96cm, Eo 74-78cm<br/>Nếu ở giữa 2 size, chọn size lớn hơn nhé!",
+        },
+        {
+          keys: [
+            "khuyến mãi",
+            "giảm giá",
+            "voucher",
+            "mã giảm",
+            "sale",
+            "flash sale",
+          ],
+          reply:
+            "🏷️ <b>Ưu đãi hiện có:</b><br/>• Mã <b>FASHION20</b>: giảm 20% toàn đơn<br/>• Mã <b>NEWUSER50</b>: giảm 50K (thành viên mới)<br/>• Mã <b>SALE30</b>: giảm 30% áo khoác, len<br/>• Miễn ship đơn từ 499K<br/>• Flash Sale mỗi thứ 6! 🔥",
+        },
+        {
+          keys: ["vận chuyển", "ship", "giao hàng", "phí ship"],
+          reply:
+            "🚚 <b>Phí vận chuyển:</b><br/>• Đơn từ 499.000đ: <b>MIỄN PHÍ</b><br/>• Đơn dưới 499K: 30.000đ<br/>• Nội thành HN/HCM: 1–2 ngày<br/>• Tỉnh khác: 2–4 ngày làm việc<br/>• Giao nhanh trong ngày: liên hệ nhân viên",
+        },
+        {
+          keys: [
+            "thanh toán",
+            "trả tiền",
+            "momo",
+            "vnpay",
+            "visa",
+            "atm",
+            "cod",
+            "tiền mặt",
+          ],
+          reply:
+            "💳 <b>Phương thức thanh toán:</b><br/>✅ Tiền mặt (COD)<br/>✅ Thẻ VISA / MasterCard<br/>✅ MoMo<br/>✅ VNPay<br/>✅ Chuyển khoản ngân hàng<br/>An toàn & bảo mật 100%!",
+        },
+        {
+          keys: ["tư vấn", "phong cách", "mặc gì", "outfit", "style", "mix"],
+          reply:
+            "✨ <b>Tư vấn phong cách:</b><br/>• Áo thun + quần jeans: năng động, trẻ trung<br/>• Áo sơ mi + quần âu: lịch sự, chuyên nghiệp<br/>• Áo khoác + đầm midi: thời trang, nữ tính<br/>Hãy cho tôi biết vóc dáng & dịp mặc để tư vấn cụ thể hơn! 👗",
+        },
+        {
+          keys: ["chất liệu", "vải", "cotton", "polyester", "linen", "chất"],
+          reply:
+            "🧵 <b>Chất liệu FashionHub:</b><br/>• Áo thun: Cotton 100% hoặc Cotton/Spandex<br/>• Áo sơ mi: Linen, Oxford, Chambray<br/>• Áo khoác: Polyester, Nylon cao cấp<br/>• Váy đầm: Chiffon, Satin, Lace<br/>Cam kết không bạc màu, bền đẹp!",
+        },
+        {
+          keys: ["tích điểm", "thành viên", "loyalty", "điểm thưởng"],
+          reply:
+            "⭐ <b>Chương trình thành viên:</b><br/>• Mỗi 10.000đ = 1 điểm<br/>• 100 điểm = 10.000đ voucher<br/>• Hạng Bạc (2M/năm): ưu đãi 5%<br/>• Hạng Vàng (5M/năm): ưu đãi 10%<br/>• Hạng Kim Cương (10M+): ưu đãi 15%",
+        },
+        {
+          keys: [
+            "hotline",
+            "số điện thoại",
+            "gọi",
+            "liên hệ",
+            "địa chỉ",
+            "cửa hàng",
+          ],
+          reply:
+            "📞 <b>Liên hệ FashionHub:</b><br/>• Hotline: <b>1800 123 456</b> (miễn phí)<br/>• Zalo: @FashionHub<br/>• Email: support@fashionhub.vn<br/>• Cửa hàng: 23 Lê Duẩn, Hải Châu, Đà Nẵng<br/>• Mở cửa: 8:00–22:00 mỗi ngày",
+        },
+        {
+          keys: ["áo thun", "áo thun"],
+          reply:
+            '👕 <b>Áo thun FashionHub:</b><br/>• Chất liệu Cotton 100% cao cấp<br/>• Nhiều màu sắc, form dáng đa dạng<br/>• Giá từ 150.000đ – 350.000đ<br/>• Xem ngay tại mục "Áo thun" trên trang!',
+        },
+      ];
+
+      const DEFAULT_REPLIES = [
+        "Cảm ơn bạn đã liên hệ FashionHub! 😊 Nhân viên của chúng tôi sẽ phản hồi trong ít phút. Bạn cũng có thể gọi hotline <b>1800 123 456</b> (miễn phí) để được hỗ trợ ngay!",
+        "Tôi chưa hiểu rõ câu hỏi của bạn. Bạn có thể hỏi về: đơn hàng, size quần áo, khuyến mãi, đổi trả, vận chuyển, hoặc thanh toán nhé! 💬",
+        "Để được hỗ trợ tốt nhất, hãy liên hệ nhân viên qua Zalo <b>@FashionHub</b> hoặc hotline <b>1800 123 456</b>. Chúng tôi luôn sẵn sàng! 🙌",
+      ];
+      let drIdx = 0;
+
+      function getBotReply(text) {
+        const t = text
+          .toLowerCase()
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "");
+        for (const entry of KB) {
+          const matched = entry.keys.some((k) =>
+            t.includes(k.normalize("NFD").replace(/[\u0300-\u036f]/g, "")),
+          );
+          if (matched) return entry.reply;
+        }
+        const r = DEFAULT_REPLIES[drIdx % DEFAULT_REPLIES.length];
+        drIdx++;
+        return r;
+      }
+
+      function sendMsg() {
+        const inp = document.getElementById("chatInput");
+        const text = inp.value.trim();
+        if (!text) return;
+        addMsg(text, "user");
+        inp.value = "";
+
+        // Typing
+        const typEl = document.createElement("div");
+        typEl.className = "msg-wrap bot";
+        typEl.id = "typing-ind";
+        typEl.innerHTML =
+          '<div class="typing-indicator"><span></span><span></span><span></span></div>';
+        document.getElementById("chatMsgs").appendChild(typEl);
+        scrollChat();
+
+        const delay = 800 + Math.random() * 600;
+        setTimeout(() => {
+          document.getElementById("typing-ind")?.remove();
+          addMsg(getBotReply(text), "bot");
+        }, delay);
+      }
+
+      function sendQuick(text) {
+        document.getElementById("chatInput").value = text;
+        sendMsg();
+      }
+
+      function addMsg(text, role) {
+        const msgs = document.getElementById("chatMsgs");
+        const d = document.createElement("div");
+        d.className = "msg-wrap " + role;
+        const now = new Date().toLocaleTimeString("vi-VN", {
+          hour: "2-digit",
+          minute: "2-digit",
+        });
+        d.innerHTML = `<div class="msg-bubble">${text}</div><div class="msg-time">${now}</div>`;
+        msgs.appendChild(d);
+        scrollChat();
+      }
+
+      function scrollChat() {
+        const m = document.getElementById("chatMsgs");
+        m.scrollTop = m.scrollHeight;
+      }
+
+      function toggleSupport() {
+        supportOpen = !supportOpen;
+        const panel = document.getElementById("supportPanel");
+        const icon = document.getElementById("fabIcon");
+        panel.classList.toggle("open", supportOpen);
+        icon.className = supportOpen ? "bi bi-x-lg" : "bi bi-headset";
+        document.querySelector(".support-fab .fab-notif").style.display =
+          supportOpen ? "none" : "flex";
+      }
+
+      function openSupport(tab) {
+        if (!supportOpen) toggleSupport();
+        switchSpTab(tab);
+      }
+
+      function switchSpTab(name) {
+        document.querySelectorAll(".sp-tab").forEach((t, i) => {
+          t.classList.toggle("active", ["chat", "faq", "contact"][i] === name);
+        });
+        document
+          .querySelectorAll(".sp-pane")
+          .forEach((p) => p.classList.remove("active"));
+        document.getElementById("sp-" + name).classList.add("active");
+      }
+
+      function toggleFaq(el) {
+        const ans = el.nextElementSibling;
+        const wasOpen = el.classList.contains("open");
+        document.querySelectorAll(".faq-q").forEach((q) => {
+          q.classList.remove("open");
+          q.nextElementSibling.classList.remove("show");
+        });
+        if (!wasOpen) {
+          el.classList.add("open");
+          ans.classList.add("show");
+        }
+      }
+
+      // ── SIZE GUIDE TABS ──
+      function switchSgTab(tab, btn) {
+        document
+          .querySelectorAll(".sg-tab")
+          .forEach((b) => b.classList.remove("active"));
+        document
+          .querySelectorAll(".sg-pane")
+          .forEach((p) => p.classList.remove("active"));
+        if (btn) btn.classList.add("active");
+        const pane = document.getElementById("sg-" + tab);
+        if (pane) pane.classList.add("active");
+      }
+
+      // ── SIZE CHART POPUP (Shopee-style) ──
+      let _currentPopupSize = null;
+
+      function openSizePopup(selectedSize) {
+        _currentPopupSize = selectedSize || null;
+        const overlay = document.getElementById("sizePopupOverlay");
+        overlay.classList.add("open");
+        document.body.style.overflow = "hidden";
+
+        // Default to "ao" tab
+        switchSpsTab("ao", document.querySelector(".sps-cat-tab"));
+
+        // Highlight the selected size if provided
+        if (selectedSize) {
+          highlightSpsSize("ao", selectedSize);
+        }
+      }
+
+      function closeSizePopup(e) {
+        if (e && e.target !== document.getElementById("sizePopupOverlay"))
+          return;
+        const overlay = document.getElementById("sizePopupOverlay");
+        overlay.classList.remove("open");
+        document.body.style.overflow = "";
+      }
+
+      function switchSpsTab(tab, btn) {
+        document
+          .querySelectorAll(".sps-cat-tab")
+          .forEach((b) => b.classList.remove("active"));
+        document
+          .querySelectorAll(".sps-pane")
+          .forEach((p) => p.classList.remove("active"));
+        if (btn) btn.classList.add("active");
+        const pane = document.getElementById("sps-" + tab);
+        if (pane) pane.classList.add("active");
+        // Re-highlight if size was selected
+        if (_currentPopupSize) {
+          highlightSpsSize(tab, _currentPopupSize);
+        }
+      }
+
+      function highlightSpsSize(tab, size) {
+        const pane = document.getElementById("sps-" + tab);
+        if (!pane) return;
+        // Remove previous highlights
+        pane.querySelectorAll("tr").forEach((tr) => {
+          tr.classList.remove("sps-row-highlight");
+          const badge = tr.querySelector(".sps-size-badge");
+          if (badge) badge.classList.remove("highlighted");
+        });
+        // Highlight matching row
+        const rows = pane.querySelectorAll("tbody tr[data-size]");
+        rows.forEach((tr) => {
+          if (tr.dataset.size === size) {
+            tr.classList.add("sps-row-highlight");
+            const badge = tr.querySelector(".sps-size-badge");
+            if (badge) badge.classList.add("highlighted");
+            // Scroll into view
+            setTimeout(
+              () => tr.scrollIntoView({ block: "nearest", behavior: "smooth" }),
+              200,
+            );
+          }
+        });
+        // Show highlight banner
+        const highlightBanner = pane.querySelector(".sps-selected-highlight");
+        const labelEl = pane.querySelector("[id^='spsSelected']");
+        if (highlightBanner) {
+          highlightBanner.style.display = "flex";
+          if (labelEl) labelEl.textContent = size;
+        }
+      }
+
+      $(document).ready(() => {
+        checkUser();
+        loadProducts();
+        updateCart();
+        updateWishlistUI();
+      });
+    </script>
+  </body>
+</html>

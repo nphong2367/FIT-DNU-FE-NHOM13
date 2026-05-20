@@ -1,0 +1,61 @@
+
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600;700&display=swap');
+
+    :root { 
+        --bg-dark: #0f172a; 
+        --card-bg: #1e293b; 
+        --text-white: #ffffff;
+        --text-gray: #94a3b8;
+        --accent-cyan: #22d3ee;
+    }
+
+    body { 
+        background-color: var(--bg-dark); 
+        color: var(--text-white); 
+        font-family: 'DM Sans', sans-serif;
+        line-height: 1.6;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        font-family: 'Playfair Display', serif;
+        letter-spacing: 0.02em;
+    }
+
+    /* Tiêu đề chính Danh sách sản phẩm */
+    h1, h2 {
+        color: var(--text-white) !important;
+        font-weight: 700;
+        margin-top: 2rem;
+    }
+
+    /* Định dạng Card */
+    .card { 
+        background-color: var(--card-bg) !important; 
+        border: 1px solid #334155 !important;
+        border-radius: 12px;
+    }
+
+    /* Tên sản phẩm - Ép màu trắng */
+    .card-title { 
+        color: var(--text-white) !important; 
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+    }
+
+    /* Giá tiền - Màu xanh sáng cực kỳ nổi bật */
+    .price { 
+        color: var(--accent-cyan) !important; 
+        font-weight: 700; 
+        font-size: 1.1rem;
+    }
+
+    /* Nút bấm - Viền cyan và chữ cyan */
+    .btn-outline-info {
+        color: var(--accent-cyan) !important;
+        border-color: var(--accent-cyan) !important;
+    }
+
+    .btn-outline-info:hover {
+        background-color: var(--accent-cyan) !important;
+        color: var(--bg-dark) !important;
+    }
