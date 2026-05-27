@@ -58,34 +58,40 @@
         background: rgba(250, 247, 242, 0.97);
         backdrop-filter: blur(12px);
         border-bottom: 1px solid var(--border);
-        padding: 0.85rem 0;
+        padding: 0.75rem 0;
         position: sticky;
         top: 0;
         z-index: 200;
         box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
       }
+      .navbar > .container-xl {
+        flex-wrap: nowrap !important;
+      }
       .navbar-brand {
         font-family: "Playfair Display", serif;
-        font-size: 1.75rem;
+        font-size: 1.5rem;
         color: var(--charcoal) !important;
-        letter-spacing: 3px;
+        letter-spacing: 2px;
         text-decoration: none;
+        flex-shrink: 0;
+        margin-right: 0.5rem;
       }
       .navbar-brand .accent {
         color: var(--gold);
       }
-
       .nav-links {
         display: flex;
         align-items: center;
-        gap: 0.1rem;
+        gap: 0;
+        flex: 1;
+        min-width: 0;
       }
       .nav-links > a,
       .nav-drop > a {
         color: var(--charcoal) !important;
-        font-size: 0.83rem;
+        font-size: 0.78rem;
         font-weight: 500;
-        padding: 0.4rem 0.85rem;
+        padding: 0.35rem 0.55rem;
         border-radius: 4px;
         text-decoration: none;
         transition: 0.2s;
@@ -162,7 +168,66 @@
       .nav-actions {
         display: flex;
         align-items: center;
-        gap: 0.5rem;
+        gap: 0.3rem;
+        flex-shrink: 0;
+        margin-left: 0.5rem;
+      }
+      /* ── NAV SEARCH ── */
+      .nav-search-wrap {
+        position: relative;
+        display: flex;
+        align-items: center;
+      }
+      .nav-search-icon {
+        position: absolute;
+        left: 9px;
+        color: var(--muted);
+        font-size: 0.8rem;
+        pointer-events: none;
+        transition: color 0.2s;
+      }
+      .nav-search-input {
+        width: 150px;
+        padding: 0.38rem 0.8rem 0.38rem 2rem;
+        border: 1.5px solid var(--border);
+        border-radius: 20px;
+        font-family: "Times New Roman", Times, Georgia, serif;
+        font-size: 0.8rem;
+        background: var(--cream);
+        color: var(--charcoal);
+        outline: none;
+        transition:
+          width 0.3s ease,
+          border-color 0.2s,
+          box-shadow 0.2s;
+      }
+      .nav-search-wrap.active .nav-search-input,
+      .nav-search-input:focus {
+        width: 200px;
+        border-color: var(--gold);
+        background: white;
+        box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.12);
+      }
+      .nav-search-wrap.active .nav-search-icon {
+        color: var(--gold);
+      }
+      @media (max-width: 1199px) {
+        .nav-search-input {
+          width: 120px;
+        }
+        .nav-search-wrap.active .nav-search-input,
+        .nav-search-input:focus {
+          width: 160px;
+        }
+      }
+      @media (max-width: 991px) {
+        .nav-search-input {
+          width: 100px;
+        }
+        .nav-search-wrap.active .nav-search-input,
+        .nav-search-input:focus {
+          width: 130px;
+        }
       }
       .nav-icon-btn {
         background: none;
@@ -462,11 +527,54 @@
         font-size: 0.9rem;
         margin-bottom: 1.75rem;
       }
+      .ao-tabs-wrapper {
+        margin-bottom: 1.75rem;
+      }
       .ao-tabs {
         display: flex;
         gap: 0.5rem;
         flex-wrap: wrap;
-        margin-bottom: 1.75rem;
+      }
+
+      /* ── PRODUCT MARQUEE ── */
+      .ao-grid-wrapper {
+        overflow: hidden;
+        position: relative;
+        mask-image: linear-gradient(
+          to right,
+          transparent 0%,
+          black 4%,
+          black 96%,
+          transparent 100%
+        );
+        -webkit-mask-image: linear-gradient(
+          to right,
+          transparent 0%,
+          black 4%,
+          black 96%,
+          transparent 100%
+        );
+      }
+      .ao-grid-track {
+        display: flex;
+        gap: 1.25rem;
+        width: max-content;
+        animation: scrollProducts 30s linear infinite;
+      }
+      .ao-grid-wrapper:hover .ao-grid-track {
+        animation-play-state: paused;
+      }
+      @keyframes scrollProducts {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(-50%);
+        }
+      }
+      .ao-grid-track .product-card-wrap {
+        flex-shrink: 0;
+        width: 240px;
       }
       .ao-tab {
         padding: 0.4rem 1rem;
@@ -2534,88 +2642,58 @@
 
         <div class="nav-links d-none d-lg-flex">
           <a href="#">Trang Chủ</a>
-          <!-- Áo mega dropdown -->
+          <!-- Sản phẩm mega dropdown -->
           <div class="nav-drop">
-            <a href="#ao-section">Áo</a>
+            <a href="#ao-section">Sản phẩm</a>
             <div class="mega-menu">
               <div class="mega-col">
-                <h6>Áo thường ngày</h6>
-                <a href="#" onclick="goAoTab('ao-thun')">👕 Áo thun</a>
-                <a href="#" onclick="goAoTab('ao-polo')">🎽 Áo Polo</a>
-                <a href="#" onclick="goAoTab('ao-so-mi')">👔 Áo sơ mi</a>
+                <h6>Trang phục</h6>
+                <a href="#" onclick="goAoTab('ao')">👕 Áo</a>
+                <a href="#" onclick="goAoTab('quan')">👖 Quần</a>
+                <a href="#" onclick="goAoTab('vay')">👗 Váy đầm</a>
               </div>
               <div class="mega-col">
-                <h6>Áo theo mùa</h6>
-                <a href="#" onclick="goAoTab('ao-khoac')">🧥 Áo khoác</a>
-                <a href="#" onclick="goAoTab('ao-len')">🧶 Áo len / Hoodie</a>
+                <h6>Khác</h6>
+                <a href="#" onclick="goAoTab('phuKien')">💍 Phụ kiện</a>
+                <a href="#" onclick="goAoTab('giay')">👟 Giày dép</a>
+                <a href="#" onclick="goAoTab('combo')">🎁 Combo</a>
               </div>
               <div class="mega-col">
-                <h6>Đặc biệt</h6>
-                <a href="#" onclick="goAoTab('ao-dai')">👗 Áo dài</a>
-                <a href="#" onclick="goAoTab('tat-ca')">🛍️ Tất cả áo</a>
+                <h6>Xem tất cả</h6>
+                <a href="#" onclick="goAoTab('tat-ca')">🛍️ Tất cả sản phẩm</a>
               </div>
             </div>
           </div>
-          <a
-            href="#"
-            onclick="
-              filterCat(
-                document.querySelector('.cat-item:nth-child(2)'),
-                'aoquan',
-              )
-            "
-            >Áo quần</a
-          >
-          <a
-            href="#"
-            onclick="
-              filterCat(document.querySelector('.cat-item:nth-child(3)'), 'vay')
-            "
-            >Váy & Đầm</a
-          >
-          <a
-            href="#"
-            onclick="
-              filterCat(
-                document.querySelector('.cat-item:nth-child(4)'),
-                'phuKien',
-              )
-            "
-            >Phụ kiện</a
-          >
-          <a
-            href="#"
-            onclick="
-              filterCat(
-                document.querySelector('.cat-item:nth-child(5)'),
-                'giay',
-              )
-            "
-            >Giày dép</a
-          >
-          <a
-            href="#"
-            onclick="
-              filterCat(
-                document.querySelector('.cat-item:nth-child(6)'),
-                'combo',
-              )
-            "
-            >🎁 Combo</a
-          >
+          <a href="#" onclick="goAoTab('ao')">Áo</a>
+          <a href="#" onclick="goAoTab('quan')">Quần</a>
+          <a href="#" onclick="goAoTab('vay')">Váy đầm</a>
+          <a href="#" onclick="goAoTab('phuKien')">Phụ kiện</a>
+          <a href="#" onclick="goAoTab('giay')">Giày dép</a>
+          <a href="#" onclick="goAoTab('combo')">🎁 Combo</a>
           <a href="#" style="color: #e74c3c !important; font-weight: 700"
             >🔥 Sale</a
           >
         </div>
 
         <div class="nav-actions">
-          <button
-            class="nav-icon-btn"
-            onclick="document.getElementById('txtSearch').focus()"
-            title="Tìm kiếm"
-          >
-            <i class="bi bi-search"></i>
-          </button>
+          <!-- Search inline -->
+          <div class="nav-search-wrap" id="navSearchWrap">
+            <i class="bi bi-search nav-search-icon"></i>
+            <input
+              type="text"
+              id="txtSearch"
+              class="nav-search-input"
+              placeholder="Tìm sản phẩm..."
+              onfocus="
+                document.getElementById('navSearchWrap').classList.add('active')
+              "
+              onblur="
+                document
+                  .getElementById('navSearchWrap')
+                  .classList.remove('active')
+              "
+            />
+          </div>
           <button
             class="nav-icon-btn"
             onclick="toggleWishlistDrawer()"
@@ -2722,62 +2800,64 @@
     <!-- ══ PHÂN LOẠI ÁO ══ -->
     <div class="ao-section" id="ao-section">
       <div class="container">
-        <div class="section-tag">Danh mục áo</div>
-        <h2 class="section-title">Bộ Sưu Tập Áo</h2>
+        <div class="section-tag">Danh mục sản phẩm</div>
+        <h2 class="section-title">Bộ Sưu Tập</h2>
         <p class="section-desc">
-          Phân loại theo từng phong cách — từ năng động đến thanh lịch
+          Khám phá toàn bộ sản phẩm — từ trang phục đến phụ kiện thời trang
         </p>
 
-        <div class="ao-tabs" id="aoTabs">
-          <button
-            class="ao-tab active"
-            data-cat="tat-ca"
-            onclick="filterAoTab('tat-ca', this)"
-          >
-            🛍️ Tất cả áo
-          </button>
-          <button
-            class="ao-tab"
-            data-cat="ao-thun"
-            onclick="filterAoTab('ao-thun', this)"
-          >
-            👕 Áo thun
-          </button>
-          <button
-            class="ao-tab"
-            data-cat="ao-so-mi"
-            onclick="filterAoTab('ao-so-mi', this)"
-          >
-            👔 Áo sơ mi
-          </button>
-          <button
-            class="ao-tab"
-            data-cat="ao-khoac"
-            onclick="filterAoTab('ao-khoac', this)"
-          >
-            🧥 Áo khoác
-          </button>
-          <button
-            class="ao-tab"
-            data-cat="ao-len"
-            onclick="filterAoTab('ao-len', this)"
-          >
-            🧶 Áo len / Hoodie
-          </button>
-          <button
-            class="ao-tab"
-            data-cat="ao-dai"
-            onclick="filterAoTab('ao-dai', this)"
-          >
-            👗 Áo dài
-          </button>
-          <button
-            class="ao-tab"
-            data-cat="ao-polo"
-            onclick="filterAoTab('ao-polo', this)"
-          >
-            🎽 Áo Polo
-          </button>
+        <div class="ao-tabs-wrapper">
+          <div class="ao-tabs" id="aoTabs">
+            <button
+              class="ao-tab active"
+              data-cat="tat-ca"
+              onclick="filterAoTab('tat-ca', this)"
+            >
+              🛍️ Tất cả sản phẩm
+            </button>
+            <button
+              class="ao-tab"
+              data-cat="ao"
+              onclick="filterAoTab('ao', this)"
+            >
+              👕 Áo
+            </button>
+            <button
+              class="ao-tab"
+              data-cat="quan"
+              onclick="filterAoTab('quan', this)"
+            >
+              👖 Quần
+            </button>
+            <button
+              class="ao-tab"
+              data-cat="phuKien"
+              onclick="filterAoTab('phuKien', this)"
+            >
+              💍 Phụ kiện
+            </button>
+            <button
+              class="ao-tab"
+              data-cat="vay"
+              onclick="filterAoTab('vay', this)"
+            >
+              👗 Váy đầm
+            </button>
+            <button
+              class="ao-tab"
+              data-cat="giay"
+              onclick="filterAoTab('giay', this)"
+            >
+              👟 Giày dép
+            </button>
+            <button
+              class="ao-tab"
+              data-cat="combo"
+              onclick="filterAoTab('combo', this)"
+            >
+              🎁 Combo
+            </button>
+          </div>
         </div>
 
         <div id="aoLoading" class="loading-spinner" style="display: none"></div>
@@ -2790,13 +2870,12 @@
             color: var(--muted);
           "
         >
-          <div style="font-size: 2.5rem; margin-bottom: 0.75rem">👕</div>
-          <p>
-            Chưa có sản phẩm trong danh mục này. API chưa có dữ liệu áo — hiển
-            thị tất cả sản phẩm.
-          </p>
+          <div style="font-size: 2.5rem; margin-bottom: 0.75rem">🛍️</div>
+          <p>Chưa có sản phẩm trong danh mục này.</p>
         </div>
-        <div class="row g-4" id="aoGrid"></div>
+        <div class="ao-grid-wrapper" id="aoGridWrapper">
+          <div class="ao-grid-track" id="aoGrid"></div>
+        </div>
       </div>
     </div>
 
@@ -2835,15 +2914,6 @@
     <!-- FILTER BAR -->
     <div class="filter-bar" id="products">
       <div class="container d-flex align-items-center flex-wrap gap-3">
-        <div class="search-wrap">
-          <i class="bi bi-search"></i>
-          <input
-            type="text"
-            id="txtSearch"
-            class="search-input"
-            placeholder="Tìm kiếm sản phẩm..."
-          />
-        </div>
         <div class="filter-chips">
           <span class="chip active" onclick="setChip(this, '')">Tất cả</span>
           <span class="chip" onclick="setChip(this, 'new')">Mới Nhất</span>
@@ -4177,6 +4247,223 @@
       </div>
     </footer>
 
+    <!-- ══ QUICK VIEW MODAL ══ -->
+    <div class="modal fade" id="quickViewModal" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div
+          class="modal-content"
+          style="
+            border-radius: 18px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+          "
+        >
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            style="
+              position: absolute;
+              top: 14px;
+              right: 14px;
+              z-index: 10;
+              background-color: white;
+              border-radius: 50%;
+              width: 30px;
+              height: 30px;
+              opacity: 1;
+              padding: 0;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+            "
+          ></button>
+          <div class="modal-body p-0">
+            <div style="display: flex; min-height: 420px; flex-wrap: wrap">
+              <!-- Image -->
+              <div
+                style="
+                  flex: 0 0 42%;
+                  background: var(--light-gray);
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  min-height: 350px;
+                  position: relative;
+                "
+              >
+                <img
+                  id="qvImg"
+                  src=""
+                  alt=""
+                  onerror="
+                    this.src =
+                      'https://placehold.co/500x600/f5f0eb/8b7355?text=SP'
+                  "
+                  style="
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    max-height: 480px;
+                  "
+                />
+                <div
+                  style="
+                    position: absolute;
+                    top: 12px;
+                    left: 12px;
+                    background: rgba(201, 168, 76, 0.95);
+                    color: #1a1a1a;
+                    font-size: 0.7rem;
+                    font-weight: 700;
+                    letter-spacing: 1.5px;
+                    text-transform: uppercase;
+                    padding: 0.25rem 0.75rem;
+                    border-radius: 4px;
+                  "
+                >
+                  Xem nhanh
+                </div>
+              </div>
+              <!-- Info -->
+              <div
+                style="
+                  flex: 1;
+                  min-width: 260px;
+                  padding: 2rem 1.75rem;
+                  display: flex;
+                  flex-direction: column;
+                  gap: 0.65rem;
+                "
+              >
+                <div
+                  id="qvCat"
+                  style="
+                    font-size: 0.68rem;
+                    letter-spacing: 2px;
+                    text-transform: uppercase;
+                    color: var(--taupe);
+                  "
+                ></div>
+                <h3
+                  id="qvName"
+                  style="
+                    font-family: &quot;Playfair Display&quot;, serif;
+                    font-size: 1.35rem;
+                    color: var(--charcoal);
+                    line-height: 1.35;
+                    margin: 0;
+                  "
+                ></h3>
+                <div id="qvStars" style="font-size: 0.82rem"></div>
+                <div
+                  id="qvPrice"
+                  style="
+                    font-family: &quot;Playfair Display&quot;, serif;
+                    font-size: 1.6rem;
+                    font-weight: 700;
+                    color: var(--charcoal);
+                  "
+                ></div>
+                <div
+                  style="
+                    height: 1px;
+                    background: var(--border);
+                    margin: 0.25rem 0;
+                  "
+                ></div>
+                <p
+                  id="qvDesc"
+                  style="
+                    font-size: 0.88rem;
+                    color: #555;
+                    line-height: 1.75;
+                    margin: 0;
+                  "
+                ></p>
+                <div
+                  id="qvFeatures"
+                  style="
+                    display: flex;
+                    flex-direction: column;
+                    gap: 0.35rem;
+                    margin-top: 0.1rem;
+                  "
+                ></div>
+                <div
+                  style="
+                    display: flex;
+                    gap: 0.65rem;
+                    margin-top: 0.5rem;
+                    flex-wrap: wrap;
+                  "
+                >
+                  <button
+                    id="qvAddCartBtn"
+                    class="btn-gold"
+                    style="
+                      flex: 1;
+                      min-width: 140px;
+                      text-align: center;
+                      padding: 0.75rem 1rem;
+                      font-size: 0.85rem;
+                    "
+                  >
+                    <i class="bi bi-bag-plus me-1"></i>Thêm vào giỏ
+                  </button>
+                  <button
+                    id="qvWishBtn"
+                    class="action-btn"
+                    style="
+                      width: auto;
+                      padding: 0.6rem 1.1rem;
+                      border-radius: 8px;
+                      font-size: 0.82rem;
+                      gap: 0.4rem;
+                      display: flex;
+                      align-items: center;
+                    "
+                  >
+                    <i class="bi bi-heart"></i> Yêu thích
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <style>
+      .qv-feature-item {
+        font-size: 0.8rem;
+        color: var(--charcoal);
+        padding: 0.18rem 0;
+      }
+      .action-btn.qv-wish-btn {
+        border-radius: 8px !important;
+        width: auto !important;
+        height: auto !important;
+        padding: 0.6rem 1.1rem !important;
+        font-size: 0.82rem !important;
+        border: 1.5px solid var(--border);
+      }
+      .action-btn.qv-wish-btn.wished {
+        background: #fee2e2;
+        border-color: #fecaca;
+        color: #e74c3c;
+      }
+      @media (max-width: 600px) {
+        #quickViewModal .modal-body > div {
+          flex-direction: column;
+        }
+        #quickViewModal .modal-body > div > div:first-child {
+          flex: none;
+          min-height: 220px;
+        }
+      }
+    </style>
+
     <!-- SIZE & COLOR PICKER MODAL -->
     <div class="modal fade" id="pickerModal" tabindex="-1">
       <div class="modal-dialog modal-dialog-centered">
@@ -5201,11 +5488,9 @@
       const SIZES = ["XS", "S", "M", "L", "XL"];
       const BADGES = ["", "new", "sale", "hot", "", "new", "sale", ""];
       const CATEGORY_KW = {
-        aoquan: [
+        ao: [
           "áo",
           "ao",
-          "quần",
-          "quan",
           "shirt",
           "jacket",
           "coat",
@@ -5218,7 +5503,12 @@
           "len",
           "hood",
           "pullover",
-          "jean",
+          "polo",
+          "khoác",
+        ],
+        quan: [
+          "quần",
+          "quan",
           "pants",
           "trousers",
           "short",
@@ -5226,6 +5516,8 @@
           "jogger",
           "kaki",
           "khaki",
+          "jean",
+          "legging",
         ],
         vay: ["váy", "vay", "đầm", "dam", "dress", "skirt", "maxi"],
         phuKien: [
@@ -5279,8 +5571,9 @@
       };
 
       const CATEGORY_LABELS = {
-        aoquan: "Áo quần",
-        vay: "Váy & Đầm",
+        ao: "Áo",
+        quan: "Quần",
+        vay: "Váy đầm",
         phuKien: "Phụ kiện",
         giay: "Giày dép",
         combo: "Combo",
@@ -5314,7 +5607,7 @@
           )
             return cat;
         }
-        return "aoquan";
+        return "ao";
       }
 
       // ── AO CATEGORIZATION ──
@@ -5418,7 +5711,14 @@
         return new RegExp(`\\b${escapedKey}\\b`).test(normalizedText);
       }
 
-      const CATEGORY_PRIORITY = ["combo", "vay", "giay", "phuKien", "aoquan"];
+      const CATEGORY_PRIORITY = [
+        "combo",
+        "vay",
+        "giay",
+        "phuKien",
+        "quan",
+        "ao",
+      ];
 
       function detectProdCat(name) {
         const matches = Object.entries(CATEGORY_KW)
@@ -5466,12 +5766,12 @@
       }
 
       const CAT_LABELS = {
-        "ao-thun": "Áo thun",
-        "ao-so-mi": "Áo sơ mi",
-        "ao-khoac": "Áo khoác",
-        "ao-len": "Áo len/Hoodie",
-        "ao-dai": "Áo dài",
-        "ao-polo": "Áo Polo",
+        ao: "Áo",
+        quan: "Quần",
+        vay: "Váy đầm",
+        phuKien: "Phụ kiện",
+        giay: "Giày dép",
+        combo: "Combo",
       };
 
       // ── LOAD API ──
@@ -5496,10 +5796,9 @@
       let currentAoTab = "tat-ca";
       function filterAoTab(tab, btn) {
         currentAoTab = tab;
-        document
-          .querySelectorAll(".ao-tab")
-          .forEach((b) => b.classList.remove("active"));
-        if (btn) btn.classList.add("active");
+        document.querySelectorAll(".ao-tab").forEach((b) => {
+          b.classList.toggle("active", b.dataset.cat === tab);
+        });
         renderAoSection();
         document
           .getElementById("ao-section")
@@ -5517,22 +5816,35 @@
       }
 
       function renderAoSection() {
-        const aoProds = allProducts.filter((p) => isAoProduct(p.tenSanPham));
-        let display =
-          currentAoTab === "tat-ca"
-            ? aoProds.length
-              ? aoProds
-              : allProducts
-            : aoProds.filter((p) => detectAoCat(p.tenSanPham) === currentAoTab);
-        if (!display.length && currentAoTab !== "tat-ca") display = allProducts; // fallback
+        let display;
+        if (currentAoTab === "tat-ca") {
+          display = allProducts;
+        } else {
+          display = allProducts.filter(
+            (p) => detectProdCat(p.tenSanPham) === currentAoTab,
+          );
+          if (!display.length) display = allProducts; // fallback
+        }
 
-        const grid = $("#aoGrid").empty();
+        const track = $("#aoGrid").empty();
+        const wrapper = document.getElementById("aoGridWrapper");
         document.getElementById("aoEmpty").style.display = !display.length
           ? "block"
           : "none";
+        if (wrapper) wrapper.style.display = display.length ? "block" : "none";
 
-        display.slice(0, 8).forEach((item, i) => {
-          const catLabel = CAT_LABELS[detectAoCat(item.tenSanPham)] || "Áo";
+        // Reset animation on filter change
+        if (wrapper) {
+          wrapper.querySelector(".ao-grid-track") &&
+            (track[0].style.animation = "none");
+          setTimeout(() => {
+            track[0] && (track[0].style.animation = "");
+          }, 50);
+        }
+
+        function buildCard(item, i) {
+          const detectedCat = detectProdCat(item.tenSanPham);
+          const catLabel = CAT_LABELS[detectedCat] || "Sản phẩm";
           const badge = BADGES[i % BADGES.length];
           const badgeHTML = badge
             ? `<span class="product-badge badge-${badge}">${badge === "new" ? "Mới" : badge === "sale" ? "Sale" : "Hot"}</span>`
@@ -5550,32 +5862,39 @@
                 `<span class="size-tag" onclick="event.stopPropagation();openSizePopup('${s}')" title="Xem bảng size">${s}</span>`,
             ).join("") +
             `<span class="size-tag" onclick="event.stopPropagation();openSizePopup()" title="Xem bảng size" style="color:var(--gold);border-color:var(--gold);font-size:0.62rem">📏</span>`;
-          grid.append(`
-        <div class="col-6 col-md-4 col-lg-3">
-          <div class="product-card">
-            <div class="product-img-wrap">
-              ${badgeHTML}
-              <img src="${item.hinhAnh}" onerror="this.src='https://placehold.co/400x500/f5f0eb/8b7355?text=Ao'">
-              <div class="product-actions">
-                <button class="action-btn ${isW ? "wished" : ""}" onclick="toggleWish('${item.id}',this,'ao')" title="Yêu thích">
-                  <i class="bi bi-heart${isW ? "-fill" : ""}"></i>
-                </button>
-                <button class="action-btn" onclick="quickView('${item.id}')" title="Xem nhanh"><i class="bi bi-eye"></i></button>
+          return `
+          <div class="product-card-wrap">
+            <div class="product-card">
+              <div class="product-img-wrap">
+                ${badgeHTML}
+                <img src="${item.hinhAnh}" onerror="this.src='https://placehold.co/400x500/f5f0eb/8b7355?text=SP'">
+                <div class="product-actions">
+                  <button class="action-btn ${isW ? "wished" : ""}" onclick="toggleWish('${item.id}',this,'ao')" title="Yêu thích">
+                    <i class="bi bi-heart${isW ? "-fill" : ""}"></i>
+                  </button>
+                  <button class="action-btn" onclick="quickView('${item.id}')" title="Xem nhanh"><i class="bi bi-eye"></i></button>
+                </div>
+              </div>
+              <div class="product-body">
+                <div class="product-cat">${catLabel}</div>
+                <div class="product-name" title="${item.tenSanPham}">${item.tenSanPham}</div>
+                <div class="product-rating"><span class="stars">${stars}</span><span class="rating-count ms-1">(${rev})</span></div>
+                <div class="size-row">${sizeHTML}</div>
+                <div class="price-row">
+                  <div><div class="price-main">${Number(item.gia).toLocaleString()}đ</div>${oldPrice}</div>
+                  <button class="btn-add-cart" onclick="addToCart('${item.id}')">+ Giỏ</button>
+                </div>
               </div>
             </div>
-            <div class="product-body">
-              <div class="product-cat">${catLabel}</div>
-              <div class="product-name" title="${item.tenSanPham}">${item.tenSanPham}</div>
-              <div class="product-rating"><span class="stars">${stars}</span><span class="rating-count ms-1">(${rev})</span></div>
-              <div class="size-row">${sizeHTML}</div>
-              <div class="price-row">
-                <div><div class="price-main">${Number(item.gia).toLocaleString()}đ</div>${oldPrice}</div>
-                <button class="btn-add-cart" onclick="addToCart('${item.id}')">+ Giỏ</button>
-              </div>
-            </div>
-          </div>
-        </div>`);
-        });
+          </div>`;
+        }
+
+        const items = display.slice(0, 12);
+        // Build original + duplicate set for seamless loop
+        const cardsHTML =
+          items.map((item, i) => buildCard(item, i)).join("") +
+          items.map((item, i) => buildCard(item, i)).join("");
+        track.html(cardsHTML);
       }
 
       // ── ALL PRODUCTS ──
@@ -6059,13 +6378,65 @@
       function quickView(id) {
         const item = allProducts.find((p) => p.id == id);
         if (!item) return;
-        showToast(
-          "👗 " +
-            item.tenSanPham +
-            " — " +
-            Number(item.gia).toLocaleString() +
-            "đ",
-        );
+        const detectedCat = detectProdCat(item.tenSanPham);
+        const catLabel = CAT_LABELS[detectedCat] || "Sản phẩm";
+        const stars = "★★★★" + (Math.random() > 0.5 ? "★" : "☆");
+        const rev = Math.floor(Math.random() * 200 + 20);
+        const isW = wishlist.some((w) => w.id == item.id);
+
+        // Generate description based on product name/category
+        const descMap = {
+          ao: "Chất liệu cao cấp, thoáng mát, co giãn 4 chiều. Thiết kế hiện đại phù hợp nhiều phong cách. Dễ phối đồ, bền màu sau nhiều lần giặt.",
+          quan: "Chất liệu dày dặn, form chuẩn, đường may tinh tế. Phù hợp đi làm, dạo phố hay các buổi gặp gỡ thường ngày.",
+          vay: "Chất vải mềm mại, thoáng nhẹ, rủ đẹp. Thiết kế thanh lịch, nữ tính — lý tưởng cho các dịp đặc biệt lẫn hàng ngày.",
+          giay: "Đế êm, chắc chắn, chất liệu bền bỉ. Thiết kế trẻ trung, dễ phối với nhiều trang phục khác nhau.",
+          phuKien:
+            "Phụ kiện thời trang cao cấp, hoàn thiện set đồ của bạn. Chất liệu bền, thiết kế tinh tế.",
+          combo:
+            "Bộ sản phẩm được phối hợp hài hòa, mang lại vẻ ngoài hoàn chỉnh và thời thượng. Tiết kiệm hơn khi mua riêng lẻ.",
+        };
+        const desc =
+          item.moTa ||
+          descMap[detectedCat] ||
+          "Sản phẩm thời trang cao cấp từ FashionHub. Chất lượng đảm bảo, phong cách hiện đại.";
+
+        const features = [
+          "✅ Bảo hành chất lượng 30 ngày",
+          "🚚 Giao hàng toàn quốc 1–4 ngày",
+          "🔄 Đổi size miễn phí trong 7 ngày",
+          "💳 Thanh toán COD, MoMo, VNPay",
+        ];
+
+        document.getElementById("qvImg").src =
+          item.hinhAnh || "https://placehold.co/500x600/f5f0eb/8b7355?text=SP";
+        document.getElementById("qvCat").textContent = catLabel;
+        document.getElementById("qvName").textContent = item.tenSanPham;
+        document.getElementById("qvStars").innerHTML =
+          `<span class="stars">${stars}</span><span class="rating-count ms-1">(${rev} đánh giá)</span>`;
+        document.getElementById("qvPrice").textContent =
+          Number(item.gia).toLocaleString() + "đ";
+        document.getElementById("qvDesc").textContent = desc;
+        document.getElementById("qvFeatures").innerHTML = features
+          .map((f) => `<div class="qv-feature-item">${f}</div>`)
+          .join("");
+        const heartBtn = document.getElementById("qvWishBtn");
+        heartBtn.className = "action-btn qv-wish-btn" + (isW ? " wished" : "");
+        heartBtn.innerHTML = `<i class="bi bi-heart${isW ? "-fill" : ""}"></i> ${isW ? "Đã yêu thích" : "Yêu thích"}`;
+        heartBtn.onclick = () => {
+          toggleWish(item.id, heartBtn, "qv");
+          const nowW = wishlist.some((w) => w.id == item.id);
+          heartBtn.className =
+            "action-btn qv-wish-btn" + (nowW ? " wished" : "");
+          heartBtn.innerHTML = `<i class="bi bi-heart${nowW ? "-fill" : ""}"></i> ${nowW ? "Đã yêu thích" : "Yêu thích"}`;
+        };
+        document.getElementById("qvAddCartBtn").onclick = () => {
+          bootstrap.Modal.getInstance(
+            document.getElementById("quickViewModal"),
+          )?.hide();
+          setTimeout(() => addToCart(item.id), 300);
+        };
+
+        new bootstrap.Modal(document.getElementById("quickViewModal")).show();
       }
 
       // ── USER ──

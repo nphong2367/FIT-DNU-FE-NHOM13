@@ -1763,9 +1763,19 @@
                 <div class="card-panel-header">
                   <div class="card-panel-title">
                     <i class="bi bi-receipt text-primary"></i>Đơn hàng gần đây
+                    <span class="count-badge ms-2" id="dashRecentBadge">0</span>
                   </div>
                   <a
                     href="#"
+                    onclick="
+                      setPage(
+                        'orders',
+                        document.querySelector(
+                          '.sidebar-nav a[onclick*=\'orders\']',
+                        ),
+                      );
+                      return false;
+                    "
                     style="
                       font-size: 0.78rem;
                       color: var(--gold);
@@ -1785,52 +1795,11 @@
                         <th>Trạng thái</th>
                       </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="dashRecentOrders">
                       <tr>
-                        <td>#DH0098</td>
-                        <td>Nguyễn Thị A</td>
-                        <td>Áo thun ×2</td>
-                        <td class="price-cell">598K</td>
-                        <td>
-                          <span class="order-status os-done">Đã giao</span>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>#DH0097</td>
-                        <td>Trần Văn B</td>
-                        <td>Quần jeans ×1</td>
-                        <td class="price-cell">459K</td>
-                        <td>
-                          <span class="order-status os-shipping"
-                            >Đang giao</span
-                          >
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>#DH0096</td>
-                        <td>Lê Thị C</td>
-                        <td>Váy đầm ×1</td>
-                        <td class="price-cell">720K</td>
-                        <td>
-                          <span class="order-status os-pending">Chờ xử lý</span>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>#DH0095</td>
-                        <td>Phạm Minh D</td>
-                        <td>Áo polo ×3</td>
-                        <td class="price-cell">897K</td>
-                        <td>
-                          <span class="order-status os-done">Đã giao</span>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>#DH0094</td>
-                        <td>Hoàng Lan E</td>
-                        <td>Áo khoác ×1</td>
-                        <td class="price-cell">1,200K</td>
-                        <td>
-                          <span class="order-status os-cancel">Đã hủy</span>
+                        <td colspan="5" class="loading-cell">
+                          <div class="spinner"></div>
+                          Đang tải...
                         </td>
                       </tr>
                     </tbody>
@@ -3040,6 +3009,39 @@ Thời trang cao cấp — phong cách, sang trọng, tinh tế.</textarea
         return [...saved, ...DEMO_ORDERS.filter((o) => !ids.has(o.id))];
       }
 
+      function renderDashRecentOrders() {
+        const tbody = document.getElementById("dashRecentOrders");
+        if (!tbody) return;
+        const orders = getAllOrders().slice(0, 8);
+        const badge = document.getElementById("dashRecentBadge");
+        if (badge) badge.textContent = orders.length;
+        if (!orders.length) {
+          tbody.innerHTML =
+            '<tr><td colspan="5" class="loading-cell"><div class="empty-icon">📭</div>Chưa có đơn hàng</td></tr>';
+          return;
+        }
+        tbody.innerHTML = orders
+          .map((order) => {
+            const st = STATUS_INFO[order.status] || STATUS_INFO.pending;
+            const prods = Array.isArray(order.products) ? order.products : [];
+            const prodSummary =
+              prods
+                .slice(0, 2)
+                .map((p) => `${p.name} ×${p.qty}`)
+                .join(", ") + (prods.length > 2 ? ` +${prods.length - 2}` : "");
+            const totalFmt = Number(order.total).toLocaleString("vi-VN") + "đ";
+            const isNew = !order.id.startsWith("#DH00");
+            return `<tr${isNew ? ' style="background:rgba(201,168,76,.06)"' : ""}>
+            <td style="font-weight:600;color:var(--taupe)">${order.id}${isNew ? ' <span style="background:#fef3c7;color:#92400e;font-size:.6rem;padding:.1rem .35rem;border-radius:3px;font-weight:700">MỚI</span>' : ""}</td>
+            <td style="font-weight:600;font-size:.85rem">${order.customer}</td>
+            <td style="max-width:160px;font-size:.8rem;color:var(--muted)">${prodSummary || "—"}</td>
+            <td class="price-cell">${totalFmt}</td>
+            <td><span class="order-status ${st.cls}">${st.label}</span></td>
+          </tr>`;
+          })
+          .join("");
+      }
+
       function renderOrdersTable() {
         const orders = getAllOrders();
         const filterStatus =
@@ -3629,6 +3631,7 @@ Thời trang cao cấp — phong cách, sang trọng, tinh tế.</textarea
         if (changed) {
           saveNotifs(notifs);
           renderNotifications(notifs);
+          renderDashRecentOrders();
         }
       }
       // Poll mỗi 3 giây để bắt đơn hàng mới
@@ -3638,6 +3641,7 @@ Thời trang cao cấp — phong cách, sang trọng, tinh tế.</textarea
       loadAdmin();
       initNotifications();
       loadSettings();
+      setTimeout(renderDashRecentOrders, 0);
       // Close notif dropdown when clicking outside
       document.addEventListener("click", function (e) {
         const wrapper = document.querySelector(".notif-wrapper");
