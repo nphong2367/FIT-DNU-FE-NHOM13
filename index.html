@@ -2,6 +2,7 @@
 <html lang="vi">
   <head>
     <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <title>FashionHub | Thời Trang Cao Cấp</title>
     <link
@@ -57,10 +58,11 @@
         background: rgba(250, 247, 242, 0.97);
         backdrop-filter: blur(12px);
         border-bottom: 1px solid var(--border);
-        padding: 0.7rem 0;
+        padding: 0.85rem 0;
         position: sticky;
         top: 0;
         z-index: 200;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
       }
       .navbar-brand {
         font-family: "Playfair Display", serif;
@@ -223,9 +225,17 @@
           #2d2418 55%,
           #3d2e1a 100%
         );
-        padding: 5rem 0;
+        padding: 5.5rem 0 4.5rem;
         position: relative;
         overflow: hidden;
+      }
+      @media (max-width: 768px) {
+        .hero {
+          padding: 3.5rem 0;
+        }
+        .hero h1 {
+          font-size: 2.2rem !important;
+        }
       }
       .hero::before {
         content: "";
@@ -355,7 +365,13 @@
         display: flex;
         align-items: center;
         gap: 0.85rem;
-        padding: 0.4rem;
+        padding: 0.65rem 0.5rem;
+        justify-content: center;
+      }
+      @media (min-width: 768px) {
+        .feature-item {
+          justify-content: flex-start;
+        }
       }
       .fi-icon {
         font-size: 1.6rem;
@@ -421,7 +437,7 @@
       /* ── AO SECTION ── */
       .ao-section {
         background: white;
-        padding: 3rem 0;
+        padding: 3.5rem 0;
         border-top: 3px solid var(--blush);
       }
       .section-tag {
@@ -719,7 +735,8 @@
       /* ── SECTION HEADER ── */
       .sec-header {
         text-align: center;
-        margin: 3.5rem 0 2rem;
+        margin: 3.5rem auto 2rem;
+        max-width: 600px;
       }
       .sec-header h2 {
         font-family: "Playfair Display", serif;
@@ -739,6 +756,11 @@
         grid-template-columns: 2fr 1fr;
         gap: 1.25rem;
         margin: 3rem 0;
+      }
+      @media (max-width: 768px) {
+        .promo-grid {
+          grid-template-columns: 1fr;
+        }
       }
       .promo-card {
         border-radius: 14px;
@@ -2504,7 +2526,7 @@
     <!-- NAVBAR -->
     <nav class="navbar">
       <div
-        class="container d-flex align-items-center justify-content-between gap-3"
+        class="container-xl d-flex align-items-center justify-content-between gap-2"
       >
         <a class="navbar-brand" href="index.html"
           >FASHION<span class="accent">HUB</span></a
@@ -2534,9 +2556,53 @@
               </div>
             </div>
           </div>
-          <a href="#">Quần</a>
-          <a href="#">Váy & Đầm</a>
-          <a href="#">Phụ Kiện</a>
+          <a
+            href="#"
+            onclick="
+              filterCat(
+                document.querySelector('.cat-item:nth-child(2)'),
+                'aoquan',
+              )
+            "
+            >Áo quần</a
+          >
+          <a
+            href="#"
+            onclick="
+              filterCat(document.querySelector('.cat-item:nth-child(3)'), 'vay')
+            "
+            >Váy & Đầm</a
+          >
+          <a
+            href="#"
+            onclick="
+              filterCat(
+                document.querySelector('.cat-item:nth-child(4)'),
+                'phuKien',
+              )
+            "
+            >Phụ kiện</a
+          >
+          <a
+            href="#"
+            onclick="
+              filterCat(
+                document.querySelector('.cat-item:nth-child(5)'),
+                'giay',
+              )
+            "
+            >Giày dép</a
+          >
+          <a
+            href="#"
+            onclick="
+              filterCat(
+                document.querySelector('.cat-item:nth-child(6)'),
+                'combo',
+              )
+            "
+            >🎁 Combo</a
+          >
           <a href="#" style="color: #e74c3c !important; font-weight: 700"
             >🔥 Sale</a
           >
@@ -2742,29 +2808,25 @@
             <div class="cat-icon-wrap">🛍️</div>
             <div class="cat-lbl">Tất cả</div>
           </div>
-          <div class="cat-item" onclick="filterCat(this, 'ao')">
+          <div class="cat-item" onclick="filterCat(this, 'aoquan')">
             <div class="cat-icon-wrap">👕</div>
-            <div class="cat-lbl">Áo</div>
-          </div>
-          <div class="cat-item" onclick="filterCat(this, 'quan')">
-            <div class="cat-icon-wrap">👖</div>
-            <div class="cat-lbl">Quần</div>
+            <div class="cat-lbl">Áo quần</div>
           </div>
           <div class="cat-item" onclick="filterCat(this, 'vay')">
             <div class="cat-icon-wrap">👗</div>
-            <div class="cat-lbl">Váy/Đầm</div>
+            <div class="cat-lbl">Váy & Đầm</div>
+          </div>
+          <div class="cat-item" onclick="filterCat(this, 'phuKien')">
+            <div class="cat-icon-wrap">💍</div>
+            <div class="cat-lbl">Phụ kiện</div>
           </div>
           <div class="cat-item" onclick="filterCat(this, 'giay')">
             <div class="cat-icon-wrap">👠</div>
             <div class="cat-lbl">Giày dép</div>
           </div>
-          <div class="cat-item" onclick="filterCat(this, 'tui')">
-            <div class="cat-icon-wrap">👜</div>
-            <div class="cat-lbl">Túi xách</div>
-          </div>
-          <div class="cat-item" onclick="filterCat(this, 'phuKien')">
-            <div class="cat-icon-wrap">💍</div>
-            <div class="cat-lbl">Phụ kiện</div>
+          <div class="cat-item" onclick="filterCat(this, 'combo')">
+            <div class="cat-icon-wrap">🎁</div>
+            <div class="cat-lbl">Combo</div>
           </div>
         </div>
       </div>
@@ -3498,6 +3560,376 @@
       </div>
     </div>
 
+    <!-- ══ SECTION: ĐÁNH GIÁ KHÁCH HÀNG ══ -->
+    <section
+      id="danh-gia"
+      style="
+        background: var(--cream);
+        padding: 3.5rem 0;
+        border-top: 1px solid var(--border);
+      "
+    >
+      <div class="container">
+        <div class="text-center mb-4">
+          <span class="section-tag">Khách hàng nói gì</span>
+          <h2 class="section-title">
+            Đánh Giá
+            <em style="color: var(--gold); font-style: italic">Thực Tế</em>
+          </h2>
+          <p
+            style="
+              color: var(--muted);
+              font-size: 0.9rem;
+              max-width: 480px;
+              margin: 0 auto;
+            "
+          >
+            Hơn 10.000 khách hàng đã tin tưởng lựa chọn FashionHub cho phong
+            cách của mình.
+          </p>
+        </div>
+        <div class="row g-4">
+          <!-- Review 1 -->
+          <div class="col-md-4">
+            <div
+              style="
+                background: #fff;
+                border: 1px solid var(--border);
+                border-radius: 14px;
+                padding: 1.5rem;
+                height: 100%;
+                transition: 0.25s;
+              "
+              onmouseover="
+                this.style.boxShadow = '0 8px 28px rgba(0,0,0,.08)';
+                this.style.transform = 'translateY(-3px)';
+              "
+              onmouseout="
+                this.style.boxShadow = 'none';
+                this.style.transform = 'translateY(0)';
+              "
+            >
+              <div
+                style="
+                  color: var(--gold);
+                  font-size: 1rem;
+                  margin-bottom: 0.75rem;
+                "
+              >
+                ★★★★★
+              </div>
+              <p
+                style="
+                  font-size: 0.9rem;
+                  color: var(--charcoal);
+                  line-height: 1.7;
+                  margin-bottom: 1.2rem;
+                "
+              >
+                "Vải rất mềm mại, đường may chắc chắn. Mặc đi làm nhận được
+                nhiều lời khen. Sẽ tiếp tục ủng hộ FashionHub!"
+              </p>
+              <div
+                style="
+                  display: flex;
+                  align-items: center;
+                  gap: 0.75rem;
+                  border-top: 1px solid var(--border);
+                  padding-top: 1rem;
+                "
+              >
+                <div
+                  style="
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 50%;
+                    background: linear-gradient(135deg, #c9a84c, #e0b856);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: #fff;
+                    font-weight: 700;
+                    font-size: 0.9rem;
+                    flex-shrink: 0;
+                  "
+                >
+                  L
+                </div>
+                <div>
+                  <div
+                    style="
+                      font-weight: 600;
+                      font-size: 0.85rem;
+                      color: var(--charcoal);
+                    "
+                  >
+                    Nguyễn Thị Lan
+                  </div>
+                  <div style="font-size: 0.75rem; color: var(--muted)">
+                    Hà Nội · Áo sơ mi linen
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Review 2 -->
+          <div class="col-md-4">
+            <div
+              style="
+                background: #fff;
+                border: 1px solid var(--border);
+                border-radius: 14px;
+                padding: 1.5rem;
+                height: 100%;
+                transition: 0.25s;
+              "
+              onmouseover="
+                this.style.boxShadow = '0 8px 28px rgba(0,0,0,.08)';
+                this.style.transform = 'translateY(-3px)';
+              "
+              onmouseout="
+                this.style.boxShadow = 'none';
+                this.style.transform = 'translateY(0)';
+              "
+            >
+              <div
+                style="
+                  color: var(--gold);
+                  font-size: 1rem;
+                  margin-bottom: 0.75rem;
+                "
+              >
+                ★★★★★
+              </div>
+              <p
+                style="
+                  font-size: 0.9rem;
+                  color: var(--charcoal);
+                  line-height: 1.7;
+                  margin-bottom: 1.2rem;
+                "
+              >
+                "Giao hàng siêu nhanh, chỉ 1 ngày là nhận được. Sản phẩm y hình,
+                size chuẩn, đóng gói cẩn thận. Rất hài lòng!"
+              </p>
+              <div
+                style="
+                  display: flex;
+                  align-items: center;
+                  gap: 0.75rem;
+                  border-top: 1px solid var(--border);
+                  padding-top: 1rem;
+                "
+              >
+                <div
+                  style="
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 50%;
+                    background: linear-gradient(135deg, #8b7355, #a89070);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: #fff;
+                    font-weight: 700;
+                    font-size: 0.9rem;
+                    flex-shrink: 0;
+                  "
+                >
+                  M
+                </div>
+                <div>
+                  <div
+                    style="
+                      font-weight: 600;
+                      font-size: 0.85rem;
+                      color: var(--charcoal);
+                    "
+                  >
+                    Trần Minh Khoa
+                  </div>
+                  <div style="font-size: 0.75rem; color: var(--muted)">
+                    Đà Nẵng · Áo thun oversize
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Review 3 -->
+          <div class="col-md-4">
+            <div
+              style="
+                background: #fff;
+                border: 1px solid var(--border);
+                border-radius: 14px;
+                padding: 1.5rem;
+                height: 100%;
+                transition: 0.25s;
+              "
+              onmouseover="
+                this.style.boxShadow = '0 8px 28px rgba(0,0,0,.08)';
+                this.style.transform = 'translateY(-3px)';
+              "
+              onmouseout="
+                this.style.boxShadow = 'none';
+                this.style.transform = 'translateY(0)';
+              "
+            >
+              <div
+                style="
+                  color: var(--gold);
+                  font-size: 1rem;
+                  margin-bottom: 0.75rem;
+                "
+              >
+                ★★★★<span style="color: #ddd">★</span>
+              </div>
+              <p
+                style="
+                  font-size: 0.9rem;
+                  color: var(--charcoal);
+                  line-height: 1.7;
+                  margin-bottom: 1.2rem;
+                "
+              >
+                "Váy đầm đẹp lắm, chất lượng xứng đáng với giá tiền. Shop tư vấn
+                nhiệt tình, hỗ trợ đổi size nhanh chóng."
+              </p>
+              <div
+                style="
+                  display: flex;
+                  align-items: center;
+                  gap: 0.75rem;
+                  border-top: 1px solid var(--border);
+                  padding-top: 1rem;
+                "
+              >
+                <div
+                  style="
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 50%;
+                    background: linear-gradient(135deg, #1a1a1a, #3d2e1a);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: #fff;
+                    font-weight: 700;
+                    font-size: 0.9rem;
+                    flex-shrink: 0;
+                  "
+                >
+                  H
+                </div>
+                <div>
+                  <div
+                    style="
+                      font-weight: 600;
+                      font-size: 0.85rem;
+                      color: var(--charcoal);
+                    "
+                  >
+                    Lê Thị Hương
+                  </div>
+                  <div style="font-size: 0.75rem; color: var(--muted)">
+                    TP.HCM · Váy đầm maxi
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tổng kết sao -->
+        <div
+          class="text-center mt-4"
+          style="
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+          "
+        >
+          <div>
+            <span
+              style="
+                font-family: &quot;Playfair Display&quot;, serif;
+                font-size: 3rem;
+                font-weight: 700;
+                color: var(--charcoal);
+                line-height: 1;
+              "
+              >4.9</span
+            >
+            <span
+              style="color: var(--gold); font-size: 1.4rem; margin-left: 0.3rem"
+              >★</span
+            >
+            <div
+              style="
+                font-size: 0.78rem;
+                color: var(--muted);
+                margin-top: 0.2rem;
+              "
+            >
+              Trung bình đánh giá
+            </div>
+          </div>
+          <div
+            style="width: 1px; height: 50px; background: var(--border)"
+          ></div>
+          <div>
+            <span
+              style="
+                font-family: &quot;Playfair Display&quot;, serif;
+                font-size: 3rem;
+                font-weight: 700;
+                color: var(--charcoal);
+                line-height: 1;
+              "
+              >10K+</span
+            >
+            <div
+              style="
+                font-size: 0.78rem;
+                color: var(--muted);
+                margin-top: 0.2rem;
+              "
+            >
+              Lượt đánh giá
+            </div>
+          </div>
+          <div
+            style="width: 1px; height: 50px; background: var(--border)"
+          ></div>
+          <div>
+            <span
+              style="
+                font-family: &quot;Playfair Display&quot;, serif;
+                font-size: 3rem;
+                font-weight: 700;
+                color: var(--charcoal);
+                line-height: 1;
+              "
+              >97%</span
+            >
+            <div
+              style="
+                font-size: 0.78rem;
+                color: var(--muted);
+                margin-top: 0.2rem;
+              "
+            >
+              Khách hài lòng
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- FOOTER -->
     <footer>
       <div class="container">
@@ -3609,13 +4041,68 @@
             </div>
           </div>
           <div class="col-6 col-lg-2">
-            <div class="footer-heading">Danh Mục Áo</div>
+            <div class="footer-heading">Danh Mục</div>
             <ul class="footer-links">
-              <li><a href="#" onclick="goAoTab('ao-thun')">Áo thun</a></li>
-              <li><a href="#" onclick="goAoTab('ao-so-mi')">Áo sơ mi</a></li>
-              <li><a href="#" onclick="goAoTab('ao-khoac')">Áo khoác</a></li>
-              <li><a href="#" onclick="goAoTab('ao-len')">Áo len/Hoodie</a></li>
-              <li><a href="#" onclick="goAoTab('ao-dai')">Áo dài</a></li>
+              <li>
+                <a
+                  href="#products"
+                  onclick="
+                    filterCat(
+                      document.querySelector('.cat-item:nth-child(2)'),
+                      'aoquan',
+                    )
+                  "
+                  >Áo quần</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#products"
+                  onclick="
+                    filterCat(
+                      document.querySelector('.cat-item:nth-child(3)'),
+                      'vay',
+                    )
+                  "
+                  >Váy & Đầm</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#products"
+                  onclick="
+                    filterCat(
+                      document.querySelector('.cat-item:nth-child(4)'),
+                      'phuKien',
+                    )
+                  "
+                  >Phụ kiện</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#products"
+                  onclick="
+                    filterCat(
+                      document.querySelector('.cat-item:nth-child(5)'),
+                      'giay',
+                    )
+                  "
+                  >Giày dép</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#products"
+                  onclick="
+                    filterCat(
+                      document.querySelector('.cat-item:nth-child(6)'),
+                      'combo',
+                    )
+                  "
+                  >Combo</a
+                >
+              </li>
             </ul>
           </div>
           <div class="col-6 col-lg-2">
@@ -4709,14 +5196,16 @@
         "https://69f9a69cc509a40d3aa2ee09.mockapi.io/api/v1/products";
       let allProducts = [],
         currentProducts = [],
-        cart = [],
+        cart = JSON.parse(localStorage.getItem("fh_cart") || "[]"),
         wishlist = [];
       const SIZES = ["XS", "S", "M", "L", "XL"];
       const BADGES = ["", "new", "sale", "hot", "", "new", "sale", ""];
       const CATEGORY_KW = {
-        ao: [
+        aoquan: [
           "áo",
           "ao",
+          "quần",
+          "quan",
           "shirt",
           "jacket",
           "coat",
@@ -4729,10 +5218,6 @@
           "len",
           "hood",
           "pullover",
-        ],
-        quan: [
-          "quần",
-          "quan",
           "jean",
           "pants",
           "trousers",
@@ -4743,19 +5228,6 @@
           "khaki",
         ],
         vay: ["váy", "vay", "đầm", "dam", "dress", "skirt", "maxi"],
-        giay: [
-          "giày",
-          "giay",
-          "sneaker",
-          "boot",
-          "sandals",
-          "sandal",
-          "dep",
-          "dép",
-          "loafer",
-          "heel",
-        ],
-        tui: ["túi", "tui", "bag", "backpack", "clutch", "purse", "wallet"],
         phuKien: [
           "phụ kiện",
           "phu kien",
@@ -4773,16 +5245,45 @@
           "necklace",
           "watch",
           "đồng hồ",
+          "túi",
+          "tui",
+          "bag",
+          "backpack",
+          "clutch",
+          "purse",
+          "wallet",
+        ],
+        giay: [
+          "giày",
+          "giay",
+          "sneaker",
+          "boot",
+          "sandals",
+          "sandal",
+          "dep",
+          "dép",
+          "loafer",
+          "heel",
+        ],
+        combo: [
+          "combo",
+          "bộ",
+          "bo ",
+          "set",
+          "outfit",
+          "trọn bộ",
+          "tron bo",
+          "gói",
+          "goi",
         ],
       };
 
       const CATEGORY_LABELS = {
-        ao: "Áo",
-        quan: "Quần",
-        vay: "Váy/Đầm",
-        giay: "Giày dép",
-        tui: "Túi xách",
+        aoquan: "Áo quần",
+        vay: "Váy & Đầm",
         phuKien: "Phụ kiện",
+        giay: "Giày dép",
+        combo: "Combo",
       };
 
       function normalizeText(text) {
@@ -4813,7 +5314,7 @@
           )
             return cat;
         }
-        return "ao";
+        return "aoquan";
       }
 
       // ── AO CATEGORIZATION ──
@@ -4917,7 +5418,7 @@
         return new RegExp(`\\b${escapedKey}\\b`).test(normalizedText);
       }
 
-      const CATEGORY_PRIORITY = ["quan", "vay", "giay", "tui", "phuKien", "ao"];
+      const CATEGORY_PRIORITY = ["combo", "vay", "giay", "phuKien", "aoquan"];
 
       function detectProdCat(name) {
         const matches = Object.entries(CATEGORY_KW)
@@ -5381,6 +5882,8 @@
             '<div style="text-align:center;padding:2.5rem;color:var(--muted)">Giỏ hàng trống 🛒</div>';
           return;
         }
+        // Save cart to localStorage
+        localStorage.setItem("fh_cart", JSON.stringify(cart));
         list.innerHTML = cart
           .map((c) => {
             const key = c._key || c.id;
@@ -5496,10 +5999,59 @@
           vnpay: "VNPay",
           card: "Thẻ ngân hàng",
         };
+
+        // ── Lưu đơn hàng vào localStorage để admin xem ──
+        const newOrder = {
+          id: "#DH" + Date.now().toString().slice(-6),
+          customer: name,
+          phone: phone,
+          address: addr + ", " + district + ", " + city,
+          payment: payNames[payLabel] || "Tiền mặt (COD)",
+          date: new Date().toLocaleDateString("vi-VN"),
+          products: cart.map((item) => ({
+            name: item.tenSanPham,
+            qty: item.qty,
+            size: item.size || "",
+            color: item.color || "",
+            price: Number(item.gia).toLocaleString("vi-VN") + "đ",
+          })),
+          total: cart.reduce((s, i) => s + Number(i.gia) * i.qty, 0),
+          status: "pending",
+        };
+        const existingOrders = JSON.parse(
+          localStorage.getItem("fh_orders") || "[]",
+        );
+        existingOrders.unshift(newOrder);
+        localStorage.setItem("fh_orders", JSON.stringify(existingOrders));
+
         document.getElementById("successInfo").innerHTML =
           `📞 ${phone} &nbsp;·&nbsp; 📍 ${addr}, ${district}, ${city}<br>Thanh toán: ${payNames[payLabel] || "COD"}`;
         document.getElementById("checkoutFormBody").style.display = "none";
         document.getElementById("checkoutSuccess").style.display = "block";
+
+        // ── Thêm thông báo cho Admin ──
+        const NOTIF_KEY = "fh_notifications";
+        const adminNotifs =
+          JSON.parse(localStorage.getItem(NOTIF_KEY) || "null") || [];
+        const adminNotif = {
+          id: Date.now() + Math.random(),
+          orderId: newOrder.id,
+          icon: "ni-order",
+          iconClass: "bi-receipt",
+          title:
+            "Đơn hàng " +
+            newOrder.id +
+            " vừa được đặt — " +
+            name +
+            " — " +
+            Number(newOrder.total).toLocaleString("vi-VN") +
+            "đ",
+          time: "Vừa xong",
+          read: false,
+        };
+        adminNotifs.unshift(adminNotif);
+        localStorage.setItem(NOTIF_KEY, JSON.stringify(adminNotifs));
+
         cart = [];
         updateCart();
       }

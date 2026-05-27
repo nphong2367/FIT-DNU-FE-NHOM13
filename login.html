@@ -2,6 +2,7 @@
 <html lang="vi">
   <head>
     <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>FashionHub | Đăng Nhập</title>
     <link
@@ -420,12 +421,47 @@
       }
 
       @media (max-width: 768px) {
+        body {
+          overflow: auto;
+          align-items: flex-start;
+        }
         .left-panel {
           display: none;
         }
         .right-panel {
           width: 100%;
-          padding: 2rem 1.5rem;
+          min-height: 100vh;
+          padding: 2rem 1.25rem 3rem;
+          box-shadow: none;
+        }
+        .tabs {
+          flex-wrap: wrap;
+        }
+        .tab-btn {
+          flex: 1 1 auto;
+          padding: 0.65rem 0.75rem;
+          font-size: 0.82rem;
+          text-align: center;
+        }
+        .form-row {
+          flex-direction: column;
+          gap: 0;
+        }
+        .login-header h2 {
+          font-size: 1.6rem;
+        }
+        /* Thêm logo nhỏ trên mobile thay thế left panel */
+        .right-panel::before {
+          content: "FASHION\00a0HUB";
+          display: block;
+          font-family: "Playfair Display", serif;
+          font-size: 1.5rem;
+          letter-spacing: 3px;
+          color: var(--charcoal);
+          text-align: center;
+          margin-bottom: 1.75rem;
+          padding-bottom: 1.25rem;
+          border-bottom: 1px solid #f0ebe3;
         }
       }
     </style>

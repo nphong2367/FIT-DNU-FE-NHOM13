@@ -2,6 +2,7 @@
 <html lang="vi">
   <head>
     <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <title>FashionHub | Admin Dashboard</title>
     <link
@@ -960,7 +961,116 @@
         background: var(--taupe);
       }
 
-      /* ── FOOTER ── */
+      /* ── REVIEW CARD ── */
+      .review-card {
+        background: white;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 1.1rem 1.25rem;
+        margin-bottom: 0.75rem;
+        transition:
+          box-shadow 0.2s,
+          transform 0.2s;
+        animation: fadeUp 0.35s ease both;
+      }
+      .review-card:hover {
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.07);
+        transform: translateY(-2px);
+      }
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes shimmer {
+        0% {
+          background-position: 200% 0;
+        }
+        100% {
+          background-position: -200% 0;
+        }
+      }
+      .review-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 0.9rem;
+        color: #fff;
+        flex-shrink: 0;
+      }
+      .review-stars {
+        color: var(--gold);
+        font-size: 0.9rem;
+        letter-spacing: 1px;
+      }
+      .review-stars .empty {
+        color: #e0d6c8;
+      }
+      .review-badge-new {
+        display: inline-block;
+        padding: 0.1rem 0.55rem;
+        background: #dbeafe;
+        color: var(--blue);
+        border-radius: 10px;
+        font-size: 0.68rem;
+        font-weight: 700;
+        margin-left: 0.4rem;
+      }
+      .review-badge-flag {
+        display: inline-block;
+        padding: 0.1rem 0.55rem;
+        background: #fee2e2;
+        color: var(--red);
+        border-radius: 10px;
+        font-size: 0.68rem;
+        font-weight: 700;
+        margin-left: 0.4rem;
+      }
+      .btn-reply {
+        padding: 0.28rem 0.7rem;
+        border-radius: 6px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.2s;
+        border: none;
+        background: #f0fdf4;
+        color: var(--green);
+        display: inline-flex;
+        align-items: center;
+        gap: 0.25rem;
+      }
+      .btn-reply:hover {
+        background: var(--green);
+        color: white;
+      }
+      .btn-hide-review {
+        padding: 0.28rem 0.7rem;
+        border-radius: 6px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.2s;
+        border: none;
+        background: #fef3c7;
+        color: #92400e;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.25rem;
+      }
+      .btn-hide-review:hover {
+        background: #92400e;
+        color: white;
+      }
       .admin-footer {
         background: var(--sidebar-bg);
         color: rgba(255, 255, 255, 0.5);
@@ -1260,6 +1370,147 @@
       .toggle-switch input:checked + .toggle-track::after {
         transform: translateX(18px);
       }
+
+      /* ── REPLY BOX ── */
+      .reply-box {
+        display: none;
+        margin-top: 0.75rem;
+        background: #f8f9ff;
+        border: 1.5px solid #dbeafe;
+        border-radius: 10px;
+        padding: 0.85rem 1rem;
+        animation: fadeUp 0.2s ease;
+      }
+      .reply-box.open {
+        display: block;
+      }
+      .reply-box textarea {
+        width: 100%;
+        border: 1.5px solid var(--border);
+        border-radius: 8px;
+        padding: 0.6rem 0.85rem;
+        font-family: "Times New Roman", Times, Georgia, serif;
+        font-size: 0.84rem;
+        resize: vertical;
+        min-height: 72px;
+        outline: none;
+        transition: border-color 0.2s;
+        background: white;
+        color: var(--charcoal);
+      }
+      .reply-box textarea:focus {
+        border-color: var(--blue);
+      }
+      .reply-box textarea::placeholder {
+        color: var(--muted);
+      }
+      .reply-actions {
+        display: flex;
+        gap: 0.5rem;
+        margin-top: 0.55rem;
+        align-items: center;
+      }
+      .btn-send-reply {
+        padding: 0.38rem 1rem;
+        background: var(--blue);
+        color: white;
+        border: none;
+        border-radius: 6px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.3rem;
+        transition: 0.2s;
+        font-family: "Times New Roman", Times, Georgia, serif;
+      }
+      .btn-send-reply:hover {
+        background: #1d4ed8;
+      }
+      .btn-cancel-reply {
+        padding: 0.38rem 0.75rem;
+        background: transparent;
+        color: var(--muted);
+        border: 1.5px solid var(--border);
+        border-radius: 6px;
+        font-size: 0.8rem;
+        cursor: pointer;
+        transition: 0.2s;
+        font-family: "Times New Roman", Times, Georgia, serif;
+      }
+      .btn-cancel-reply:hover {
+        background: var(--blush);
+        color: var(--taupe);
+      }
+      .reply-char-count {
+        margin-left: auto;
+        font-size: 0.72rem;
+        color: var(--muted);
+      }
+
+      /* Phản hồi đã lưu */
+      .saved-reply {
+        margin-top: 0.75rem;
+        background: #f0fdf4;
+        border: 1.5px solid #bbf7d0;
+        border-radius: 10px;
+        padding: 0.75rem 1rem;
+      }
+      .saved-reply-label {
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: var(--green);
+        margin-bottom: 0.35rem;
+        display: flex;
+        align-items: center;
+        gap: 0.35rem;
+      }
+      .saved-reply-text {
+        font-size: 0.84rem;
+        color: var(--charcoal);
+        line-height: 1.6;
+      }
+      .saved-reply-meta {
+        font-size: 0.72rem;
+        color: var(--muted);
+        margin-top: 0.3rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .btn-edit-reply {
+        font-size: 0.72rem;
+        color: var(--gold);
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        font-family: "Times New Roman", Times, Georgia, serif;
+        text-decoration: underline;
+      }
+
+      /* Card ẩn */
+      .review-card.hidden-review {
+        opacity: 0.45;
+        filter: grayscale(0.4);
+      }
+      .review-card.hidden-review .hidden-badge {
+        display: inline-flex !important;
+      }
+      .hidden-badge {
+        display: none !important;
+        align-items: center;
+        gap: 0.3rem;
+        padding: 0.1rem 0.55rem;
+        background: #f1f5f9;
+        color: #64748b;
+        border-radius: 10px;
+        font-size: 0.68rem;
+        font-weight: 700;
+      }
     </style>
   </head>
   <body>
@@ -1377,7 +1628,7 @@
               class="icon-btn"
               id="notifBtn"
               title="Thông báo"
-              onclick="toggleNotifDropdown()"
+              onclick="toggleNotifDropdown(event)"
               style="cursor: pointer"
             >
               <i class="bi bi-bell"></i>
@@ -1757,9 +2008,32 @@
             <div class="card-panel-header">
               <div class="card-panel-title">
                 <i class="bi bi-receipt"></i>Quản lý Đơn hàng
+                <span class="count-badge ms-2" id="orderCountBadge">0</span>
+              </div>
+              <div class="d-flex gap-2 align-items-center flex-wrap">
+                <select
+                  class="search-ctrl"
+                  id="orderStatusFilter"
+                  onchange="renderOrdersTable()"
+                  style="min-width: 140px"
+                >
+                  <option value="">Tất cả trạng thái</option>
+                  <option value="pending">Chờ xử lý</option>
+                  <option value="shipping">Đang giao</option>
+                  <option value="done">Đã giao</option>
+                  <option value="cancel">Đã hủy</option>
+                </select>
+                <input
+                  type="text"
+                  class="search-ctrl"
+                  id="orderSearch"
+                  placeholder="🔍 Tìm khách hàng..."
+                  oninput="renderOrdersTable()"
+                  style="min-width: 170px"
+                />
               </div>
             </div>
-            <div class="card-panel-body">
+            <div style="overflow-x: auto">
               <table class="data-table">
                 <thead>
                   <tr>
@@ -1768,289 +2042,16 @@
                     <th>Ngày đặt</th>
                     <th>Sản phẩm</th>
                     <th>Tổng tiền</th>
+                    <th>Thanh toán</th>
                     <th>Trạng thái</th>
                     <th>Hành động</th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody id="ordersTableBody">
                   <tr>
-                    <td>#DH0098</td>
-                    <td>Nguyễn Thị A</td>
-                    <td>14/05/2025</td>
-                    <td>Áo thun ×2</td>
-                    <td class="price-cell">598.000đ</td>
-                    <td><span class="order-status os-done">Đã giao</span></td>
-                    <td>
-                      <button
-                        class="btn-tbl btn-tbl-edit"
-                        onclick="
-                          showOrderDetail({
-                            id: '#DH0098',
-                            customer: 'Nguyễn Thị A',
-                            date: '14/05/2025',
-                            status:
-                              '<span class=\'order-status os-done\'>Đã giao</span>',
-                            payment: 'Chuyển khoản',
-                            address: '12 Lê Lợi, Hải Châu, Đà Nẵng',
-                            products: [
-                              {
-                                name: 'Áo thun oversize',
-                                qty: 2,
-                                price: '299.000đ',
-                              },
-                            ],
-                            total: '598.000đ',
-                          })
-                        "
-                      >
-                        <i class="bi bi-eye me-1"></i>Chi tiết
-                      </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>#DH0097</td>
-                    <td>Trần Văn B</td>
-                    <td>13/05/2025</td>
-                    <td>Quần jeans ×1</td>
-                    <td class="price-cell">459.000đ</td>
-                    <td>
-                      <span class="order-status os-shipping">Đang giao</span>
-                    </td>
-                    <td>
-                      <button
-                        class="btn-tbl btn-tbl-edit"
-                        onclick="
-                          showOrderDetail({
-                            id: '#DH0097',
-                            customer: 'Trần Văn B',
-                            date: '13/05/2025',
-                            status:
-                              '<span class=\'order-status os-shipping\'>Đang giao</span>',
-                            payment: 'COD',
-                            address: '45 Nguyễn Văn Linh, Thanh Khê, Đà Nẵng',
-                            products: [
-                              {
-                                name: 'Quần jeans slim fit',
-                                qty: 1,
-                                price: '459.000đ',
-                              },
-                            ],
-                            total: '459.000đ',
-                          })
-                        "
-                      >
-                        <i class="bi bi-eye me-1"></i>Chi tiết
-                      </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>#DH0096</td>
-                    <td>Lê Thị C</td>
-                    <td>13/05/2025</td>
-                    <td>Váy đầm ×1</td>
-                    <td class="price-cell">720.000đ</td>
-                    <td>
-                      <span class="order-status os-pending">Chờ xử lý</span>
-                    </td>
-                    <td>
-                      <button
-                        class="btn-tbl btn-tbl-edit"
-                        onclick="
-                          showOrderDetail({
-                            id: '#DH0096',
-                            customer: 'Lê Thị C',
-                            date: '13/05/2025',
-                            status:
-                              '<span class=\'order-status os-pending\'>Chờ xử lý</span>',
-                            payment: 'Ví MoMo',
-                            address: '88 Trần Phú, Hải Châu, Đà Nẵng',
-                            products: [
-                              {
-                                name: 'Váy đầm maxi hoa nhí',
-                                qty: 1,
-                                price: '720.000đ',
-                              },
-                            ],
-                            total: '720.000đ',
-                          })
-                        "
-                      >
-                        <i class="bi bi-eye me-1"></i>Chi tiết
-                      </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>#DH0095</td>
-                    <td>Phạm Minh D</td>
-                    <td>12/05/2025</td>
-                    <td>Áo polo ×3</td>
-                    <td class="price-cell">897.000đ</td>
-                    <td><span class="order-status os-done">Đã giao</span></td>
-                    <td>
-                      <button
-                        class="btn-tbl btn-tbl-edit"
-                        onclick="
-                          showOrderDetail({
-                            id: '#DH0095',
-                            customer: 'Phạm Minh D',
-                            date: '12/05/2025',
-                            status:
-                              '<span class=\'order-status os-done\'>Đã giao</span>',
-                            payment: 'Chuyển khoản',
-                            address: '22 Hoàng Diệu, Hải Châu, Đà Nẵng',
-                            products: [
-                              {
-                                name: 'Áo polo cotton',
-                                qty: 3,
-                                price: '299.000đ/cái',
-                              },
-                            ],
-                            total: '897.000đ',
-                          })
-                        "
-                      >
-                        <i class="bi bi-eye me-1"></i>Chi tiết
-                      </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>#DH0094</td>
-                    <td>Hoàng Lan E</td>
-                    <td>12/05/2025</td>
-                    <td>Áo khoác ×1</td>
-                    <td class="price-cell">1.200.000đ</td>
-                    <td><span class="order-status os-cancel">Đã hủy</span></td>
-                    <td>
-                      <button
-                        class="btn-tbl btn-tbl-edit"
-                        onclick="
-                          showOrderDetail({
-                            id: '#DH0094',
-                            customer: 'Hoàng Lan E',
-                            date: '12/05/2025',
-                            status:
-                              '<span class=\'order-status os-cancel\'>Đã hủy</span>',
-                            payment: 'COD',
-                            address: '5 Đinh Tiên Hoàng, Sơn Trà, Đà Nẵng',
-                            products: [
-                              {
-                                name: 'Áo khoác dù 2 lớp',
-                                qty: 1,
-                                price: '1.200.000đ',
-                              },
-                            ],
-                            total: '1.200.000đ',
-                          })
-                        "
-                      >
-                        <i class="bi bi-eye me-1"></i>Chi tiết
-                      </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>#DH0093</td>
-                    <td>Vũ Thị F</td>
-                    <td>11/05/2025</td>
-                    <td>Túi xách ×1</td>
-                    <td class="price-cell">850.000đ</td>
-                    <td>
-                      <span class="order-status os-shipping">Đang giao</span>
-                    </td>
-                    <td>
-                      <button
-                        class="btn-tbl btn-tbl-edit"
-                        onclick="
-                          showOrderDetail({
-                            id: '#DH0093',
-                            customer: 'Vũ Thị F',
-                            date: '11/05/2025',
-                            status:
-                              '<span class=\'order-status os-shipping\'>Đang giao</span>',
-                            payment: 'Ví ZaloPay',
-                            address: '67 Ngô Quyền, Sơn Trà, Đà Nẵng',
-                            products: [
-                              {
-                                name: 'Túi xách da tổng hợp',
-                                qty: 1,
-                                price: '850.000đ',
-                              },
-                            ],
-                            total: '850.000đ',
-                          })
-                        "
-                      >
-                        <i class="bi bi-eye me-1"></i>Chi tiết
-                      </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>#DH0092</td>
-                    <td>Đặng Văn G</td>
-                    <td>11/05/2025</td>
-                    <td>Áo sơ mi ×2</td>
-                    <td class="price-cell">658.000đ</td>
-                    <td><span class="order-status os-done">Đã giao</span></td>
-                    <td>
-                      <button
-                        class="btn-tbl btn-tbl-edit"
-                        onclick="
-                          showOrderDetail({
-                            id: '#DH0092',
-                            customer: 'Đặng Văn G',
-                            date: '11/05/2025',
-                            status:
-                              '<span class=\'order-status os-done\'>Đã giao</span>',
-                            payment: 'Chuyển khoản',
-                            address: '100 Lê Duẩn, Hải Châu, Đà Nẵng',
-                            products: [
-                              {
-                                name: 'Áo sơ mi công sở',
-                                qty: 2,
-                                price: '329.000đ/cái',
-                              },
-                            ],
-                            total: '658.000đ',
-                          })
-                        "
-                      >
-                        <i class="bi bi-eye me-1"></i>Chi tiết
-                      </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>#DH0091</td>
-                    <td>Bùi Thị H</td>
-                    <td>10/05/2025</td>
-                    <td>Quần short ×3</td>
-                    <td class="price-cell">447.000đ</td>
-                    <td>
-                      <span class="order-status os-pending">Chờ xử lý</span>
-                    </td>
-                    <td>
-                      <button
-                        class="btn-tbl btn-tbl-edit"
-                        onclick="
-                          showOrderDetail({
-                            id: '#DH0091',
-                            customer: 'Bùi Thị H',
-                            date: '10/05/2025',
-                            status:
-                              '<span class=\'order-status os-pending\'>Chờ xử lý</span>',
-                            payment: 'COD',
-                            address: '34 Núi Thành, Hải Châu, Đà Nẵng',
-                            products: [
-                              {
-                                name: 'Quần short thể thao',
-                                qty: 3,
-                                price: '149.000đ/cái',
-                              },
-                            ],
-                            total: '447.000đ',
-                          })
-                        "
-                      >
-                        <i class="bi bi-eye me-1"></i>Chi tiết
-                      </button>
+                    <td colspan="8" class="loading-cell">
+                      <div class="spinner"></div>
+                      Đang tải...
                     </td>
                   </tr>
                 </tbody>
@@ -2058,7 +2059,6 @@
             </div>
           </div>
         </div>
-
         <div id="page-customers" style="display: none">
           <div class="card-panel">
             <div class="card-panel-header">
@@ -2110,20 +2110,128 @@
         </div>
 
         <div id="page-reviews" style="display: none">
+          <!-- Stat tổng quan đánh giá -->
+          <div
+            class="row g-3 mb-4"
+            id="reviewsStats"
+            style="opacity: 0; transition: opacity 0.5s"
+          >
+            <div class="col-6 col-md-3">
+              <div class="stat-card s-gold">
+                <div class="stat-icon-wrap">⭐</div>
+                <div class="stat-val">4.9</div>
+                <div class="stat-lbl">Điểm trung bình</div>
+              </div>
+            </div>
+            <div class="col-6 col-md-3">
+              <div class="stat-card s-green">
+                <div class="stat-icon-wrap">💬</div>
+                <div class="stat-val">10K+</div>
+                <div class="stat-lbl">Tổng đánh giá</div>
+              </div>
+            </div>
+            <div class="col-6 col-md-3">
+              <div class="stat-card s-blue">
+                <div class="stat-icon-wrap">👍</div>
+                <div class="stat-val">97%</div>
+                <div class="stat-lbl">Hài lòng</div>
+              </div>
+            </div>
+            <div class="col-6 col-md-3">
+              <div class="stat-card s-red">
+                <div class="stat-icon-wrap">⚠️</div>
+                <div class="stat-val">3</div>
+                <div class="stat-lbl">Cần xử lý</div>
+              </div>
+            </div>
+          </div>
+
           <div class="card-panel">
             <div class="card-panel-header">
               <div class="card-panel-title">
-                <i class="bi bi-star"></i>Đánh giá sản phẩm
+                <i class="bi bi-star-fill" style="color: var(--gold)"></i>Danh
+                sách đánh giá
+                <span class="count-badge ms-2" id="reviewCountBadge">0</span>
+              </div>
+              <div class="d-flex gap-2 align-items-center flex-wrap">
+                <select
+                  class="search-ctrl"
+                  id="reviewStarFilter"
+                  onchange="renderReviews()"
+                  style="min-width: 130px"
+                >
+                  <option value="">Tất cả sao</option>
+                  <option value="5">★★★★★ 5 sao</option>
+                  <option value="4">★★★★ 4 sao</option>
+                  <option value="3">★★★ 3 sao</option>
+                  <option value="1">⚠️ Cần xử lý</option>
+                </select>
+                <input
+                  type="text"
+                  class="search-ctrl"
+                  id="reviewSearch"
+                  placeholder="🔍 Tìm theo tên..."
+                  oninput="renderReviews()"
+                  style="min-width: 160px"
+                />
               </div>
             </div>
-            <div class="card-panel-body">
-              <div
-                style="text-align: center; padding: 2rem; color: var(--muted)"
-              >
-                <div style="font-size: 2rem; margin-bottom: 0.5rem">⭐</div>
-                Đang tải đánh giá...
+
+            <!-- Loading skeleton -->
+            <div id="reviewsLoading" style="padding: 1.5rem">
+              <div style="display: flex; flex-direction: column; gap: 1rem">
+                ${[1,2,3].map(() => `
+                <div
+                  style="
+                    background: var(--cream);
+                    border-radius: 10px;
+                    padding: 1.2rem;
+                    animation: shimmer 1.5s infinite linear;
+                    background: linear-gradient(
+                      90deg,
+                      var(--blush) 25%,
+                      #faf0e6 50%,
+                      var(--blush) 75%
+                    );
+                    background-size: 200% 100%;
+                  "
+                >
+                  <div
+                    style="
+                      height: 12px;
+                      width: 120px;
+                      background: rgba(0, 0, 0, 0.06);
+                      border-radius: 6px;
+                      margin-bottom: 0.75rem;
+                    "
+                  ></div>
+                  <div
+                    style="
+                      height: 10px;
+                      width: 90%;
+                      background: rgba(0, 0, 0, 0.06);
+                      border-radius: 6px;
+                      margin-bottom: 0.4rem;
+                    "
+                  ></div>
+                  <div
+                    style="
+                      height: 10px;
+                      width: 70%;
+                      background: rgba(0, 0, 0, 0.06);
+                      border-radius: 6px;
+                    "
+                  ></div>
+                </div>
+                `).join("")}
               </div>
             </div>
+
+            <!-- Review list -->
+            <div
+              id="reviewsList"
+              style="display: none; padding: 0.75rem 1.25rem 1.25rem"
+            ></div>
           </div>
         </div>
 
@@ -2556,6 +2664,8 @@ Thời trang cao cấp — phong cách, sang trọng, tinh tế.</textarea
         document.getElementById("pageTitle").textContent = titles[name] || name;
         document.getElementById("pageBreadcrumb").textContent =
           titles[name] || name;
+        if (name === "orders") renderOrdersTable();
+        if (name === "reviews") loadReviews();
       }
 
       // ── TOAST ──
@@ -2778,45 +2888,617 @@ Thời trang cao cấp — phong cách, sang trọng, tinh tế.</textarea
       }
 
       // ── ORDER DETAIL MODAL ──
-      function showOrderDetail(order) {
+      // ── DEMO ORDERS (fallback khi chưa có đơn hàng thật) ──
+      const DEMO_ORDERS = [
+        {
+          id: "#DH0098",
+          customer: "Nguyễn Thị A",
+          phone: "0901 234 567",
+          date: "14/05/2025",
+          products: [
+            { name: "Áo thun oversize", qty: 2, size: "M", price: "299.000đ" },
+          ],
+          total: 598000,
+          payment: "Chuyển khoản",
+          address: "12 Lê Lợi, Hải Châu, Đà Nẵng",
+          status: "done",
+        },
+        {
+          id: "#DH0097",
+          customer: "Trần Văn B",
+          phone: "0912 345 678",
+          date: "13/05/2025",
+          products: [
+            {
+              name: "Quần jeans slim fit",
+              qty: 1,
+              size: "L",
+              price: "459.000đ",
+            },
+          ],
+          total: 459000,
+          payment: "COD",
+          address: "45 Nguyễn Văn Linh, Thanh Khê, Đà Nẵng",
+          status: "shipping",
+        },
+        {
+          id: "#DH0096",
+          customer: "Lê Thị C",
+          phone: "0923 456 789",
+          date: "13/05/2025",
+          products: [
+            {
+              name: "Váy đầm maxi hoa nhí",
+              qty: 1,
+              size: "M",
+              price: "720.000đ",
+            },
+          ],
+          total: 720000,
+          payment: "Ví MoMo",
+          address: "88 Trần Phú, Hải Châu, Đà Nẵng",
+          status: "pending",
+        },
+        {
+          id: "#DH0095",
+          customer: "Phạm Minh D",
+          phone: "0934 567 890",
+          date: "12/05/2025",
+          products: [
+            { name: "Áo polo basic", qty: 3, size: "L", price: "299.000đ/cái" },
+          ],
+          total: 897000,
+          payment: "VNPay",
+          address: "22 Trần Hưng Đạo, Hải Châu, Đà Nẵng",
+          status: "done",
+        },
+        {
+          id: "#DH0094",
+          customer: "Hoàng Lan E",
+          phone: "0945 678 901",
+          date: "12/05/2025",
+          products: [
+            {
+              name: "Áo khoác dù 2 lớp",
+              qty: 1,
+              size: "XL",
+              price: "1.200.000đ",
+            },
+          ],
+          total: 1200000,
+          payment: "COD",
+          address: "5 Đinh Tiên Hoàng, Sơn Trà, Đà Nẵng",
+          status: "cancel",
+        },
+        {
+          id: "#DH0093",
+          customer: "Vũ Thị F",
+          phone: "0956 789 012",
+          date: "11/05/2025",
+          products: [
+            {
+              name: "Túi xách da tổng hợp",
+              qty: 1,
+              size: "",
+              price: "850.000đ",
+            },
+          ],
+          total: 850000,
+          payment: "Ví ZaloPay",
+          address: "67 Ngô Quyền, Sơn Trà, Đà Nẵng",
+          status: "shipping",
+        },
+        {
+          id: "#DH0092",
+          customer: "Đặng Văn G",
+          phone: "0967 890 123",
+          date: "11/05/2025",
+          products: [
+            {
+              name: "Áo sơ mi công sở",
+              qty: 2,
+              size: "M",
+              price: "329.000đ/cái",
+            },
+          ],
+          total: 658000,
+          payment: "Chuyển khoản",
+          address: "100 Lê Duẩn, Hải Châu, Đà Nẵng",
+          status: "done",
+        },
+        {
+          id: "#DH0091",
+          customer: "Bùi Thị H",
+          phone: "0978 901 234",
+          date: "10/05/2025",
+          products: [
+            {
+              name: "Quần short thể thao",
+              qty: 3,
+              size: "L",
+              price: "149.000đ/cái",
+            },
+          ],
+          total: 447000,
+          payment: "COD",
+          address: "34 Núi Thành, Hải Châu, Đà Nẵng",
+          status: "pending",
+        },
+      ];
+
+      const STATUS_INFO = {
+        pending: { cls: "os-pending", label: "Chờ xử lý" },
+        shipping: { cls: "os-shipping", label: "Đang giao" },
+        done: { cls: "os-done", label: "Đã giao" },
+        cancel: { cls: "os-cancel", label: "Đã hủy" },
+      };
+
+      function getAllOrders() {
+        const saved = JSON.parse(localStorage.getItem("fh_orders") || "[]");
+        // Merge: đơn thật lên đầu, demo ở sau
+        const ids = new Set(saved.map((o) => o.id));
+        return [...saved, ...DEMO_ORDERS.filter((o) => !ids.has(o.id))];
+      }
+
+      function renderOrdersTable() {
+        const orders = getAllOrders();
+        const filterStatus =
+          document.getElementById("orderStatusFilter")?.value || "";
+        const searchQ = (document.getElementById("orderSearch")?.value || "")
+          .toLowerCase()
+          .trim();
+
+        let filtered = orders;
+        if (filterStatus)
+          filtered = filtered.filter((o) => o.status === filterStatus);
+        if (searchQ)
+          filtered = filtered.filter(
+            (o) =>
+              o.customer.toLowerCase().includes(searchQ) ||
+              o.id.toLowerCase().includes(searchQ),
+          );
+
+        document.getElementById("orderCountBadge").textContent =
+          filtered.length;
+
+        // Cập nhật badge sidebar
+        const pendingCount = orders.filter(
+          (o) => o.status === "pending",
+        ).length;
+        document.querySelectorAll(".sidebar-nav .nav-badge").forEach((b, i) => {
+          if (i === 0) b.textContent = pendingCount || "";
+        });
+
+        const tbody = document.getElementById("ordersTableBody");
+        if (!filtered.length) {
+          tbody.innerHTML = `<tr><td colspan="8"><div class="empty-table"><div class="empty-icon">📭</div>Không có đơn hàng nào</div></td></tr>`;
+          return;
+        }
+
+        tbody.innerHTML = filtered
+          .map((order) => {
+            const st = STATUS_INFO[order.status] || STATUS_INFO.pending;
+            const prodSummary = order.products
+              .map((p) => `${p.name} ×${p.qty}`)
+              .join(", ");
+            const totalFmt = Number(order.total).toLocaleString("vi-VN") + "đ";
+            return `<tr>
+            <td style="font-weight:600;color:var(--taupe)">${order.id}</td>
+            <td>
+              <div style="font-weight:600;font-size:.85rem">${order.customer}</div>
+              <div style="font-size:.73rem;color:var(--muted)">${order.phone || ""}</div>
+            </td>
+            <td style="white-space:nowrap">${order.date}</td>
+            <td style="max-width:180px;font-size:.82rem">${prodSummary}</td>
+            <td class="price-cell">${totalFmt}</td>
+            <td style="font-size:.82rem">${order.payment}</td>
+            <td><span class="order-status ${st.cls}">${st.label}</span></td>
+            <td>
+              <div style="display:flex;gap:.3rem;flex-wrap:wrap">
+                <button class="btn-tbl btn-tbl-edit" onclick='adminShowOrder(${JSON.stringify(order).replace(/'/g, "&#39;")})'>
+                  <i class="bi bi-eye me-1"></i>Chi tiết
+                </button>
+                ${order.status === "pending" ? `<button class="btn-tbl" style="background:#dbeafe;color:var(--blue)" onclick="updateOrderStatus('${order.id}','shipping')"><i class="bi bi-truck me-1"></i>Giao</button>` : ""}
+                ${order.status === "shipping" ? `<button class="btn-tbl" style="background:#dcfce7;color:var(--green)" onclick="updateOrderStatus('${order.id}','done')"><i class="bi bi-check2-circle me-1"></i>Xong</button>` : ""}
+                ${order.status === "pending" || order.status === "shipping" ? `<button class="btn-tbl btn-tbl-del" onclick="updateOrderStatus('${order.id}','cancel')"><i class="bi bi-x me-1"></i>Hủy</button>` : ""}
+              </div>
+            </td>
+          </tr>`;
+          })
+          .join("");
+      }
+
+      function updateOrderStatus(orderId, newStatus) {
+        const orders = JSON.parse(localStorage.getItem("fh_orders") || "[]");
+        let updated = false;
+        orders.forEach((o) => {
+          if (o.id === orderId) {
+            o.status = newStatus;
+            updated = true;
+          }
+        });
+        // Nếu là đơn demo (không có trong localStorage), thêm vào với status mới
+        if (!updated) {
+          const demo = DEMO_ORDERS.find((o) => o.id === orderId);
+          if (demo) {
+            orders.push({ ...demo, status: newStatus });
+          }
+        }
+        localStorage.setItem("fh_orders", JSON.stringify(orders));
+        const st = STATUS_INFO[newStatus];
+        showToast(`✅ Đơn ${orderId} → ${st.label}`);
+        renderOrdersTable();
+      }
+
+      function adminShowOrder(order) {
+        const st = STATUS_INFO[order.status] || STATUS_INFO.pending;
         document.getElementById("modalOrderId").textContent = order.id;
         document.getElementById("modalCustomer").textContent = order.customer;
         document.getElementById("modalDate").textContent = order.date;
-        document.getElementById("modalStatus").innerHTML = order.status;
+        document.getElementById("modalStatus").innerHTML =
+          `<span class="order-status ${st.cls}">${st.label}</span>`;
         document.getElementById("modalPayment").textContent = order.payment;
         document.getElementById("modalAddress").textContent = order.address;
-        document.getElementById("modalTotal").textContent = order.total;
+        document.getElementById("modalTotal").textContent =
+          Number(order.total).toLocaleString("vi-VN") + "đ";
         const list = document.getElementById("modalProductList");
         list.innerHTML = order.products
           .map(
-            (p) => `
-          <div class="modal-product-row">
-            <span><i class="bi bi-bag me-2" style="color:var(--taupe)"></i>${p.name}<span class="prod-qty">×${p.qty}</span></span>
+            (p) =>
+              `<div class="modal-product-row">
+            <span><i class="bi bi-bag me-2" style="color:var(--taupe)"></i>${p.name}${p.size ? ` <span style="font-size:.75rem;color:var(--muted)">[${p.size}]</span>` : ""}<span class="prod-qty">×${p.qty}</span></span>
             <span style="font-weight:700;color:var(--taupe)">${p.price}</span>
           </div>`,
           )
           .join("");
         document.getElementById("orderModal").style.display = "flex";
       }
+
+      function showOrderDetail(order) {
+        adminShowOrder(order);
+      }
+
       function closeOrderModal(e) {
         if (e.target === document.getElementById("orderModal"))
           document.getElementById("orderModal").style.display = "none";
       }
 
-      $(document).ready(() => {
-        checkAdmin();
-        loadAdmin();
-        initNotifications();
-        loadSettings();
-        // Close notif dropdown when clicking outside
-        document.addEventListener("click", function (e) {
-          const wrapper = document.querySelector(".notif-wrapper");
-          if (wrapper && !wrapper.contains(e.target)) {
-            document.getElementById("notifDropdown").classList.remove("open");
-          }
-        });
-      });
+      // ── REVIEWS ──
+      const REVIEWS_DATA = [
+        {
+          id: 1,
+          name: "Nguyễn Thị Lan",
+          location: "Hà Nội",
+          product: "Áo sơ mi linen",
+          stars: 5,
+          date: "20/05/2025",
+          text: "Vải rất mềm mại, đường may chắc chắn. Mặc đi làm nhận được nhiều lời khen. Sẽ tiếp tục ủng hộ FashionHub!",
+          avatar: "#c9a84c",
+          initials: "L",
+          isNew: true,
+          flagged: false,
+        },
+        {
+          id: 2,
+          name: "Trần Minh Khoa",
+          location: "Đà Nẵng",
+          product: "Áo thun oversize",
+          stars: 5,
+          date: "19/05/2025",
+          text: "Giao hàng siêu nhanh, chỉ 1 ngày là nhận được. Sản phẩm y hình, size chuẩn, đóng gói cẩn thận. Rất hài lòng!",
+          avatar: "#8b7355",
+          initials: "K",
+          isNew: true,
+          flagged: false,
+        },
+        {
+          id: 3,
+          name: "Lê Thị Hương",
+          location: "TP.HCM",
+          product: "Váy đầm maxi hoa nhí",
+          stars: 4,
+          date: "18/05/2025",
+          text: "Váy đầm đẹp lắm, chất lượng xứng đáng với giá tiền. Shop tư vấn nhiệt tình, hỗ trợ đổi size nhanh chóng.",
+          avatar: "#1a1a1a",
+          initials: "H",
+          isNew: false,
+          flagged: false,
+        },
+        {
+          id: 4,
+          name: "Phạm Quốc Bảo",
+          location: "Hải Phòng",
+          product: "Áo khoác bomber",
+          stars: 5,
+          date: "17/05/2025",
+          text: "Áo khoác chất lượng tốt, form đẹp, mặc vào rất ấm. Màu sắc y như ảnh, không bị phai màu sau vài lần giặt.",
+          avatar: "#2563eb",
+          initials: "B",
+          isNew: false,
+          flagged: false,
+        },
+        {
+          id: 5,
+          name: "Vũ Thu Hà",
+          location: "Cần Thơ",
+          product: "Quần jeans slim fit",
+          stars: 4,
+          date: "16/05/2025",
+          text: "Quần jeans đẹp, chất vải tốt. Chỉ có điều giao hàng hơi chậm so với dự kiến nhưng sản phẩm rất ổn.",
+          avatar: "#16a34a",
+          initials: "H",
+          isNew: false,
+          flagged: false,
+        },
+        {
+          id: 6,
+          name: "Đặng Văn Tuấn",
+          location: "Huế",
+          product: "Áo polo basic",
+          stars: 5,
+          date: "15/05/2025",
+          text: "Mua lần này là lần thứ 3 rồi, lần nào cũng hài lòng. Áo polo chất cotton mát, mặc thoải mái cả ngày dài.",
+          avatar: "#9333ea",
+          initials: "T",
+          isNew: false,
+          flagged: false,
+        },
+        {
+          id: 7,
+          name: "Hoàng Mỹ Linh",
+          location: "Đà Lạt",
+          product: "Váy đầm mini",
+          stars: 3,
+          date: "14/05/2025",
+          text: "Váy khá đẹp nhưng vải hơi mỏng, không đúng như mô tả. Size cũng hơi lớn hơn thực tế. Mong shop cải thiện.",
+          avatar: "#dc2626",
+          initials: "L",
+          isNew: false,
+          flagged: true,
+        },
+        {
+          id: 8,
+          name: "Bùi Thanh Tùng",
+          location: "Quảng Ninh",
+          product: "Áo hoodie nỉ",
+          stars: 5,
+          date: "13/05/2025",
+          text: "Hoodie cực kỳ chất, mặc mùa đông ấm lắm. Đường chỉ đều, không bị nhăn. Sẽ giới thiệu bạn bè mua thêm!",
+          avatar: "#0891b2",
+          initials: "T",
+          isNew: false,
+          flagged: false,
+        },
+        {
+          id: 9,
+          name: "Ngô Thị Mai",
+          location: "Nha Trang",
+          product: "Túi xách da",
+          stars: 4,
+          date: "12/05/2025",
+          text: "Túi xách đẹp, da tổng hợp nhưng trông sang lắm. Khóa kéo chắc chắn. Giao hàng nhanh, đóng gói cẩn thận.",
+          avatar: "#b45309",
+          initials: "M",
+          isNew: false,
+          flagged: false,
+        },
+        {
+          id: 10,
+          name: "Lý Văn Phong",
+          location: "Vũng Tàu",
+          product: "Quần short thể thao",
+          stars: 1,
+          date: "11/05/2025",
+          text: "Sản phẩm không như mô tả, chất liệu kém hơn ảnh nhiều. Giao hàng chậm 5 ngày. Không hài lòng chút nào.",
+          avatar: "#dc2626",
+          initials: "P",
+          isNew: false,
+          flagged: true,
+        },
+      ];
 
+      function renderStars(n) {
+        return Array.from({ length: 5 }, (_, i) =>
+          i < n ? "★" : '<span class="empty">★</span>',
+        ).join("");
+      }
+
+      // ── Lưu replies và trạng thái ẩn vào localStorage ──
+      const REVIEWS_STORAGE_KEY = "fh_review_data";
+      function getReviewMeta() {
+        return JSON.parse(localStorage.getItem(REVIEWS_STORAGE_KEY) || "{}");
+      }
+      function saveReviewMeta(meta) {
+        localStorage.setItem(REVIEWS_STORAGE_KEY, JSON.stringify(meta));
+      }
+
+      function toggleReplyBox(id) {
+        const box = document.getElementById("replyBox_" + id);
+        if (!box) return;
+        const isOpen = box.classList.contains("open");
+        // Đóng tất cả reply box khác
+        document
+          .querySelectorAll(".reply-box.open")
+          .forEach((b) => b.classList.remove("open"));
+        if (!isOpen) {
+          box.classList.add("open");
+          box.querySelector("textarea").focus();
+        }
+      }
+
+      function cancelReply(id) {
+        const box = document.getElementById("replyBox_" + id);
+        if (box) box.classList.remove("open");
+      }
+
+      function updateCharCount(id) {
+        const ta = document.getElementById("replyTA_" + id);
+        const counter = document.getElementById("replyCount_" + id);
+        if (ta && counter) counter.textContent = ta.value.length + "/500";
+      }
+
+      function submitReply(id) {
+        const ta = document.getElementById("replyTA_" + id);
+        const text = ta ? ta.value.trim() : "";
+        if (!text) {
+          showToast("⚠️ Vui lòng nhập nội dung phản hồi!");
+          return;
+        }
+        if (text.length > 500) {
+          showToast("⚠️ Phản hồi tối đa 500 ký tự!");
+          return;
+        }
+        const meta = getReviewMeta();
+        if (!meta[id]) meta[id] = {};
+        meta[id].reply = text;
+        meta[id].replyDate =
+          new Date().toLocaleDateString("vi-VN") +
+          " " +
+          new Date().toLocaleTimeString("vi-VN", {
+            hour: "2-digit",
+            minute: "2-digit",
+          });
+        saveReviewMeta(meta);
+        renderReviews();
+        showToast("✅ Đã gửi phản hồi thành công!");
+      }
+
+      function deleteReply(id) {
+        if (!confirm("Xoá phản hồi này?")) return;
+        const meta = getReviewMeta();
+        if (meta[id]) delete meta[id].reply;
+        saveReviewMeta(meta);
+        renderReviews();
+        showToast("🗑️ Đã xoá phản hồi");
+      }
+
+      function toggleHideReview(id) {
+        const meta = getReviewMeta();
+        if (!meta[id]) meta[id] = {};
+        meta[id].hidden = !meta[id].hidden;
+        saveReviewMeta(meta);
+        renderReviews();
+        showToast(
+          meta[id].hidden ? "🙈 Đã ẩn đánh giá" : "👁️ Đã hiện đánh giá",
+        );
+      }
+
+      function renderReviews() {
+        const filterStar =
+          document.getElementById("reviewStarFilter")?.value || "";
+        const search = (
+          document.getElementById("reviewSearch")?.value || ""
+        ).toLowerCase();
+        let data = REVIEWS_DATA;
+        if (filterStar === "1")
+          data = data.filter((r) => r.flagged || r.stars <= 2);
+        else if (filterStar) data = data.filter((r) => r.stars === +filterStar);
+        if (search)
+          data = data.filter(
+            (r) =>
+              r.name.toLowerCase().includes(search) ||
+              r.product.toLowerCase().includes(search),
+          );
+
+        document.getElementById("reviewCountBadge").textContent = data.length;
+        const container = document.getElementById("reviewsList");
+        const meta = getReviewMeta();
+
+        if (!data.length) {
+          container.innerHTML = `<div class="empty-table"><div class="empty-icon">⭐</div>Không có đánh giá nào phù hợp</div>`;
+          return;
+        }
+
+        container.innerHTML = data
+          .map((r, i) => {
+            const m = meta[r.id] || {};
+            const isHidden = !!m.hidden;
+            const savedReply = m.reply || "";
+            const replyDate = m.replyDate || "";
+
+            const savedReplyHTML = savedReply
+              ? `
+            <div class="saved-reply">
+              <div class="saved-reply-label"><i class="bi bi-shield-check-fill"></i>Phản hồi từ FashionHub</div>
+              <div class="saved-reply-text">${savedReply}</div>
+              <div class="saved-reply-meta">
+                <span><i class="bi bi-clock me-1"></i>${replyDate}</span>
+                <div style="display:flex;gap:.5rem">
+                  <button class="btn-edit-reply" onclick="editReply(${r.id})"><i class="bi bi-pencil me-1"></i>Sửa</button>
+                  <button class="btn-edit-reply" style="color:var(--red)" onclick="deleteReply(${r.id})"><i class="bi bi-trash me-1"></i>Xoá</button>
+                </div>
+              </div>
+            </div>`
+              : "";
+
+            return `
+          <div class="review-card${isHidden ? " hidden-review" : ""}" id="reviewCard_${r.id}" style="animation-delay:${i * 60}ms">
+            <div style="display:flex;align-items:flex-start;gap:.9rem">
+              <div class="review-avatar" style="background:${r.avatar}">${r.initials}</div>
+              <div style="flex:1;min-width:0">
+                <div style="display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;margin-bottom:.2rem">
+                  <span style="font-weight:700;font-size:.88rem;color:var(--charcoal)">${r.name}</span>
+                  ${r.isNew ? '<span class="review-badge-new">Mới</span>' : ""}
+                  ${r.flagged ? '<span class="review-badge-flag">⚠️ Cần xử lý</span>' : ""}
+                  <span class="hidden-badge"><i class="bi bi-eye-slash"></i>Đã ẩn</span>
+                  ${savedReply ? '<span style="display:inline-flex;align-items:center;gap:.3rem;padding:.1rem .55rem;background:#dcfce7;color:var(--green);border-radius:10px;font-size:.68rem;font-weight:700"><i class="bi bi-check2"></i>Đã phản hồi</span>' : ""}
+                </div>
+                <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:.55rem;flex-wrap:wrap">
+                  <div class="review-stars">${renderStars(r.stars)}</div>
+                  <span style="font-size:.73rem;color:var(--muted)">${r.location} · ${r.product} · ${r.date}</span>
+                </div>
+                <p style="font-size:.86rem;color:var(--charcoal);line-height:1.65;margin:0 0 .75rem">"${r.text}"</p>
+                ${savedReplyHTML}
+                <div style="display:flex;gap:.4rem;margin-top:.6rem;flex-wrap:wrap">
+                  ${!savedReply ? `<button class="btn-reply" onclick="toggleReplyBox(${r.id})"><i class="bi bi-reply me-1"></i>Phản hồi</button>` : ""}
+                  <button class="${isHidden ? "btn-reply" : "btn-hide-review"}" onclick="toggleHideReview(${r.id})">
+                    <i class="bi ${isHidden ? "bi-eye" : "bi-eye-slash"} me-1"></i>${isHidden ? "Hiện lại" : "Ẩn"}
+                  </button>
+                </div>
+                <div class="reply-box" id="replyBox_${r.id}">
+                  <div style="font-size:.78rem;font-weight:600;color:var(--blue);margin-bottom:.5rem"><i class="bi bi-reply-fill me-1"></i>Phản hồi đánh giá của <strong>${r.name}</strong></div>
+                  <textarea id="replyTA_${r.id}" placeholder="Nhập phản hồi của cửa hàng..." maxlength="500" oninput="updateCharCount(${r.id})"></textarea>
+                  <div class="reply-actions">
+                    <button class="btn-send-reply" onclick="submitReply(${r.id})"><i class="bi bi-send-fill me-1"></i>Gửi phản hồi</button>
+                    <button class="btn-cancel-reply" onclick="cancelReply(${r.id})">Huỷ</button>
+                    <span class="reply-char-count" id="replyCount_${r.id}">0/500</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>`;
+          })
+          .join("");
+      }
+
+      function editReply(id) {
+        const meta = getReviewMeta();
+        const existing = meta[id]?.reply || "";
+        // Xoá reply tạm để mở lại form, giữ text cũ vào textarea
+        renderReviews();
+        // Mở reply box và điền text cũ
+        const box = document.getElementById("replyBox_" + id);
+        const ta = document.getElementById("replyTA_" + id);
+        if (box && ta) {
+          ta.value = existing;
+          box.classList.add("open");
+          updateCharCount(id);
+          ta.focus();
+          ta.setSelectionRange(ta.value.length, ta.value.length);
+        }
+      }
+
+      function loadReviews() {
+        document.getElementById("reviewsLoading").style.display = "block";
+        document.getElementById("reviewsList").style.display = "none";
+        document.getElementById("reviewsStats").style.opacity = "0";
+        setTimeout(() => {
+          document.getElementById("reviewsLoading").style.display = "none";
+          document.getElementById("reviewsList").style.display = "block";
+          document.getElementById("reviewsStats").style.opacity = "1";
+          renderReviews();
+        }, 1400);
+      }
       // ── NOTIFICATIONS ──
       const NOTIF_KEY = "fh_notifications";
       const DEFAULT_NOTIFS = [
@@ -2906,10 +3588,64 @@ Thời trang cao cấp — phong cách, sang trọng, tinh tế.</textarea
         });
       }
 
-      function toggleNotifDropdown() {
+      function toggleNotifDropdown(e) {
+        if (e) e.stopPropagation();
         const dd = document.getElementById("notifDropdown");
         dd.classList.toggle("open");
       }
+
+      // ── Lắng nghe đơn hàng mới từ index.html (qua localStorage) ──
+      function checkNewOrders() {
+        const CHECKED_KEY = "fh_last_checked_order";
+        const orders = JSON.parse(localStorage.getItem("fh_orders") || "[]");
+        const lastChecked = parseInt(localStorage.getItem(CHECKED_KEY) || "0");
+        const notifs = getNotifs();
+        let changed = false;
+        orders.forEach((order) => {
+          const ts = parseInt(order.id.replace("#DH", ""));
+          const alreadyExists = notifs.some((n) => n.orderId === order.id);
+          if (!alreadyExists && ts > lastChecked) {
+            const newNotif = {
+              id: Date.now() + Math.random(),
+              orderId: order.id,
+              icon: "ni-order",
+              iconClass: "bi-receipt",
+              title:
+                "Đơn hàng " +
+                order.id +
+                " vừa được đặt — " +
+                order.customer +
+                " — " +
+                Number(order.total).toLocaleString("vi-VN") +
+                "đ",
+              time: "Vừa xong",
+              read: false,
+            };
+            notifs.unshift(newNotif);
+            localStorage.setItem(CHECKED_KEY, ts);
+            changed = true;
+          }
+        });
+        if (changed) {
+          saveNotifs(notifs);
+          renderNotifications(notifs);
+        }
+      }
+      // Poll mỗi 3 giây để bắt đơn hàng mới
+      setInterval(checkNewOrders, 3000);
+
+      checkAdmin();
+      loadAdmin();
+      initNotifications();
+      loadSettings();
+      // Close notif dropdown when clicking outside
+      document.addEventListener("click", function (e) {
+        const wrapper = document.querySelector(".notif-wrapper");
+        if (wrapper && !wrapper.contains(e.target)) {
+          const dd = document.getElementById("notifDropdown");
+          if (dd) dd.classList.remove("open");
+        }
+      });
 
       function markOneRead(id) {
         const notifs = getNotifs();
